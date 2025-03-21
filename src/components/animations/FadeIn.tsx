@@ -8,8 +8,6 @@ interface FadeInProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none';
   distance?: number;
   className?: string;
-  once?: boolean;
-  viewport?: { once?: boolean; amount?: number };
 }
 
 const FadeIn: React.FC<FadeInProps> = ({
@@ -17,10 +15,8 @@ const FadeIn: React.FC<FadeInProps> = ({
   delay = 0,
   duration = 0.5,
   direction = 'up',
-  distance = 30,
+  distance = 50,
   className = '',
-  once = true,
-  viewport = { once: true, amount: 0.3 },
 }) => {
   // Define variants for animations
   const variants: Variants = {
@@ -36,7 +32,7 @@ const FadeIn: React.FC<FadeInProps> = ({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1.0], // Smooth ease
+        ease: 'easeOut',
       },
     },
   };
@@ -45,9 +41,8 @@ const FadeIn: React.FC<FadeInProps> = ({
     <motion.div
       className={className}
       initial="hidden"
-      whileInView="visible"
+      animate="visible"
       variants={variants}
-      viewport={viewport}
     >
       {children}
     </motion.div>

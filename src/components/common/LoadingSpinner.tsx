@@ -13,29 +13,46 @@ const spin = keyframes`
 const SpinnerContainer = styled.div`
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 `;
 
 const SpinnerRing = styled.div`
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid ${({ theme }) => theme.colors.primary};
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  border: 4px solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
-  animation: ${spin} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: ${spin} 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: ${({ theme }) => theme.colors.primary} transparent transparent transparent;
+  will-change: transform;
 `;
 
-const LoadingSpinner: React.FC = () => {
+interface LoadingSpinnerProps {
+  size?: 'small' | 'medium' | 'large';
+}
+
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ size = 'medium' }) => {
+  // Use CSS variables to avoid re-renders on size changes
+  const containerSize = size === 'small' ? 24 : size === 'large' ? 64 : 40;
+  const ringSize = containerSize * 0.8;
+  const borderSize = size === 'small' ? 2 : size === 'large' ? 6 : 4;
+  
   return (
-    <SpinnerContainer>
-      <SpinnerRing />
+    <SpinnerContainer style={{ width: `${containerSize}px`, height: `${containerSize}px` }}>
+      <SpinnerRing 
+        style={{ 
+          width: `${ringSize}px`, 
+          height: `${ringSize}px`,
+          margin: `${(containerSize - ringSize) / 2}px`,
+          borderWidth: `${borderSize}px`
+        }} 
+      />
     </SpinnerContainer>
   );
 };
 
-export default LoadingSpinner;
+export default React.memo(LoadingSpinner);

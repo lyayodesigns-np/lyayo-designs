@@ -63,12 +63,55 @@ const StyledButton = styled(motion.button)<{
   ${({ variant, theme }) => {
     if (variant === 'primary') {
       return `
-        background-color: ${theme.colors.primary};
+        background-color: ${theme.isDark ? 'rgba(59, 130, 246, 0.1)' : theme.colors.primary};
         color: white;
         border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            ${theme.colors.primary},
+            ${theme.colors.primaryDark},
+            #8b5cf6,
+            ${theme.colors.accent},
+            ${theme.colors.primary}
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${theme.isDark ? theme.colors.background : theme.colors.primary};
+          border-radius: calc(${theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.primaryDark};
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${theme.isDark ? 'rgba(59, 130, 246, 0.15)' : theme.colors.primaryDark};
+          }
         }
         
         &:disabled {
@@ -78,12 +121,55 @@ const StyledButton = styled(motion.button)<{
       `;
     } else if (variant === 'secondary') {
       return `
-        background-color: ${theme.colors.secondary};
+        background-color: ${theme.isDark ? 'rgba(16, 185, 129, 0.1)' : theme.colors.secondary};
         color: white;
         border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            ${theme.colors.secondary},
+            ${theme.colors.secondaryDark},
+            ${theme.colors.primary},
+            #8b5cf6,
+            ${theme.colors.secondary}
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${theme.isDark ? theme.colors.background : theme.colors.secondary};
+          border-radius: calc(${theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.secondaryDark};
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${theme.isDark ? 'rgba(16, 185, 129, 0.15)' : theme.colors.secondaryDark};
+          }
         }
         
         &:disabled {
@@ -94,11 +180,54 @@ const StyledButton = styled(motion.button)<{
     } else if (variant === 'outline') {
       return `
         background-color: transparent;
-        color: ${theme.colors.primary};
-        border: 1px solid ${theme.colors.primary};
+        color: white;
+        border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            ${theme.colors.primary},
+            #8b5cf6,
+            ${theme.colors.accent},
+            ${theme.colors.primaryDark},
+            ${theme.colors.primary}
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${theme.isDark ? theme.colors.background : 'rgba(0, 0, 0, 0.7)'};
+          border-radius: calc(${theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.primaryLight};
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${theme.isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(0, 0, 0, 0.8)'};
+          }
         }
         
         &:disabled {
@@ -110,13 +239,13 @@ const StyledButton = styled(motion.button)<{
     } else if (variant === 'text') {
       return `
         background-color: transparent;
-        color: ${theme.colors.primary};
+        color: white;
         border: none;
         padding-left: 0;
         padding-right: 0;
         
         &:hover:not(:disabled) {
-          color: ${theme.colors.primaryDark};
+          color: ${theme.colors.accent};
           text-decoration: underline;
         }
         
@@ -127,6 +256,18 @@ const StyledButton = styled(motion.button)<{
       `;
     }
   }}
+  
+  @keyframes animatedgradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 // Animation variants

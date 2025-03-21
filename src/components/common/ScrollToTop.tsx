@@ -15,7 +15,7 @@ const ScrollToTop: React.FC = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth' // Use smooth scrolling for better UX
+      behavior: 'auto' // Use auto scrolling for faster page transitions
     });
   }, [pathname]);
 

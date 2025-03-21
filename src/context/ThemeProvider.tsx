@@ -11,9 +11,9 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  isDarkTheme: false,
+  isDarkTheme: true,
   toggleTheme: () => {},
-  theme: lightTheme
+  theme: darkTheme
 });
 
 // Custom hook to use the theme context
@@ -25,10 +25,10 @@ interface ThemeProviderProps {
 
 // Theme provider component
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Initialize theme state from localStorage or default to light theme
+  // Initialize theme state from localStorage or default to dark theme
   const [isDarkTheme, setIsDarkTheme] = useState(() => {
     const savedTheme = localStorage.getItem('lyayo-theme');
-    return savedTheme === 'dark';
+    return savedTheme === 'light' ? false : true; // Default to dark if not set
   });
 
   // Current theme

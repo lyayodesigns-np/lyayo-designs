@@ -16,35 +16,162 @@ const getButtonStyles = (variant: ButtonVariant) => {
   switch (variant) {
     case 'primary':
       return css`
-        background-color: ${({ theme }) => theme.colors.primary};
-        color: white;
-        border: 2px solid ${({ theme }) => theme.colors.primary};
+        background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.1)' : theme.colors.primary};
+        color: ${({ theme }) => theme.isDark ? theme.colors.text : 'white'};
+        border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${({ theme }) => theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            #3b82f6,
+            #8b5cf6,
+            #ec4899,
+            #f59e0b,
+            #10b981,
+            #3b82f6
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.1)' : theme.colors.primary};
+          border-radius: calc(${({ theme }) => theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: transparent;
-          color: ${({ theme }) => theme.colors.primary};
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(59, 130, 246, 0.9)'};
+          }
         }
       `;
     case 'secondary':
       return css`
-        background-color: ${({ theme }) => theme.colors.secondary};
-        color: white;
-        border: 2px solid ${({ theme }) => theme.colors.secondary};
+        background-color: ${({ theme }) => theme.isDark ? 'rgba(16, 185, 129, 0.1)' : theme.colors.secondary};
+        color: ${({ theme }) => theme.isDark ? theme.colors.text : 'white'};
+        border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${({ theme }) => theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            #10b981,
+            #3b82f6,
+            #8b5cf6,
+            #ec4899,
+            #10b981
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${({ theme }) => theme.isDark ? 'rgba(16, 185, 129, 0.1)' : theme.colors.secondary};
+          border-radius: calc(${({ theme }) => theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: transparent;
-          color: ${({ theme }) => theme.colors.secondary};
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${({ theme }) => theme.isDark ? 'rgba(16, 185, 129, 0.15)' : 'rgba(16, 185, 129, 0.9)'};
+          }
         }
       `;
     case 'outline':
       return css`
         background-color: transparent;
         color: ${({ theme }) => theme.colors.primary};
-        border: 2px solid ${({ theme }) => theme.colors.primary};
+        border: none;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: ${({ theme }) => theme.radii.md};
+          background: linear-gradient(
+            45deg,
+            #3b82f6,
+            #8b5cf6,
+            #ec4899,
+            #f59e0b,
+            #3b82f6
+          );
+          background-size: 400% 400%;
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background-color: ${({ theme }) => theme.isDark ? theme.colors.background : 'white'};
+          border-radius: calc(${({ theme }) => theme.radii.md} - 2px);
+          z-index: -1;
+          transition: all 0.3s ease;
+        }
         
         &:hover:not(:disabled) {
-          background-color: ${({ theme }) => theme.colors.primary};
-          color: white;
+          &::before {
+            animation: animatedgradient 3s ease infinite;
+            opacity: 1;
+          }
+          
+          &::after {
+            background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)'};
+          }
         }
       `;
     case 'text':
@@ -103,6 +230,18 @@ const StyledButton = styled.button<ButtonProps>`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  
+  @keyframes animatedgradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   
   &:focus {

@@ -65,39 +65,28 @@ export const GlobalStyles = createGlobalStyle`
 
   h4 {
     font-size: ${({ theme }) => theme.fontSizes['2xl']};
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: ${({ theme }) => theme.fontSizes.xl};
-    }
   }
 
   h5 {
     font-size: ${({ theme }) => theme.fontSizes.xl};
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: ${({ theme }) => theme.fontSizes.lg};
-    }
   }
 
   h6 {
     font-size: ${({ theme }) => theme.fontSizes.lg};
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: ${({ theme }) => theme.fontSizes.md};
-    }
   }
 
   p {
     margin-bottom: ${({ theme }) => theme.space[4]};
+    transition: color 0.3s ease;
   }
 
   a {
     color: ${({ theme }) => theme.colors.primary};
     text-decoration: none;
-    transition: color 0.3s ease;
-
+    transition: color 0.3s ease, background-color 0.3s ease;
+    
     &:hover {
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primaryDark};
     }
   }
 
@@ -106,40 +95,84 @@ export const GlobalStyles = createGlobalStyle`
     height: auto;
   }
 
-  button, input, textarea, select {
-    font-family: ${({ theme }) => theme.fonts.main};
+  button, input, select, textarea {
+    font-family: inherit;
   }
 
   ul, ol {
     margin-bottom: ${({ theme }) => theme.space[4]};
-    padding-left: ${({ theme }) => theme.space[5]};
+    padding-left: ${({ theme }) => theme.space[6]};
   }
 
-  section {
-    padding: ${({ theme }) => theme.space[12]} 0;
-    
-    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      padding: ${({ theme }) => theme.space[8]} 0;
-    }
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+    padding: ${({ theme }) => theme.space[1]} ${({ theme }) => theme.space[2]};
+    border-radius: ${({ theme }) => theme.radii.sm};
+    font-size: 0.9em;
   }
 
-  .container {
+  pre {
+    background-color: ${({ theme }) => theme.isDark ? '#1E1D24' : '#f5f5f5'};
+    padding: ${({ theme }) => theme.space[4]};
+    border-radius: ${({ theme }) => theme.radii.md};
+    overflow-x: auto;
+    margin-bottom: ${({ theme }) => theme.space[4]};
+  }
+
+  blockquote {
+    border-left: 4px solid ${({ theme }) => theme.colors.primary};
+    padding-left: ${({ theme }) => theme.space[4]};
+    margin-left: 0;
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    font-style: italic;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.border};
+    margin: ${({ theme }) => theme.space[6]} 0;
+  }
+
+  table {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 ${({ theme }) => theme.space[4]};
+    border-collapse: collapse;
+    margin-bottom: ${({ theme }) => theme.space[4]};
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  th, td {
+    padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[3]};
+    border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.border};
+    text-align: left;
+  }
+
+  th {
+    background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.isDark ? '#16151B' : '#f1f1f1'};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.isDark ? '#2E2D36' : '#888'};
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.isDark ? '#4B4A55' : '#555'};
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: white;
   }
 `;
 

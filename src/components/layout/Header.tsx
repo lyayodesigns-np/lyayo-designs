@@ -6,6 +6,7 @@ import * as FaIcons from 'react-icons/fa';
 import logoColorImage from '../../assets/logo/lyayo-color.svg';
 import logoWhiteImage from '../../assets/logo/lyayo-white.svg';
 import { useTheme } from '../../context/ThemeProvider';
+import { useRoutePreload } from '../../App';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -296,6 +297,7 @@ const Header: React.FC = () => {
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const location = useLocation();
   const { isDarkTheme, toggleTheme, theme } = useTheme();
+  const { preloadRoute } = useRoutePreload();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -357,6 +359,14 @@ const Header: React.FC = () => {
                           location.pathname === '/services/hosting';
   
   const isToolsActive = location.pathname.startsWith('/tools');
+
+  // Preload handlers for navigation links
+  const handleHomeHover = () => preloadRoute('/');
+  const handleAboutHover = () => preloadRoute('/about');
+  const handleServicesHover = () => preloadRoute('/services');
+  const handleSEOHover = () => preloadRoute('/services/seo');
+  const handleWebDesignHover = () => preloadRoute('/services/web-design');
+  const handleContactHover = () => preloadRoute('/contact');
   
   return (
     <>
@@ -365,12 +375,12 @@ const Header: React.FC = () => {
         backgroundColor: scrolled 
           ? theme.colors.background 
           : theme.isDark 
-            ? 'rgba(17, 24, 39, 0.9)' // Dark theme semi-transparent background
+            ? 'rgba(10, 9, 14, 0.9)' // Dark theme semi-transparent background with new color
             : 'rgba(255, 255, 255, 0.9)', // Light theme semi-transparent background
         boxShadow: scrolled ? theme.shadows.md : 'none'
       }}>
         <NavContainer>
-          <Logo to="/">
+          <Logo to="/" onMouseEnter={handleHomeHover}>
             <LogoImage src={isDarkTheme ? logoWhiteImage : logoColorImage} alt="Lyayo Designs Logo" />
             {/* <LogoImage src={LogoImage} alt="Lyayo Designs Logo" /> */}
           </Logo>
@@ -380,10 +390,10 @@ const Header: React.FC = () => {
             <CloseButton onClick={closeMenu} aria-label="Close menu">
               {React.createElement(FaIcons.FaTimes as React.ComponentType<IconBaseProps>)}
             </CloseButton>
-            <NavLink to="/" active={location.pathname === '/'}>
+            <NavLink to="/" active={location.pathname === '/'} onMouseEnter={handleHomeHover}>
               Home
             </NavLink>
-            <NavLink to="/about" active={location.pathname === '/about'}>
+            <NavLink to="/about" active={location.pathname === '/about'} onMouseEnter={handleAboutHover}>
               About Us
             </NavLink>
             
@@ -391,16 +401,17 @@ const Header: React.FC = () => {
               <DropdownButton 
                 active={isServicesActive}
                 onClick={toggleServicesDropdown}
+                onMouseEnter={handleServicesHover}
               >
                 Services {React.createElement(servicesDropdownOpen ? 
                   FaIcons.FaChevronUp as React.ComponentType<IconBaseProps> : 
                   FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
               </DropdownButton>
               <DropdownContent isOpen={servicesDropdownOpen}>
-                <DropdownLink to="/services/seo">
+                <DropdownLink to="/services/seo" onMouseEnter={handleSEOHover}>
                   Search Engine Optimization
                 </DropdownLink>
-                <DropdownLink to="/services/web-design">
+                <DropdownLink to="/services/web-design" onMouseEnter={handleWebDesignHover}>
                   Web Design
                 </DropdownLink>
                 <DropdownLink to="/services/hosting">
@@ -435,7 +446,7 @@ const Header: React.FC = () => {
               </DropdownContent>
             </DropdownContainer>
             
-            <NavLink to="/contact" active={location.pathname === '/contact'}>
+            <NavLink to="/contact" active={location.pathname === '/contact'} onMouseEnter={handleContactHover}>
               Contact
             </NavLink>
             

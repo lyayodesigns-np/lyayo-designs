@@ -12,7 +12,9 @@ import { FadeIn, ScaleIn, ScrollReveal, AnimatedCard } from '../../components/an
 // Hero Section
 const HeroSection = styled(Section)`
   position: relative;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.isDark 
+    ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+    : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
   color: white;
   overflow: hidden;
   
@@ -106,9 +108,14 @@ const StoryText = styled.div`
   }
   
   p {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.textSecondary};
     margin-bottom: ${({ theme }) => theme.space[4]};
     line-height: 1.8;
+  }
+  
+  button {
+    margin: ${({ theme }) => theme.space[4]} 0 0;
+    display: inline-block;
   }
   
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -280,6 +287,7 @@ const TeamContainer = styled.div`
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
   }
 `;
 
@@ -304,7 +312,7 @@ const TeamGrid = styled.div`
 const TeamMemberImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
-  border-radius: ${({ theme }) => theme.radii.md} ${({ theme }) => theme.radii.md} 0 0;
+  border-radius: ${({ theme }) => theme.radii.md} ${({theme}) => theme.radii.md} 0 0;
   height: 300px;
   
   &::before {
@@ -348,9 +356,11 @@ const TeamMemberCard = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
   
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.lg};
+    transform: translateY(-5px);
     
     ${TeamMemberImageWrapper}::before {
       transform: translateY(0);
@@ -440,7 +450,7 @@ const TeamFilters = styled.div`
 const TeamFilterButton = styled.button<{ active?: boolean }>`
   background-color: ${({ theme, active }) => 
     active ? theme.colors.primary : theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
-  color: ${({ theme, active }) => active ? theme.colors.background : theme.colors.text};
+  color: ${({ theme, active }) => active ? (theme.isDark ? theme.colors.text : 'white') : theme.colors.text};
   border: none;
   padding: ${({ theme }) => `${theme.space[2]} ${theme.space[4]}`};
   border-radius: ${({ theme }) => theme.radii.full};
@@ -468,7 +478,21 @@ const CTASection = styled(Section)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%);
+    background: ${({ theme }) => theme.isDark 
+      ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+      : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
+    z-index: 0;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 70%),
+                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.08), transparent 70%);
     z-index: 0;
   }
 `;
@@ -625,7 +649,7 @@ const AboutPage: React.FC = () => {
             </HeroSubtitle>
           </FadeIn>
           <FadeIn direction="up" delay={0.5} duration={0.7}>
-            <Button size="large" variant="secondary">
+            <Button size="large" variant="primary">
               Get to Know Us
             </Button>
           </FadeIn>
@@ -635,7 +659,7 @@ const AboutPage: React.FC = () => {
       {/* Our Story Section */}
       <Section id="our-story" paddingTop="100px" paddingBottom="100px">
         <StoryContent>
-          <ScrollReveal animation="slideRight">
+          <FadeIn direction="right">
             <StoryText>
               <h2>Our Story</h2>
               <p>
@@ -649,8 +673,8 @@ const AboutPage: React.FC = () => {
               </p>
               <Button variant="primary" size="medium">Learn More</Button>
             </StoryText>
-          </ScrollReveal>
-          <ScrollReveal animation="slideLeft" delay={0.3}>
+          </FadeIn>
+          <FadeIn direction="left" delay={0.3}>
             <StoryImageContainer>
               <LazyImage
                 src="https://via.placeholder.com/600x400"
@@ -658,7 +682,7 @@ const AboutPage: React.FC = () => {
                 height="400px"
               />
             </StoryImageContainer>
-          </ScrollReveal>
+          </FadeIn>
         </StoryContent>
       </Section>
 
@@ -669,7 +693,7 @@ const AboutPage: React.FC = () => {
             <h2>Our Core Values</h2>
             <p>These principles guide everything we do at Lyayo Designs.</p>
           </FadeIn>
-          <ScrollReveal staggerChildren={true} staggerDelay={0.1} animation="slideUp">
+          <ScrollReveal staggerChildren={true} staggerDelay={0.1} animation="slideUp" triggerOnce={true}>
             <ValuesGrid>
               <AnimatedCard hoverEffect="lift">
                 <ValueCard>
@@ -747,7 +771,9 @@ const AboutPage: React.FC = () => {
         <TeamContainer>
           <FadeIn>
             <h2>Meet Our Team</h2>
-            <p>The talented individuals behind Lyayo Designs who bring creativity, expertise, and passion to every project we undertake.</p>
+            <p style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto', marginBottom: '2rem' }}>
+              The talented individuals behind Lyayo Designs who bring creativity, expertise, and passion to every project we undertake.
+            </p>
           </FadeIn>
           
           <FadeIn delay={0.2}>
@@ -785,7 +811,7 @@ const AboutPage: React.FC = () => {
             </TeamFilters>
           </FadeIn>
           
-          <ScrollReveal staggerChildren={true} staggerDelay={0.1} animation="scale">
+          <ScrollReveal staggerChildren={true} staggerDelay={0.1} animation="scale" triggerOnce={true}>
             <TeamGrid>
               {filteredTeamMembers.map((member) => (
                 <AnimatedCard key={member.id} hoverEffect="tilt">
@@ -825,7 +851,7 @@ const AboutPage: React.FC = () => {
               We're always looking for talented individuals to join our team. Check out our current openings or send us your resume.
             </CTADescription>
             <ScaleIn delay={0.3}>
-              <Button size="large" variant="secondary">
+              <Button size="large" variant="primary">
                 View Openings
               </Button>
             </ScaleIn>

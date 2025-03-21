@@ -38,7 +38,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({
         animate="animate"
         exit="exit"
         variants={variants[mode]}
-        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }}
+        transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1.0] }}
         style={{ width: '100%' }}
       >
         {children}

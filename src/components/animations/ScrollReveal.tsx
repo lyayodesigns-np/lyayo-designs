@@ -11,6 +11,7 @@ interface ScrollRevealProps {
   staggerChildren?: boolean;
   staggerDelay?: number;
   once?: boolean;
+  triggerOnce?: boolean;
 }
 
 const getAnimationVariants = (animation: string) => {
@@ -63,6 +64,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   staggerChildren = false,
   staggerDelay = 0.1,
   once = true,
+  triggerOnce = false,
 }) => {
   const variants = getAnimationVariants(animation);
   
@@ -94,7 +96,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         className={className}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once, amount: threshold }}
+        viewport={{ once: triggerOnce ? triggerOnce : once, amount: threshold }}
         variants={containerVariants}
       >
         {React.Children.map(children, (child) => (
@@ -109,7 +111,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      viewport={{ once: triggerOnce ? triggerOnce : once, amount: threshold }}
       variants={itemVariants}
       transition={{
         duration,

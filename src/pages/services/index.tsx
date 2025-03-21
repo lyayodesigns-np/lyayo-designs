@@ -215,10 +215,32 @@ const PlanFeatureIcon = styled.span`
 `;
 
 // CTA Section
+const CTASection = styled(Section)`
+  background: ${({ theme }) => theme.isDark 
+    ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+    : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 70%),
+                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.08), transparent 70%);
+    z-index: 0;
+  }
+`;
+
 const CTAContainer = styled.div`
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 const CTATitle = styled.h2`
@@ -611,17 +633,17 @@ const ServicesPage: React.FC = () => {
       </Section>
 
       {/* CTA Section */}
-      <Section id="cta" backgroundColor="#1a73e8" paddingTop="80px" paddingBottom="80px">
+      <CTASection id="cta" paddingTop="80px" paddingBottom="80px">
         <CTAContainer>
-          <CTATitle style={{ color: 'white' }}>Ready to Start Your Project?</CTATitle>
+          <CTATitle style={{ color: 'white' }}>Ready to Elevate Your Online Presence in Nepal?</CTATitle>
           <CTADescription style={{ color: 'white' }}>
-            Contact us today to discuss your project requirements and get a custom quote.
+            Let's work together to create a stunning website that helps your business stand out in the Nepali market. Contact us today for affordable, high-quality web design services!
           </CTADescription>
           <Button size="large" variant="secondary">
-            Contact Us
+            Get in Touch
           </Button>
         </CTAContainer>
-      </Section>
+      </CTASection>
     </Layout>
   );
 };

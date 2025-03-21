@@ -111,28 +111,29 @@ export const lightTheme = {
   ...baseTheme,
   isDark: false,
   colors: {
-    primary: '#2563EB',
-    primaryDark: '#1D4ED8', 
-    primaryLight: '#3B82F6',
-    secondary: '#10B981',
-    secondaryDark: '#059669',
-    secondaryLight: '#34D399',
-    accent: '#F59E0B',
-    background: '#FFFFFF',
-    backgroundAlt: '#F9FAFB',
-    text: '#1F2937',
-    textSecondary: '#4B5563',
-    lightText: '#6B7280',
-    error: '#EF4444',
-    success: '#10B981',
-    warning: '#F59E0B',
-    info: '#3B82F6',
-    lightGray: '#F3F4F6',
-    mediumGray: '#E5E7EB',
-    darkGray: '#9CA3AF',
-    disabled: '#D1D5DB',
-    border: '#E5E7EB',
-  },
+    primary: '#1E40AF', // Deep Royal Blue for a modern primary tone
+    primaryDark: '#1D3557', // Slightly muted dark blue for subtle depth
+    primaryLight: '#3B82F6', // Bright and energetic blue
+    secondary: '#14B8A6', // Fresh teal for secondary elements
+    secondaryDark: '#0F766E', // Rich, sophisticated dark teal
+    secondaryLight: '#2DD4BF', // Bright aqua for contrast
+    accent: '#FFB020', // Vibrant golden yellow for accents
+    background: '#F8FAFC', // Soft, clean white with a slight blue tint
+    backgroundAlt: '#E7EDF2', // Muted alternative background for differentiation
+    text: '#1E293B', // Dark slate blue for high readability
+    textSecondary: '#475569', // Muted blue-gray for secondary text
+    lightText: '#64748B', // Softer blue-gray for hints and subtle content
+    error: '#DC2626', // Bold red for clear error indications
+    success: '#22C55E', // Fresh green for success messages
+    warning: '#F97316', // Vibrant orange for warnings
+    info: '#2563EB', // Dynamic blue for informational content
+    lightGray: '#F1F5F9', // Light gray for subtle borders and backgrounds
+    mediumGray: '#CBD5E1', // Balanced gray for neutral elements
+    darkGray: '#64748B', // Dark gray for inactive or disabled elements
+    disabled: '#94A3B8', // Softer gray for disabled states
+    border: '#E2E8F0', // Light gray with a touch of blue for modern borders
+}
+
 };
 
 // Dark theme colors
@@ -140,27 +141,27 @@ export const darkTheme = {
   ...baseTheme,
   isDark: true,
   colors: {
-    primary: '#3B82F6',
-    primaryDark: '#2563EB',
-    primaryLight: '#60A5FA',
-    secondary: '#34D399',
-    secondaryDark: '#10B981',
-    secondaryLight: '#6EE7B7',
-    accent: '#F59E0B',
-    background: '#111827',
-    backgroundAlt: '#1F2937',
-    text: '#F0F0F0',
-    textSecondary: '#B0B0B0',
-    lightText: '#B0B0B0', 
-    error: '#FF4D4D',
-    success: '#8AE234',
-    warning: '#F9E94E',
-    info: '#A346FF',
-    lightGray: '#2A2A2A',
-    mediumGray: '#3A3A3A',
-    darkGray: '#6A6A6A',
-    disabled: '#555555', 
-    border: '#444444', 
+    primary: '#3B82F6', // Bright blue for primary elements
+    primaryDark: '#2563EB', // Deeper blue for hover states
+    primaryLight: '#60A5FA', // Lighter blue for accents
+    secondary: '#10B981', // Emerald green for secondary elements
+    secondaryDark: '#059669', // Deeper green for hover states
+    secondaryLight: '#34D399', // Lighter green for accents
+    accent: '#F59E0B', // Amber for accent elements
+    background: '#0A090E', // Very dark blue-black for main background
+    backgroundAlt: '#16151B', // Slightly lighter dark background for cards and sections
+    text: '#F8FAFC', // Almost white for primary text
+    textSecondary: '#CBD5E1', // Light gray for secondary text
+    lightText: '#94A3B8', // Medium gray for tertiary text
+    error: '#EF4444', // Bright red for errors
+    success: '#10B981', // Emerald green for success messages
+    warning: '#F59E0B', // Amber for warnings
+    info: '#3B82F6', // Blue for information
+    lightGray: '#1E1D24', // Dark gray with slight purple tint
+    mediumGray: '#2E2D36', // Medium dark gray with slight purple tint
+    darkGray: '#4B4A55', // Lighter gray with slight purple tint
+    disabled: '#383743', // Dark gray for disabled elements
+    border: '#2E2D36', // Dark gray for borders
   },
 };
 

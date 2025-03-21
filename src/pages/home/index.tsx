@@ -15,7 +15,9 @@ const HeroSection = styled(Section)`
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary} 0%, ${({ theme }) => theme.colors.primaryDark} 100%);
+  background: ${({ theme }) => theme.isDark 
+    ? `linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)` 
+    : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
   color: white;
   padding-top: 80px;
   padding-bottom: 80px;
@@ -27,8 +29,8 @@ const HeroSection = styled(Section)`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-.895-3-2-3-3 .895-3 2 .895 3 2 3zm63 31c1.657 0 3-1.343 3-3s-.895-3-2-3-3 .895-3 2 .895 3 2 3zM34 90c1.657 0 3-1.343 3-3s-.895-3-2-3-3 .895-3 2 .895 3 2 3zm56-76c1.657 0 3-1.343 3-3s-.895-3-2-3-3 .895-3 2 .895 3 2 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: ${({ theme }) => theme.isDark ? 0.3 : 0.5};
     z-index: 0;
   }
 `;
@@ -36,21 +38,17 @@ const HeroSection = styled(Section)`
 const HeroContent = styled.div`
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: ${({ theme }) => theme.space[8]};
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+  justify-content: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 `;
 
 const HeroText = styled.div`
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    order: 2;
-  }
+  width: 100%;
 `;
 
 const HeroTitle = styled.h1`
@@ -89,64 +87,31 @@ const HeroSubtitle = styled.p`
   line-height: 1.6;
 `;
 
-const HeroImageContainer = styled.div`
-  position: relative;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    order: 1;
-    margin-bottom: ${({ theme }) => theme.space[6]};
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 80%;
-    height: 80%;
-    background: ${({ theme }) => theme.colors.secondary};
-    opacity: 0.2;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    z-index: -1;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: -20px;
-    width: 60%;
-    height: 60%;
-    background: ${({ theme }) => theme.colors.accent};
-    opacity: 0.2;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    z-index: -1;
-  }
-  
-  img {
-    border-radius: 10px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.space[4]};
+  margin-top: ${({ theme }) => theme.space[6]};
+  justify-content: center;
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    justify-content: center;
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
 const HeroStats = styled.div`
   display: flex;
+  justify-content: center;
   gap: ${({ theme }) => theme.space[8]};
   margin-top: ${({ theme }) => theme.space[8]};
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: ${({ theme }) => theme.space[6]};
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    flex-direction: column;
+    align-items: center;
+    gap: ${({ theme }) => theme.space[4]};
   }
 `;
 
@@ -178,6 +143,31 @@ const StatLabel = styled.div`
 `;
 
 // Services Section
+const SectionHeader = styled.div`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.space[8]};
+  
+  h2 {
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    font-size: ${({ theme }) => theme.fontSizes['4xl']};
+    color: ${({ theme }) => theme.colors.text};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    line-height: ${({ theme }) => theme.lineHeights.shorter};
+    
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: ${({ theme }) => theme.fontSizes['3xl']};
+    }
+  }
+  
+  p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: 1.6;
+    color: ${({ theme }) => theme.colors.textSecondary};
+  }
+`;
+
 const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -202,7 +192,7 @@ const ServiceCard = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : theme.colors.backgroundAlt};
   
   &:hover {
     transform: translateY(-5px);
@@ -248,17 +238,18 @@ const StatCard = styled.div`
   color: ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.radii.lg};
   box-shadow: ${({ theme }) => theme.shadows.md};
-  transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${({ theme }) => theme.shadows.lg};
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : theme.colors.backgroundAlt};
 `;
 
 // CTA Section
+const CTASection = styled(Section)`
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: ${({ theme }) => theme.isDark 
+    ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+    : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
+`;
+
 const CTAContainer = styled.div`
   text-align: center;
   max-width: 800px;
@@ -296,17 +287,33 @@ const AffordableServicesContainer = styled.div`
   }
 `;
 
-const AffordableServicesContent = styled.div`
+const AffordableServicesContent = styled(SectionHeader)`
+  text-align: left;
+  
   h2 {
+    text-align: left;
     margin-bottom: ${({ theme }) => theme.space[4]};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    color: ${({ theme }) => theme.colors.primary};
+    font-size: ${({ theme }) => theme.fontSizes['4xl']};
+    color: ${({ theme }) => theme.colors.text};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    line-height: ${({ theme }) => theme.lineHeights.shorter};
+    
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: ${({ theme }) => theme.fontSizes['3xl']};
+    }
   }
   
   p {
+    text-align: left;
     margin-bottom: ${({ theme }) => theme.space[4]};
-    font-size: ${({ theme }) => theme.fontSizes.md};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
     line-height: 1.6;
+    color: ${({ theme }) => theme.colors.textSecondary};
+  }
+  
+  button {
+    margin: ${({ theme }) => theme.space[4]} 0 0;
+    display: inline-block;
   }
 `;
 
@@ -318,23 +325,7 @@ const AffordableServicesImageContainer = styled.div`
 
 // Other Features Section
 const FeaturesSection = styled(Section)`
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-`;
-
-const FeaturesHeading = styled.div`
-  text-align: center;
-  margin-bottom: ${({ theme }) => theme.space[8]};
-  
-  h2 {
-    margin-bottom: ${({ theme }) => theme.space[3]};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-  }
-  
-  p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: ${({ theme }) => theme.fontSizes.md};
-  }
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : theme.colors.backgroundAlt};
 `;
 
 const FeaturesGrid = styled.div`
@@ -359,7 +350,7 @@ const FeatureCard = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : theme.colors.backgroundAlt};
   
   &:hover {
     transform: translateY(-5px);
@@ -387,27 +378,12 @@ const FeatureDescription = styled.p`
 
 // Why Choose Us Section
 const WhyChooseUsSection = styled(Section)`
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : theme.colors.backgroundAlt};
 `;
 
 const WhyChooseUsContainer = styled.div`
   text-align: center;
   margin-bottom: ${({ theme }) => theme.space[8]};
-`;
-
-const WhyChooseUsHeading = styled.div`
-  margin-bottom: ${({ theme }) => theme.space[8]};
-  
-  h2 {
-    margin-bottom: ${({ theme }) => theme.space[3]};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-  }
-  
-  p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: ${({ theme }) => theme.fontSizes.md};
-  }
 `;
 
 const ChooseUsGrid = styled.div`
@@ -436,7 +412,7 @@ const ChooseUsCard = styled.div`
   flex-direction: column;
   align-items: center;
   transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : theme.colors.backgroundAlt};
   
   &:hover {
     transform: translateY(-5px);
@@ -464,17 +440,7 @@ const ChooseUsDescription = styled.p`
 
 // Testimonials Section
 const TestimonialsSection = styled(Section)`
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-`;
-
-const TestimonialsHeading = styled.div`
-  text-align: center;
-  margin-bottom: ${({ theme }) => theme.space[8]};
-  
-  h2 {
-    margin-bottom: ${({ theme }) => theme.space[3]};
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-  }
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : theme.colors.backgroundAlt};
 `;
 
 const TestimonialsGrid = styled.div`
@@ -501,7 +467,7 @@ const TestimonialCard = styled.div`
   display: flex;
   flex-direction: column;
   transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : theme.colors.backgroundAlt};
   
   &:hover {
     transform: translateY(-5px);
@@ -543,7 +509,7 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <HeroSection paddingTop="0" paddingBottom="0">
         <HeroContent>
-          <FadeIn direction="left" delay={0.2}>
+          <FadeIn direction="up" delay={0.2}>
             <HeroText>
               <HeroTitle>Turning <span>Ideas</span> into Digital Experiences</HeroTitle>
               <HeroSubtitle>
@@ -555,31 +521,27 @@ const HomePage: React.FC = () => {
               </ButtonGroup>
               
               <HeroStats>
-                <StatItem>
-                  <HeroStatNumber>5+</HeroStatNumber>
-                  <HeroStatLabel>Years Experience</HeroStatLabel>
-                </StatItem>
-                <StatItem>
-                  <HeroStatNumber>100+</HeroStatNumber>
-                  <HeroStatLabel>Projects Completed</HeroStatLabel>
-                </StatItem>
-                <StatItem>
-                  <HeroStatNumber>50+</HeroStatNumber>
-                  <HeroStatLabel>Happy Clients</HeroStatLabel>
-                </StatItem>
+                <AnimatedCard>
+                  <StatItem>
+                    <HeroStatNumber>5+</HeroStatNumber>
+                    <HeroStatLabel>Years Experience</HeroStatLabel>
+                  </StatItem>
+                </AnimatedCard>
+                <AnimatedCard>
+                  <StatItem>
+                    <HeroStatNumber>100+</HeroStatNumber>
+                    <HeroStatLabel>Projects Completed</HeroStatLabel>
+                  </StatItem>
+                </AnimatedCard>
+                <AnimatedCard>
+                  <StatItem>
+                    <HeroStatNumber>50+</HeroStatNumber>
+                    <HeroStatLabel>Happy Clients</HeroStatLabel>
+                  </StatItem>
+                </AnimatedCard>
               </HeroStats>
             </HeroText>
           </FadeIn>
-          <ScaleIn delay={0.4}>
-            <HeroImageContainer>
-              <LazyImage
-                src="/images/web-design-illustration.svg"
-                alt="Lyayo Designs Creative Solutions"
-                height="400px"
-                fallback="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Lyayo+Designs"
-              />
-            </HeroImageContainer>
-          </ScaleIn>
         </HeroContent>
       </HeroSection>
 
@@ -614,9 +576,11 @@ const HomePage: React.FC = () => {
 
       {/* Services Section */}
       <Section id="services">
-        <ScrollReveal animation="slideUp" staggerChildren={true} staggerDelay={0.1}>
-          <h2>Web Design / Web Development Service</h2>
-          <p>We offer WordPress Website Designs, Custom WordPress Themes, Web Hosting, Shopify Themes, Responsive Designs, Woocommerce Solutions, Mobile App Development Services, SEO Optimization and much more!</p>
+        <ScrollReveal animation="slideUp" staggerChildren={true} staggerDelay={0.1} triggerOnce={true}>
+          <SectionHeader>
+            <h2>Web Design / Web Development Service</h2>
+            <p>We offer WordPress Website Designs, Custom WordPress Themes, Web Hosting, Shopify Themes, Responsive Designs, Woocommerce Solutions, Mobile App Development Services, SEO Optimization and much more!</p>
+          </SectionHeader>
           <ServicesGrid>
             <AnimatedCard>
               <ServiceCard>
@@ -708,11 +672,10 @@ const HomePage: React.FC = () => {
 
       {/* Other Features Section */}
       <FeaturesSection id="features">
-        <FeaturesHeading>
-          <h2>Other Features</h2>
-          <p>These are the other features we also provide with web designing services.</p>
-        </FeaturesHeading>
-        <ScrollReveal animation="fade" staggerChildren={true} staggerDelay={0.1}>
+        <ScrollReveal animation="slideUp" staggerChildren={true} staggerDelay={0.1} triggerOnce={true}>
+          <SectionHeader>
+            <h2>Other Features</h2>
+          </SectionHeader>
           <FeaturesGrid>
             <AnimatedCard>
               <FeatureCard>
@@ -792,11 +755,11 @@ const HomePage: React.FC = () => {
       {/* Why Choose Us Section */}
       <WhyChooseUsSection id="why-choose-us">
         <WhyChooseUsContainer>
-          <WhyChooseUsHeading>
-            <h2>Why Choose Us?</h2>
-            <p>So what sets Lyayo Designs apart from other design companies?</p>
-          </WhyChooseUsHeading>
-          <ScrollReveal animation="fade" staggerChildren={true} staggerDelay={0.1}>
+          <ScrollReveal animation="slideUp" triggerOnce={true}>
+            <SectionHeader>
+              <h2>Why Choose Us?</h2>
+              <p>We are a team of experienced web designers and developers who are passionate about creating beautiful and functional websites that help businesses grow.</p>
+            </SectionHeader>
             <ChooseUsGrid>
               <AnimatedCard>
                 <ChooseUsCard>
@@ -840,10 +803,10 @@ const HomePage: React.FC = () => {
       
       {/* Testimonials Section */}
       <TestimonialsSection id="testimonials">
-        <TestimonialsHeading>
-          <h2>What Our Clients Have To Say About Us</h2>
-        </TestimonialsHeading>
-        <ScrollReveal animation="fade" staggerChildren={true} staggerDelay={0.1}>
+        <ScrollReveal animation="slideUp" triggerOnce={true}>
+          <SectionHeader>
+            <h2>What Our Clients Have To Say About Us</h2>
+          </SectionHeader>
           <TestimonialsGrid>
             <AnimatedCard>
               <TestimonialCard>
@@ -915,7 +878,7 @@ const HomePage: React.FC = () => {
       </Section>
 
       {/* CTA Section */}
-      <Section id="cta" backgroundColor="#1a73e8" paddingTop="80px" paddingBottom="80px">
+      <CTASection id="cta">
         <CTAContainer>
           <FadeIn direction="up" delay={0.2}>
             <CTATitle style={{ color: 'white' }}>Ready to Elevate Your Online Presence in Nepal?</CTATitle>
@@ -929,7 +892,7 @@ const HomePage: React.FC = () => {
             </ButtonWrapper>
           </FadeIn>
         </CTAContainer>
-      </Section>
+      </CTASection>
     </Layout>
   );
 };
