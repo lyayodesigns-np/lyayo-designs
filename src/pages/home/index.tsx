@@ -199,6 +199,10 @@ const ServiceCard = styled.div`
     box-shadow: ${({ theme }) => theme.shadows.lg};
     border-color: ${({ theme }) => theme.colors.primary};
   }
+  
+  button {
+    align-self: flex-start;
+  }
 `;
 
 const ServiceIcon = styled.div`
@@ -214,6 +218,13 @@ const ServiceTitle = styled.h3`
 const ServiceDescription = styled.p`
   color: ${({ theme }) => theme.colors.lightText};
   margin-bottom: ${({ theme }) => theme.space[4]};
+`;
+
+const LearnMoreButton = styled(Button)`
+  margin-top: auto;
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
 `;
 
 // Stats Section
@@ -591,9 +602,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   Our web developers from Nepal take your ideas from inception to completion in order to deliver beautiful, functional web designs that are well-structured, responsive, and easy to maintain.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
@@ -605,9 +616,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   We also offer search engine optimization services in Nepal. Our expert SEO team will help you increase your online presence by using optimized keywords for your site to increase the number of visitors to your website and the number of conversions they make.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
@@ -619,9 +630,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   We offer custom mobile app development services in Nepal for both iOS and Android devices through our in-house development team of developers and designers to provide the best design possible.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
@@ -633,9 +644,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   We specialize in WordPress website designs, custom themes, and WooCommerce solutions to create powerful, flexible websites that you can easily manage and update.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
@@ -647,9 +658,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   From Shopify themes to WooCommerce solutions, we build secure, user-friendly online stores that help Nepali businesses sell products and services online effectively.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
@@ -661,9 +672,9 @@ const HomePage: React.FC = () => {
                 <ServiceDescription>
                   We provide reliable web hosting services to ensure your website stays fast, secure, and accessible to your customers at all times.
                 </ServiceDescription>
-                <Button variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
+                <LearnMoreButton variant="text" icon={React.createElement(FaIcons.FaArrowRight as React.ComponentType<IconBaseProps>)} iconPosition="right">
                   Learn More
-                </Button>
+                </LearnMoreButton>
               </ServiceCard>
             </AnimatedCard>
           </ServicesGrid>
