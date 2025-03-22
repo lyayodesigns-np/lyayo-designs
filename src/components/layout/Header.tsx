@@ -3,8 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
-import logoColorImage from '../../assets/logo/lyayo-color.svg';
-import logoWhiteImage from '../../assets/logo/lyayo-white.svg';
 import { useTheme } from '../../context/ThemeProvider';
 import { useRoutePreload } from '../../App';
 
@@ -28,11 +26,17 @@ const NavContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   min-height: 60px;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    min-height: 50px;
+    padding: ${({ theme }) => theme.space[2]} ${({ theme }) => theme.space[4]};
+  }
 `;
 
 const LogoImage = styled.img`
-  height: 40px;
+  height: 50px;
   width: auto;
+  max-width: 200px;
   object-fit: contain;
   transition: all ${({ theme }) => theme.transitions.standard};
 `;
@@ -206,7 +210,6 @@ const DropdownLink = styled(Link)`
   }
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MobileMenuButton = styled.button`
   display: none;
   background: none;
@@ -323,6 +326,16 @@ const Header: React.FC = () => {
     if (servicesDropdownOpen) setServicesDropdownOpen(false);
   };
   
+  const openServicesDropdown = () => {
+    setServicesDropdownOpen(true);
+    if (toolsDropdownOpen) setToolsDropdownOpen(false);
+  };
+  
+  const openToolsDropdown = () => {
+    setToolsDropdownOpen(true);
+    if (servicesDropdownOpen) setServicesDropdownOpen(false);
+  };
+  
   // Navigate to services page and open dropdown
   const handleServicesClick = () => {
     toggleServicesDropdown();
@@ -421,7 +434,7 @@ const Header: React.FC = () => {
   return (
     <>
       <HeaderContainer theme={theme} style={{ 
-        padding: scrolled ? '6px 0' : '10px 0',
+        padding: scrolled ? '4px 0' : '8px 0',
         backgroundColor: scrolled 
           ? theme.colors.background 
           : theme.isDark 
@@ -431,79 +444,91 @@ const Header: React.FC = () => {
       }}>
         <NavContainer>
           <Logo to="/" onMouseEnter={handleHomeHover}>
-            <LogoImage src={isDarkTheme ? logoWhiteImage : logoColorImage} alt="Lyayo Designs Logo" />
-            {/* <LogoImage src={LogoImage} alt="Lyayo Designs Logo" /> */}
+            <LogoImage src="/logo.png" alt="Lyayo Designs Logo" />
           </Logo>
        
-          
-          <NavLinks isOpen={isMenuOpen}>
-            <CloseButton onClick={closeMenu} aria-label="Close menu">
-              {React.createElement(FaIcons.FaTimes as React.ComponentType<IconBaseProps>)}
-            </CloseButton>
-            <NavLink to="/" active={location.pathname === '/'} onMouseEnter={handleHomeHover}>
-              Home
-            </NavLink>
-            <NavLink to="/about" active={location.pathname === '/about'} onMouseEnter={handleAboutHover}>
-              About Us
-            </NavLink>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <MobileMenuButton onClick={toggleMenu} aria-label="Open menu">
+              {React.createElement(FaIcons.FaBars as React.ComponentType<IconBaseProps>)}
+            </MobileMenuButton>
             
-            <DropdownContainer ref={servicesDropdownRef}>
-              <DropdownButton 
-                active={isServicesActive}
-                onClick={handleServicesClick}
-                onMouseEnter={handleServicesHover}
+            <NavLinks isOpen={isMenuOpen}>
+              <CloseButton onClick={closeMenu} aria-label="Close menu">
+                {React.createElement(FaIcons.FaTimes as React.ComponentType<IconBaseProps>)}
+              </CloseButton>
+              <NavLink to="/" active={location.pathname === '/'} onMouseEnter={handleHomeHover}>
+                Home
+              </NavLink>
+              <NavLink to="/about" active={location.pathname === '/about'} onMouseEnter={handleAboutHover}>
+                About Us
+              </NavLink>
+              
+              <DropdownContainer 
+                ref={servicesDropdownRef} 
+                onMouseEnter={openServicesDropdown}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
               >
-                Services {React.createElement(servicesDropdownOpen ? 
-                  FaIcons.FaChevronUp as React.ComponentType<IconBaseProps> : 
-                  FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
-              </DropdownButton>
-              <DropdownContent isOpen={servicesDropdownOpen}>
-                <DropdownLink to="/services/seo" onMouseEnter={handleSEOHover}>
-                  Search Engine Optimization
-                </DropdownLink>
-                <DropdownLink to="/services/web-design" onMouseEnter={handleWebDesignHover}>
-                  Web Design
-                </DropdownLink>
-                <DropdownLink to="/services/hosting" onMouseEnter={handleHostingHover}>
-                  Hosting With Us
-                </DropdownLink>
-              </DropdownContent>
-            </DropdownContainer>
-            
-            <NavLink to="/pricing" active={location.pathname === '/pricing'} onMouseEnter={handlePricingHover}>
-              Pricing
-            </NavLink>
-            
-            <DropdownContainer ref={toolsDropdownRef}>
-              <DropdownButton 
-                active={isToolsActive}
-                onClick={toggleToolsDropdown}
+                <DropdownButton 
+                  active={isServicesActive}
+                  onClick={handleServicesClick}
+                  onMouseEnter={handleServicesHover}
+                >
+                  Services {React.createElement(servicesDropdownOpen ? 
+                    FaIcons.FaChevronUp as React.ComponentType<IconBaseProps> : 
+                    FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
+                </DropdownButton>
+                <DropdownContent isOpen={servicesDropdownOpen}>
+                  <DropdownLink to="/services/seo" onMouseEnter={handleSEOHover}>
+                    Search Engine Optimization
+                  </DropdownLink>
+                  <DropdownLink to="/services/web-design" onMouseEnter={handleWebDesignHover}>
+                    Web Design
+                  </DropdownLink>
+                  <DropdownLink to="/services/hosting" onMouseEnter={handleHostingHover}>
+                    Hosting With Us
+                  </DropdownLink>
+                </DropdownContent>
+              </DropdownContainer>
+              
+              <NavLink to="/pricing" active={location.pathname === '/pricing'} onMouseEnter={handlePricingHover}>
+                Pricing
+              </NavLink>
+              
+              <DropdownContainer 
+                ref={toolsDropdownRef}
+                onMouseEnter={openToolsDropdown}
+                onMouseLeave={() => setToolsDropdownOpen(false)}
               >
-                Tools {React.createElement(toolsDropdownOpen ? 
-                  FaIcons.FaChevronUp as React.ComponentType<IconBaseProps> : 
-                  FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
-              </DropdownButton>
-              <DropdownContent isOpen={toolsDropdownOpen}>
-                <DropdownLink to="/tools/domain-generator" onMouseEnter={handleDomainGeneratorHover}>
-                  Domain Name Generator
-                </DropdownLink>
-                <DropdownLink to="/tools/domain-cover-letter" onMouseEnter={handleDomainCoverLetterHover}>
-                  Domain Cover Letter Generator
-                </DropdownLink>
-              </DropdownContent>
-            </DropdownContainer>
-            
-            <NavLink to="/contact" active={location.pathname === '/contact'} onMouseEnter={handleContactHover}>
-              Contact
-            </NavLink>
-            
-            <ThemeToggleButton onClick={toggleTheme} aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}>
-              {isDarkTheme 
-                ? React.createElement(FaIcons.FaSun as React.ComponentType<IconBaseProps>) 
-                : React.createElement(FaIcons.FaMoon as React.ComponentType<IconBaseProps>)
-              }
-            </ThemeToggleButton>
-          </NavLinks>
+                <DropdownButton 
+                  active={isToolsActive}
+                  onClick={toggleToolsDropdown}
+                >
+                  Tools {React.createElement(toolsDropdownOpen ? 
+                    FaIcons.FaChevronUp as React.ComponentType<IconBaseProps> : 
+                    FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
+                </DropdownButton>
+                <DropdownContent isOpen={toolsDropdownOpen}>
+                  <DropdownLink to="/tools/domain-generator" onMouseEnter={handleDomainGeneratorHover}>
+                    Domain Name Generator
+                  </DropdownLink>
+                  <DropdownLink to="/tools/domain-cover-letter" onMouseEnter={handleDomainCoverLetterHover}>
+                    Domain Cover Letter Generator
+                  </DropdownLink>
+                </DropdownContent>
+              </DropdownContainer>
+              
+              <NavLink to="/contact" active={location.pathname === '/contact'} onMouseEnter={handleContactHover}>
+                Contact
+              </NavLink>
+              
+              <ThemeToggleButton onClick={toggleTheme} aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}>
+                {isDarkTheme 
+                  ? React.createElement(FaIcons.FaSun as React.ComponentType<IconBaseProps>) 
+                  : React.createElement(FaIcons.FaMoon as React.ComponentType<IconBaseProps>)
+                }
+              </ThemeToggleButton>
+            </NavLinks>
+          </div>
         </NavContainer>
       </HeaderContainer>
       <Overlay isOpen={isMenuOpen} onClick={closeMenu} />
