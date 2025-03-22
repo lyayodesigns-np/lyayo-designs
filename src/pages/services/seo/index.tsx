@@ -9,28 +9,71 @@ import { Theme } from '../../../styles/theme';
 import FadeIn from '../../../components/animations/FadeIn';
 import ScaleIn from '../../../components/animations/ScaleIn';
 import AnimatedCard from '../../../components/animations/AnimatedCard';
+import Button from '../../../components/common/Button';
 
 // Hero Section
 const HeroSection = styled(Section)`
-  background-color: ${({ theme }) => theme.colors.primary};
+  position: relative;
+  background: ${({ theme }) => theme.isDark 
+    ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+    : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
   color: white;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    z-index: 1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+    z-index: 1;
+  }
 `;
 
 const HeroContent = styled.div`
+  position: relative;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  z-index: 2;
+  padding: ${({ theme }) => theme.space[12]} 0;
 `;
 
 const HeroTitle = styled.h1`
   margin-bottom: ${({ theme }) => theme.space[4]};
   color: white;
+  font-size: ${({ theme }) => theme.fontSizes['5xl']};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  line-height: 1.2;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.fontSizes['4xl']};
+  }
 `;
 
 const HeroSubtitle = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xl};
   margin-bottom: ${({ theme }) => theme.space[6]};
   opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 `;
 
 // Service Section
@@ -55,6 +98,25 @@ interface ServiceTextProps {
 
 const ServiceText = styled.div<ServiceTextProps>`
   order: ${({ reverse }) => (reverse ? 2 : 1)};
+  
+  h2 {
+    color: ${({ theme }) => theme.colors.text};
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    font-size: ${({ theme }) => theme.fontSizes['3xl']};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    line-height: 1.2;
+  }
+  
+  p {
+    color: ${({ theme }) => theme.colors.textSecondary};
+    margin-bottom: ${({ theme }) => theme.space[4]};
+    line-height: 1.8;
+  }
+  
+  button {
+    margin: ${({ theme }) => theme.space[4]} 0 0;
+    display: inline-block;
+  }
   
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     order: 1;
@@ -102,7 +164,7 @@ const FeatureCard = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.md};
   text-align: center;
   transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -111,6 +173,8 @@ const FeatureCard = styled.div`
   
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-5px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 `;
 
@@ -125,11 +189,13 @@ const FeatureTitle = styled.h3`
   margin-bottom: ${({ theme }) => theme.space[3]};
   color: ${({ theme }) => theme.colors.text};
   flex-shrink: 0;
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 `;
 
 const FeatureDescription = styled.p`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.textSecondary};
   flex-grow: 1;
+  line-height: 1.6;
 `;
 
 // Pricing Section
@@ -228,7 +294,7 @@ const ToolCard = styled.div`
   padding: ${({ theme }) => theme.space[6]};
   box-shadow: ${({ theme }) => theme.shadows.md};
   transition: all ${({ theme }) => theme.transitions.standard};
-  border: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
   
   &:hover {
     transform: translateY(-5px);
@@ -240,68 +306,75 @@ const ToolCard = styled.div`
 const ToolTitle = styled.h3`
   margin-bottom: ${({ theme }) => theme.space[3]};
   color: ${({ theme }) => theme.colors.text};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 `;
 
 const ToolDescription = styled.p`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
 `;
 
 // CTA Section
+const CTASection = styled(Section)`
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.isDark 
+      ? 'linear-gradient(135deg, #0a0a12 0%, #1a1a2e 25%, #2d2d44 50%, #1f1f35 75%, #0a0a12 100%)' 
+      : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryDark} 100%)`};
+    z-index: 0;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 70%),
+                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.08), transparent 70%);
+    z-index: 0;
+  }
+`;
+
 const CTAContainer = styled.div`
+  position: relative;
+  z-index: 1;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  padding: ${({ theme }) => theme.space[10]} 0;
 `;
 
 const CTATitle = styled.h2`
   margin-bottom: ${({ theme }) => theme.space[4]};
   color: white;
+  font-size: ${({ theme }) => theme.fontSizes['3xl']};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
 `;
 
 const CTADescription = styled.p`
   margin-bottom: ${({ theme }) => theme.space[6]};
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: white;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 `;
 
-interface ButtonProps {
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'primary' | 'secondary';
-  as?: React.ElementType;
-  href?: string;
-}
-
-const CustomButton = styled.button<ButtonProps>`
-  padding: ${({ size }) => (size === 'small' ? '8px 16px' : size === 'medium' ? '12px 24px' : '16px 32px')};
-  font-size: ${({ size }) => (size === 'small' ? '14px' : size === 'medium' ? '16px' : '18px')};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  border-radius: ${({ theme }) => theme.radii.md};
-  border: none;
-  cursor: pointer;
-  transition: all ${({ theme }) => theme.transitions.standard};
+const ButtonLink = styled.a`
   display: inline-block;
   text-decoration: none;
-  text-align: center;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.md};
-  }
-  
-  ${({ variant, theme }) => {
-    if (variant === 'primary') {
-      return `
-        background-color: ${theme.colors.primary};
-        color: white;
-      `;
-    } else if (variant === 'secondary') {
-      return `
-        background-color: white;
-        color: ${theme.colors.primary};
-        border: 1px solid ${theme.colors.primary};
-      `;
-    }
-  }}
 `;
 
 const SEOPage: React.FC = () => {
@@ -315,17 +388,23 @@ const SEOPage: React.FC = () => {
     >
       {/* Hero Section */}
       <HeroSection>
-        <FadeIn>
-          <HeroContent>
+        <HeroContent>
+          <FadeIn direction="down" duration={0.7}>
             <HeroTitle>Search Engine Optimization</HeroTitle>
+          </FadeIn>
+          <FadeIn direction="up" delay={0.3} duration={0.7}>
             <HeroSubtitle>
               We can help you create effective SEO strategies that will boost your website's visibility and drive more traffic to your site.
             </HeroSubtitle>
-            <CustomButton size="large" variant="secondary" as="a" href="#pricing">
-              View Our SEO Packages
-            </CustomButton>
-          </HeroContent>
-        </FadeIn>
+          </FadeIn>
+          <FadeIn direction="up" delay={0.5} duration={0.7}>
+            <ButtonLink href="#pricing">
+              <Button size="large" variant="primary">
+                View Our SEO Packages
+              </Button>
+            </ButtonLink>
+          </FadeIn>
+        </HeroContent>
       </HeroSection>
 
       {/* SEO Optimization Section */}
@@ -340,15 +419,17 @@ const SEOPage: React.FC = () => {
               <p>
                 Our comprehensive SEO services are designed to improve your website's visibility in search engine results, driving more organic traffic and increasing your online presence. We use proven strategies and the latest techniques to help your business rank higher for relevant keywords.
               </p>
-              <CustomButton variant="primary" as="a" href="#pricing">
-                Get Started
-              </CustomButton>
+              <ButtonLink href="#pricing">
+                <Button variant="primary">
+                  Get Started
+                </Button>
+              </ButtonLink>
             </FadeIn>
           </ServiceText>
           <ServiceImageContainer>
             <ScaleIn>
               <LazyImage
-                src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                src="/images/image3.jpg"
                 alt="SEO Optimization"
                 height="400px"
               />
@@ -378,9 +459,11 @@ const SEOPage: React.FC = () => {
               <p>
                 Our team will analyze your website's performance and implement technical optimizations to improve loading times, reduce bounce rates, and enhance user experience. From image optimization to code minification, we'll ensure your website loads quickly on all devices.
               </p>
-              <CustomButton variant="primary" as="a" href="#contact">
-                Learn More
-              </CustomButton>
+              <ButtonLink href="#contact">
+                <Button variant="primary">
+                  Learn More
+                </Button>
+              </ButtonLink>
             </FadeIn>
           </ServiceText>
         </ServiceContent>
@@ -388,10 +471,12 @@ const SEOPage: React.FC = () => {
 
       {/* Our SEO Services */}
       <Section id="services">
-        <FadeIn>
-          <h2>We Specialize In Following</h2>
-          <p>Comprehensive SEO Services to Boost Your Online Presence</p>
-        </FadeIn>
+        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
+          <FadeIn>
+            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>We Specialize In Following</h2>
+            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Comprehensive SEO Services to Boost Your Online Presence</p>
+          </FadeIn>
+        </div>
         <FeaturesGrid>
           <FadeIn delay={0.1}>
             <AnimatedCard hoverEffect="lift">
@@ -477,10 +562,12 @@ const SEOPage: React.FC = () => {
       {/* Pricing Section */}
       <Section id="pricing" backgroundColor={theme.isDark ? theme.colors.backgroundAlt : "#f9f9f9"}>
         <div style={{ padding: '20px' }}>
-          <FadeIn>
-            <h2>Our SEO Packages</h2>
-            <p>Choose the right plan for your business needs</p>
-          </FadeIn>
+          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
+            <FadeIn>
+              <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Our SEO Packages</h2>
+              <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Choose the right plan for your business needs</p>
+            </FadeIn>
+          </div>
           <PricingGrid>
             <FadeIn delay={0.1}>
               <PricingPlan>
@@ -520,7 +607,9 @@ const SEOPage: React.FC = () => {
                     Facebook Advertising (Free $10)
                   </PlanFeature>
                 </PlanFeatures>
-                <CustomButton variant="primary">Choose Plan</CustomButton>
+                <ButtonLink href="#">
+                  <Button variant="primary">Choose Plan</Button>
+                </ButtonLink>
               </PricingPlan>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -561,7 +650,9 @@ const SEOPage: React.FC = () => {
                     Facebook Advertising (Free $15)
                   </PlanFeature>
                 </PlanFeatures>
-                <CustomButton variant="secondary">Choose Plan</CustomButton>
+                <ButtonLink href="#">
+                  <Button variant="primary">Choose Plan</Button>
+                </ButtonLink>
               </PricingPlan>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -602,7 +693,9 @@ const SEOPage: React.FC = () => {
                     Facebook Advertising (Free $20)
                   </PlanFeature>
                 </PlanFeatures>
-                <CustomButton variant="primary">Choose Plan</CustomButton>
+                <ButtonLink href="#">
+                  <Button variant="primary">Choose Plan</Button>
+                </ButtonLink>
               </PricingPlan>
             </FadeIn>
           </PricingGrid>
@@ -611,10 +704,12 @@ const SEOPage: React.FC = () => {
 
       {/* Tools Section */}
       <Section id="tools">
-        <FadeIn>
-          <h2>We Have Our Hands On The Best SEO Tools</h2>
-          <p>Professional tools to deliver the best results for your business</p>
-        </FadeIn>
+        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
+          <FadeIn>
+            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>We Have Our Hands On The Best SEO Tools</h2>
+            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Professional tools to deliver the best results for your business</p>
+          </FadeIn>
+        </div>
         <ToolsGrid>
           <FadeIn delay={0.1}>
             <ToolCard>
@@ -668,17 +763,23 @@ const SEOPage: React.FC = () => {
       </Section>
 
       {/* CTA Section */}
-      <Section id="contact" backgroundColor="#1a73e8" paddingTop="80px" paddingBottom="80px">
+      <CTASection id="contact">
         <CTAContainer>
-          <CTATitle>Ready to Improve Your Search Rankings?</CTATitle>
-          <CTADescription>
-            Contact us today to discuss how our SEO services can help your business grow online.
-          </CTADescription>
-          <CustomButton size="large" variant="secondary" as="a" href="/contact">
-            Get in Touch
-          </CustomButton>
+          <FadeIn direction="up">
+            <CTATitle>Ready to Improve Your Search Rankings?</CTATitle>
+            <CTADescription>
+              Contact us today to discuss how our SEO services can help your business grow online.
+            </CTADescription>
+            <ScaleIn delay={0.3}>
+              <ButtonLink href="/contact">
+                <Button size="large" variant="primary">
+                  Get in Touch
+                </Button>
+              </ButtonLink>
+            </ScaleIn>
+          </FadeIn>
         </CTAContainer>
-      </Section>
+      </CTASection>
     </Layout>
   );
 };

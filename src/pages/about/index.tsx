@@ -677,7 +677,7 @@ const AboutPage: React.FC = () => {
           <FadeIn direction="left" delay={0.3}>
             <StoryImageContainer>
               <LazyImage
-                src="https://via.placeholder.com/600x400"
+                src="/images/image2.jpg"
                 alt="Lyayo Designs Story"
                 height="400px"
               />

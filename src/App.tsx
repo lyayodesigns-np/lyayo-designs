@@ -1,4 +1,4 @@
-import React, { Suspense, createContext, useContext, useState, useEffect } from 'react';
+import React, { Suspense, createContext, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ThemeProvider from './context/ThemeProvider';
 import { PageTransition } from './components/animations';
@@ -12,6 +12,14 @@ const Services = React.lazy(() => import('./pages/services'));
 const Contact = React.lazy(() => import('./pages/contact'));
 const SEOService = React.lazy(() => import('./pages/services/seo'));
 const WebDesignService = React.lazy(() => import('./pages/services/web-design'));
+const HostingService = React.lazy(() => import('./pages/services/hosting'));
+const Pricing = React.lazy(() => import('./pages/pricing'));
+const DomainGenerator = React.lazy(() => import('./pages/tools/domain-generator'));
+const DomainCoverLetterGenerator = React.lazy(() => import('./pages/tools/domain-cover-letter'));
+const Disclaimer = React.lazy(() => import('./pages/disclaimer'));
+const Terms = React.lazy(() => import('./pages/terms'));
+const Privacy = React.lazy(() => import('./pages/privacy'));
+const Careers = React.lazy(() => import('./pages/careers'));
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
@@ -21,6 +29,14 @@ const routeComponents = {
   '/contact': Contact,
   '/services/seo': SEOService,
   '/services/web-design': WebDesignService,
+  '/services/hosting': HostingService,
+  '/pricing': Pricing,
+  '/tools/domain-generator': DomainGenerator,
+  '/tools/domain-cover-letter': DomainCoverLetterGenerator,
+  '/disclaimer': Disclaimer,
+  '/terms': Terms,
+  '/privacy': Privacy,
+  '/careers': Careers,
 };
 
 // Create a context for route preloading
@@ -59,7 +75,15 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/services/seo" element={<SEOService />} />
         <Route path="/services/web-design" element={<WebDesignService />} />
+        <Route path="/services/hosting" element={<HostingService />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/tools/domain-generator" element={<DomainGenerator />} />
+        <Route path="/tools/domain-cover-letter" element={<DomainCoverLetterGenerator />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/careers" element={<Careers />} />
         {/* Add a catch-all route that redirects to home */}
         <Route path="*" element={<Home />} />
       </Routes>

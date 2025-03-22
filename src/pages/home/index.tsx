@@ -565,7 +565,7 @@ const HomePage: React.FC = () => {
           <ScaleIn delay={0.4}>
             <AffordableServicesImageContainer>
               <LazyImage
-                src="https://via.placeholder.com/600x400"
+                src="/images/image1.jpg"
                 alt="Affordable Web Design Services"
                 height="400px"
               />

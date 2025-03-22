@@ -201,15 +201,11 @@ const FeatureDescription = styled.p`
 // Pricing Section
 const PricingGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: ${({ theme }) => theme.space[6]};
   margin-top: ${({ theme }) => theme.space[8]};
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
   }
 `;
@@ -236,7 +232,7 @@ const PricingPlan = styled.div<PricingPlanProps>`
     box-shadow: ${({ theme }) => theme.shadows.lg};
   }
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     transform: scale(1);
   }
 `;
@@ -340,47 +336,47 @@ const ButtonLink = styled.a`
   text-decoration: none;
 `;
 
-const WebDesignPage: React.FC = () => {
+const HostingPage: React.FC = () => {
   const theme = useTheme() as Theme;
   
   return (
     <Layout
-      title="Web Design Services - Lyayo Designs"
-      description="Professional web design services in Nepal. We create stunning, responsive websites that look great on any device and help your business stand out online."
-      keywords="web design, responsive design, website development, Nepal, mobile-friendly websites, website redesign, website maintenance"
+      title="Hosting Services - Lyayo Designs"
+      description="Reliable and affordable hosting solutions with VPS servers, increased security, high traffic capacity, and automated backups."
+      keywords="web hosting, VPS hosting, affordable hosting, secure hosting, website hosting, Nepal, cloud hosting, managed hosting"
     >
       {/* Hero Section */}
       <HeroSection>
         <HeroContent>
           <FadeIn direction="down" duration={0.7}>
-            <HeroTitle>Web Design</HeroTitle>
+            <HeroTitle>Hosting With Us</HeroTitle>
           </FadeIn>
           <FadeIn direction="up" delay={0.3} duration={0.7}>
             <HeroSubtitle>
-              We create stunning, responsive websites that help your business stand out and convert visitors into customers.
+              Get the best computing power for the cheapest price with our reliable and affordable hosting solutions.
             </HeroSubtitle>
           </FadeIn>
           <FadeIn direction="up" delay={0.5} duration={0.7}>
             <ButtonLink href="#pricing">
               <Button size="large" variant="primary">
-                View Our Web Design Packages
+                View Our Hosting Plans
               </Button>
             </ButtonLink>
           </FadeIn>
         </HeroContent>
       </HeroSection>
 
-      {/* Web Design Overview Section */}
-      <ServiceSection id="web-design-overview">
+      {/* Hosting Overview Section */}
+      <ServiceSection id="hosting-overview">
         <ServiceContent>
           <ServiceText>
             <FadeIn direction="left">
-              <h2>Professional Web Design</h2>
+              <h2>Why Host With Us?</h2>
               <p>
-                At Lyayo Designs, we understand that your website is often the first impression potential customers have of your business. That's why we create beautiful, functional websites that not only look great but also drive results.
+                We are passionate about providing reliable and affordable hosting solutions for our customers. We believe that everyone should have access to quality hosting, and we work hard to make sure that our services are affordable and easy to use.
               </p>
               <p>
-                Our web design services are tailored to meet the specific needs of your business. Whether you need a simple landing page or a complex e-commerce platform, we have the expertise to deliver a solution that works for you.
+                Our VPS server pricing is the cheapest since the price of a powerful server is divided among all our clients, giving you enterprise-level performance at a fraction of the cost.
               </p>
               <ButtonLink href="#pricing">
                 <Button variant="primary">
@@ -393,7 +389,7 @@ const WebDesignPage: React.FC = () => {
             <ScaleIn>
               <LazyImage
                 src="/images/image4.jpg"
-                alt="Web Design"
+                alt="Hosting Services"
                 height="400px"
               />
             </ScaleIn>
@@ -401,12 +397,12 @@ const WebDesignPage: React.FC = () => {
         </ServiceContent>
       </ServiceSection>
 
-      {/* Our Web Design Services */}
-      <Section id="services">
+      {/* Our Hosting Features */}
+      <Section id="features">
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
           <FadeIn>
-            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>We Specialize In Following</h2>
-            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Web Design Services</p>
+            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Our Hosting Features</h2>
+            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Premium features at an affordable price</p>
           </FadeIn>
         </div>
         <FeaturesGrid>
@@ -414,11 +410,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaMobileAlt as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaServer as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Mobile Responsive</FeatureTitle>
+                <FeatureTitle>VPS Servers</FeatureTitle>
                 <FeatureDescription>
-                  We can make your pages or your entire website fully mobile responsive or even some basic tweaks only if you need us to.
+                  We use VPS Servers for our clients rather than any reseller hostings so that our client websites don't have to compromise.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -427,11 +423,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaBolt as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaShieldAlt as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Page Speed Optimization</FeatureTitle>
+                <FeatureTitle>Increased Security</FeatureTitle>
                 <FeatureDescription>
-                  We know that a fast, responsive website is key to keeping your visitors engaged and converting them into customers.
+                  All our client domains are proxied through Cloudflare and we use a network firewall for an additional layer of security.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -440,11 +436,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaEdit as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaNetworkWired as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Modifying Your Sites</FeatureTitle>
+                <FeatureTitle>High Traffic</FeatureTitle>
                 <FeatureDescription>
-                  We can help you add or modify your site structure or content and also adding new features within your website.
+                  Obtain 3 TB of outgoing and unlimited inbound data transfer with a connection speed between 200 Mbps and 1 Gbps.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -453,11 +449,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaExchangeAlt as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaDatabase as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Website Migration</FeatureTitle>
+                <FeatureTitle>Backups</FeatureTitle>
                 <FeatureDescription>
-                  We can help you migrate your website within hosting platforms or help you migrate your site from any other platform to WordPress.
+                  We use automated backups frequently so you can be assured your data is always safe with us.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -466,11 +462,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaPaintBrush as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaHdd as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Website Redesign</FeatureTitle>
+                <FeatureTitle>Storage</FeatureTitle>
                 <FeatureDescription>
-                  We have been working in the SEO and link-building industries for many years, and we know how to get results.
+                  All of our clients will be assigned to a super-fast NVMe with the option to add extra storage capacity.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -479,11 +475,11 @@ const WebDesignPage: React.FC = () => {
             <AnimatedCard hoverEffect="lift">
               <FeatureCard>
                 <FeatureIcon>
-                  {React.createElement(FaIcons.FaTools as React.ComponentType<IconBaseProps>)}
+                  {React.createElement(FaIcons.FaMoneyBillWave as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
-                <FeatureTitle>Website Maintenance</FeatureTitle>
+                <FeatureTitle>Incredible Pricing</FeatureTitle>
                 <FeatureDescription>
-                  We will find out why your competitors are ranking ahead of you, then develop a strategy to help you overtake them.
+                  Our VPS server pricing is the cheapest since the price of a powerful server is divided to all our clients.
                 </FeatureDescription>
               </FeatureCard>
             </AnimatedCard>
@@ -495,64 +491,45 @@ const WebDesignPage: React.FC = () => {
       <Section id="pricing" backgroundColor={theme.isDark ? theme.colors.backgroundAlt : theme.colors.backgroundAlt}>
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
           <FadeIn>
-            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Check Our Pricing Plan</h2>
-            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Digitize Your Business Today</p>
+            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Just One Plan That's Perfect For You</h2>
+            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Choose the billing cycle that works best for you</p>
           </FadeIn>
         </div>
         <PricingGrid>
           <FadeIn delay={0.1}>
             <PricingPlan>
-              <PlanName>Landing Page</PlanName>
-              <PlanPrice>$200<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
+              <PlanName>Monthly Plan</PlanName>
+              <PlanPrice>Contact Us<span style={{ fontSize: '16px', fontWeight: 'normal' }}> for pricing</span></PlanPrice>
               <PlanFeatures>
-                <PlanFeature>Multiple Pages</PlanFeature>
-                <PlanFeature>Free Hosting/SSL</PlanFeature>
-                <PlanFeature>Free Domain</PlanFeature>
-                <PlanFeature>Logo Design/ Branding</PlanFeature>
-                <PlanFeature>Social Media Integration</PlanFeature>
-                <PlanFeature>Basic SEO Optimization</PlanFeature>
+                <PlanFeature>4 vCPU Cores</PlanFeature>
+                <PlanFeature>8 GB RAM</PlanFeature>
+                <PlanFeature>5GB NVMe Storage</PlanFeature>
+                <PlanFeature>3 TB Traffic</PlanFeature>
+                <PlanFeature>2 Email Accounts</PlanFeature>
+                <PlanFeature>24/7 Support</PlanFeature>
               </PlanFeatures>
               <ButtonLink href="/contact">
                 <Button variant="primary" size="medium">
-                  Buy Now
+                  Contact Us
                 </Button>
               </ButtonLink>
             </PricingPlan>
           </FadeIn>
           <FadeIn delay={0.2}>
             <PricingPlan featured>
-              <PlanName featured>eCommerce Store</PlanName>
-              <PlanPrice>$300<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
+              <PlanName featured>Annual Plan</PlanName>
+              <PlanPrice>Contact Us<span style={{ fontSize: '16px', fontWeight: 'normal' }}> for pricing</span></PlanPrice>
               <PlanFeatures>
-                <PlanFeature>All Features From Basic Plan</PlanFeature>
-                <PlanFeature>Payment Integration</PlanFeature>
-                <PlanFeature>Facebook Marketplace</PlanFeature>
-                <PlanFeature>Multivendor Support</PlanFeature>
-                <PlanFeature>Logistics Integration</PlanFeature>
-                <PlanFeature>Order Tracking</PlanFeature>
+                <PlanFeature>4 vCPU Cores</PlanFeature>
+                <PlanFeature>8 GB RAM</PlanFeature>
+                <PlanFeature>5GB NVMe Storage</PlanFeature>
+                <PlanFeature>3 TB Traffic</PlanFeature>
+                <PlanFeature>2 Email Accounts</PlanFeature>
+                <PlanFeature>Priority Support</PlanFeature>
               </PlanFeatures>
               <ButtonLink href="/contact">
                 <Button variant="primary" size="medium">
-                  Buy Now
-                </Button>
-              </ButtonLink>
-            </PricingPlan>
-          </FadeIn>
-          <FadeIn delay={0.3}>
-            <PricingPlan>
-              <PlanName>Full-Fledged Web App</PlanName>
-              <PlanPrice>$350<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
-              <PlanFeatures>
-                <PlanFeature>Unlimited Revisions</PlanFeature>
-                <PlanFeature>Additional Blog Posts</PlanFeature>
-                <PlanFeature>Personalized Training/Support</PlanFeature>
-                <PlanFeature>VPS Hosting</PlanFeature>
-                <PlanFeature>Google My Business</PlanFeature>
-                <PlanFeature>SEO Audit Report</PlanFeature>
-              </PlanFeatures>
-              <ButtonLink href="/contact">
-                <Button variant="primary" size="medium">
-                  Buy Now
+                  Contact Us
                 </Button>
               </ButtonLink>
             </PricingPlan>
@@ -564,14 +541,14 @@ const WebDesignPage: React.FC = () => {
       <CTASection>
         <CTAContainer>
           <FadeIn direction="up">
-            <CTATitle>Ready to Transform Your Online Presence?</CTATitle>
+            <CTATitle>Ready to Host Your Website With Us?</CTATitle>
             <CTADescription>
-              Let's work together to create a website that not only looks great but also helps you achieve your business goals.
+              Get reliable, secure, and affordable hosting for your website today. No technical knowledge required!
             </CTADescription>
             <ScaleIn delay={0.3}>
               <ButtonLink href="/contact">
                 <Button variant="primary" size="large">
-                  Get in Touch
+                  Get Started Now
                 </Button>
               </ButtonLink>
             </ScaleIn>
@@ -582,4 +559,4 @@ const WebDesignPage: React.FC = () => {
   );
 };
 
-export default WebDesignPage;
+export default HostingPage;

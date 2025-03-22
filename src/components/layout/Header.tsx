@@ -206,6 +206,7 @@ const DropdownLink = styled(Link)`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MobileMenuButton = styled.button`
   display: none;
   background: none;
@@ -299,6 +300,11 @@ const Header: React.FC = () => {
   const { isDarkTheme, toggleTheme, theme } = useTheme();
   const { preloadRoute } = useRoutePreload();
   
+  // Create refs for dropdown containers
+  const servicesDropdownRef = React.useRef<HTMLDivElement>(null);
+  const toolsDropdownRef = React.useRef<HTMLDivElement>(null);
+  
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -316,6 +322,46 @@ const Header: React.FC = () => {
     setToolsDropdownOpen(!toolsDropdownOpen);
     if (servicesDropdownOpen) setServicesDropdownOpen(false);
   };
+  
+  // Navigate to services page and open dropdown
+  const handleServicesClick = () => {
+    toggleServicesDropdown();
+    if (location.pathname !== '/services') {
+      // Only navigate if not already on services page
+      window.location.href = '/services';
+    }
+  };
+  
+  // Handle clicks outside dropdown menus
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close services dropdown if click is outside
+      if (
+        servicesDropdownRef.current && 
+        !servicesDropdownRef.current.contains(event.target as Node) &&
+        servicesDropdownOpen
+      ) {
+        setServicesDropdownOpen(false);
+      }
+      
+      // Close tools dropdown if click is outside
+      if (
+        toolsDropdownRef.current && 
+        !toolsDropdownRef.current.contains(event.target as Node) &&
+        toolsDropdownOpen
+      ) {
+        setToolsDropdownOpen(false);
+      }
+    };
+    
+    // Add event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Clean up
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [servicesDropdownOpen, toolsDropdownOpen]);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -366,7 +412,11 @@ const Header: React.FC = () => {
   const handleServicesHover = () => preloadRoute('/services');
   const handleSEOHover = () => preloadRoute('/services/seo');
   const handleWebDesignHover = () => preloadRoute('/services/web-design');
+  const handleHostingHover = () => preloadRoute('/services/hosting');
+  const handlePricingHover = () => preloadRoute('/pricing');
   const handleContactHover = () => preloadRoute('/contact');
+  const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator');
+  const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter');
   
   return (
     <>
@@ -397,10 +447,10 @@ const Header: React.FC = () => {
               About Us
             </NavLink>
             
-            <DropdownContainer>
+            <DropdownContainer ref={servicesDropdownRef}>
               <DropdownButton 
                 active={isServicesActive}
-                onClick={toggleServicesDropdown}
+                onClick={handleServicesClick}
                 onMouseEnter={handleServicesHover}
               >
                 Services {React.createElement(servicesDropdownOpen ? 
@@ -414,17 +464,17 @@ const Header: React.FC = () => {
                 <DropdownLink to="/services/web-design" onMouseEnter={handleWebDesignHover}>
                   Web Design
                 </DropdownLink>
-                <DropdownLink to="/services/hosting">
+                <DropdownLink to="/services/hosting" onMouseEnter={handleHostingHover}>
                   Hosting With Us
                 </DropdownLink>
               </DropdownContent>
             </DropdownContainer>
             
-            <NavLink to="/pricing" active={location.pathname === '/pricing'}>
+            <NavLink to="/pricing" active={location.pathname === '/pricing'} onMouseEnter={handlePricingHover}>
               Pricing
             </NavLink>
             
-            <DropdownContainer>
+            <DropdownContainer ref={toolsDropdownRef}>
               <DropdownButton 
                 active={isToolsActive}
                 onClick={toggleToolsDropdown}
@@ -434,14 +484,11 @@ const Header: React.FC = () => {
                   FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
               </DropdownButton>
               <DropdownContent isOpen={toolsDropdownOpen}>
-                <DropdownLink to="/tools/seo-analyzer">
-                  SEO Analyzer
+                <DropdownLink to="/tools/domain-generator" onMouseEnter={handleDomainGeneratorHover}>
+                  Domain Name Generator
                 </DropdownLink>
-                <DropdownLink to="/tools/speed-test">
-                  Speed Test
-                </DropdownLink>
-                <DropdownLink to="/tools/color-picker">
-                  Color Picker
+                <DropdownLink to="/tools/domain-cover-letter" onMouseEnter={handleDomainCoverLetterHover}>
+                  Domain Cover Letter Generator
                 </DropdownLink>
               </DropdownContent>
             </DropdownContainer>
