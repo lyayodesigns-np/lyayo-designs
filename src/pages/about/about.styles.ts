@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Section from '../../components/common/Section';
-import { Link } from 'react-router-dom';
 
 // Hero Section
 export const HeroSection = styled(Section)`
