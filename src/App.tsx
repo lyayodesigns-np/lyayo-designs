@@ -6,37 +6,37 @@ import ScrollToTop from './components/common/ScrollToTop';
 import LoadingSpinner from './components/common/LoadingSpinner';
 
 // Lazy load pages for better performance
-const Home = React.lazy(() => import('./pages/home'));
-const About = React.lazy(() => import('./pages/about'));
-const Services = React.lazy(() => import('./pages/services'));
-const Contact = React.lazy(() => import('./pages/contact'));
-const SEOService = React.lazy(() => import('./pages/services/seo'));
+const Home = React.lazy(() => import('./pages/home/Home'));
+const About = React.lazy(() => import('./pages/about/About'));
+const Services = React.lazy(() => import('./pages/services/Services'));
+const Contact = React.lazy(() => import('./pages/contact/Contact'));
+const SEOService = React.lazy(() => import('./pages/services/seo/SEO'));
 const WebDesignService = React.lazy(() => import('./pages/services/web-design'));
-const HostingService = React.lazy(() => import('./pages/services/hosting'));
-const Pricing = React.lazy(() => import('./pages/pricing'));
-const DomainGenerator = React.lazy(() => import('./pages/tools/domain-generator'));
-const DomainCoverLetterGenerator = React.lazy(() => import('./pages/tools/domain-cover-letter'));
-const Disclaimer = React.lazy(() => import('./pages/disclaimer'));
-const Terms = React.lazy(() => import('./pages/terms'));
-const Privacy = React.lazy(() => import('./pages/privacy'));
-const Careers = React.lazy(() => import('./pages/careers'));
+const HostingService = React.lazy(() => import('./pages/services/hosting/Hosting'));
+const Pricing = React.lazy(() => import('./pages/pricing/Pricing'));
+const DomainGenerator = React.lazy(() => import('./pages/tools/domain-generator/DomainGenerator'));
+const DomainCoverLetterGenerator = React.lazy(() => import('./pages/tools/domain-cover-letter/DomainCoverLetter'));
+const Disclaimer = React.lazy(() => import('./pages/disclaimer/Disclaimer'));
+const Terms = React.lazy(() => import('./pages/terms/Terms'));
+const Privacy = React.lazy(() => import('./pages/privacy/Privacy'));
+const Careers = React.lazy(() => import('./pages/careers/Careers'));
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
   '/': Home,
-  '/about': About,
-  '/services': Services,
-  '/contact': Contact,
-  '/services/seo': SEOService,
-  '/services/web-design': WebDesignService,
-  '/services/hosting': HostingService,
-  '/pricing': Pricing,
-  '/tools/domain-generator': DomainGenerator,
-  '/tools/domain-cover-letter': DomainCoverLetterGenerator,
-  '/disclaimer': Disclaimer,
-  '/terms': Terms,
-  '/privacy': Privacy,
-  '/careers': Careers,
+  '/about-us/': About,
+  '/services/': Services,
+  '/contact/': Contact,
+  '/services/seo/': SEOService,
+  '/services/web-design/': WebDesignService,
+  '/services/hosting/': HostingService,
+  '/pricing/': Pricing,
+  '/tools/domain-generator/': DomainGenerator,
+  '/tools/domain-cover-letter/': DomainCoverLetterGenerator,
+  '/disclaimer/': Disclaimer,
+  '/terms/': Terms,
+  '/privacy/': Privacy,
+  '/careers/': Careers,
 };
 
 // Create a context for route preloading
@@ -71,19 +71,19 @@ const AnimatedRoutes = () => {
     <PageTransition location={location.pathname} mode="fade">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/seo" element={<SEOService />} />
-        <Route path="/services/web-design" element={<WebDesignService />} />
-        <Route path="/services/hosting" element={<HostingService />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/tools/domain-generator" element={<DomainGenerator />} />
-        <Route path="/tools/domain-cover-letter" element={<DomainCoverLetterGenerator />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/careers" element={<Careers />} />
+        <Route path="/about-us/" element={<About />} />
+        <Route path="/services/" element={<Services />} />
+        <Route path="/services/seo/" element={<SEOService />} />
+        <Route path="/services/web-design/" element={<WebDesignService />} />
+        <Route path="/services/hosting/" element={<HostingService />} />
+        <Route path="/pricing/" element={<Pricing />} />
+        <Route path="/contact/" element={<Contact />} />
+        <Route path="/tools/domain-generator/" element={<DomainGenerator />} />
+        <Route path="/tools/domain-cover-letter/" element={<DomainCoverLetterGenerator />} />
+        <Route path="/disclaimer/" element={<Disclaimer />} />
+        <Route path="/terms/" element={<Terms />} />
+        <Route path="/privacy/" element={<Privacy />} />
+        <Route path="/careers/" element={<Careers />} />
         {/* Add a catch-all route that redirects to home */}
         <Route path="*" element={<Home />} />
       </Routes>

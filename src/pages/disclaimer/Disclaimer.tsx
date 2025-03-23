@@ -1,39 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
 import FadeIn from '../../components/animations/FadeIn';
 import ScrollReveal from '../../components/animations/ScrollReveal';
 import Layout from '../../components/layout/Layout';
-
-const PageContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 120px ${({ theme }) => theme.space[4]} 80px;
-`;
-
-const PageTitle = styled.h1`
-  font-size: ${({ theme }) => theme.fontSizes['4xl']};
-  margin-bottom: ${({ theme }) => theme.space[6]};
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-`;
-
-const Section = styled.section`
-  margin-bottom: ${({ theme }) => theme.space[10]};
-`;
-
-const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSizes['2xl']};
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-`;
-
-const Paragraph = styled.p`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
+import {
+  PageContainer,
+  PageTitle,
+  Section,
+  SectionTitle,
+  Paragraph
+} from './disclaimer.styles';
 
 const DisclaimerPage: React.FC = () => {
   return (

@@ -1,54 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
 import FadeIn from '../../components/animations/FadeIn';
 import ScrollReveal from '../../components/animations/ScrollReveal';
 import Layout from '../../components/layout/Layout';
-
-const PageContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 120px ${({ theme }) => theme.space[4]} 80px;
-`;
-
-const PageTitle = styled.h1`
-  font-size: ${({ theme }) => theme.fontSizes['4xl']};
-  margin-bottom: ${({ theme }) => theme.space[6]};
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-`;
-
-const Section = styled.section`
-  margin-bottom: ${({ theme }) => theme.space[10]};
-`;
-
-const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSizes['2xl']};
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-`;
-
-const Paragraph = styled.p`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-const List = styled.ul`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  padding-left: ${({ theme }) => theme.space[6]};
-`;
-
-const ListItem = styled.li`
-  margin-bottom: ${({ theme }) => theme.space[2]};
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.textSecondary};
-`;
+import {
+  PageContainer,
+  PageTitle,
+  Section,
+  SectionTitle,
+  Paragraph,
+  List,
+  ListItem
+} from './terms.styles';
 
 const TermsPage: React.FC = () => {
   return (
-    <Layout title="Terms and Conditions | Lyayo Designs" description="Terms and conditions for using Lyayo Designs services.">
+    <Layout 
+      title="Terms and Conditions | Lyayo Designs" 
+      description="Terms and conditions for using Lyayo Designs services."
+      keywords="terms and conditions, legal, Lyayo Designs, web design terms, service agreement"
+    >
       <PageContainer>
         <FadeIn>
           <PageTitle>Terms and Conditions</PageTitle>

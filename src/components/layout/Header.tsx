@@ -339,9 +339,9 @@ const Header: React.FC = () => {
   // Navigate to services page and open dropdown
   const handleServicesClick = () => {
     toggleServicesDropdown();
-    if (location.pathname !== '/services') {
+    if (location.pathname !== '/services/') {
       // Only navigate if not already on services page
-      window.location.href = '/services';
+      window.location.href = '/services/';
     }
   };
   
@@ -412,24 +412,24 @@ const Header: React.FC = () => {
     };
   }, [isMenuOpen]);
   
-  const isServicesActive = location.pathname === '/services' || 
-                          location.pathname === '/services/seo' || 
-                          location.pathname === '/services/web-design' || 
-                          location.pathname === '/services/hosting';
+  const isServicesActive = location.pathname === '/services/' || 
+                          location.pathname === '/services/seo/' || 
+                          location.pathname === '/services/web-design/' || 
+                          location.pathname === '/services/hosting/';
   
-  const isToolsActive = location.pathname.startsWith('/tools');
+  const isToolsActive = location.pathname.startsWith('/tools/');
 
   // Preload handlers for navigation links
   const handleHomeHover = () => preloadRoute('/');
-  const handleAboutHover = () => preloadRoute('/about');
-  const handleServicesHover = () => preloadRoute('/services');
-  const handleSEOHover = () => preloadRoute('/services/seo');
-  const handleWebDesignHover = () => preloadRoute('/services/web-design');
-  const handleHostingHover = () => preloadRoute('/services/hosting');
-  const handlePricingHover = () => preloadRoute('/pricing');
-  const handleContactHover = () => preloadRoute('/contact');
-  const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator');
-  const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter');
+  const handleAboutHover = () => preloadRoute('/about-us/');
+  const handleServicesHover = () => preloadRoute('/services/');
+  const handleSEOHover = () => preloadRoute('/services/seo/');
+  const handleWebDesignHover = () => preloadRoute('/services/web-design/');
+  const handleHostingHover = () => preloadRoute('/services/hosting/');
+  const handlePricingHover = () => preloadRoute('/pricing/');
+  const handleContactHover = () => preloadRoute('/contact/');
+  const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator/');
+  const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter/');
   
   return (
     <>
@@ -459,7 +459,7 @@ const Header: React.FC = () => {
               <NavLink to="/" active={location.pathname === '/'} onMouseEnter={handleHomeHover}>
                 Home
               </NavLink>
-              <NavLink to="/about" active={location.pathname === '/about'} onMouseEnter={handleAboutHover}>
+              <NavLink to="/about-us/" active={location.pathname === '/about-us/'} onMouseEnter={handleAboutHover}>
                 About Us
               </NavLink>
               
@@ -478,19 +478,19 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={servicesDropdownOpen}>
-                  <DropdownLink to="/services/seo" onMouseEnter={handleSEOHover}>
+                  <DropdownLink to="/services/seo/" onMouseEnter={handleSEOHover}>
                     Search Engine Optimization
                   </DropdownLink>
-                  <DropdownLink to="/services/web-design" onMouseEnter={handleWebDesignHover}>
+                  <DropdownLink to="/services/web-design/" onMouseEnter={handleWebDesignHover}>
                     Web Design
                   </DropdownLink>
-                  <DropdownLink to="/services/hosting" onMouseEnter={handleHostingHover}>
+                  <DropdownLink to="/services/hosting/" onMouseEnter={handleHostingHover}>
                     Hosting With Us
                   </DropdownLink>
                 </DropdownContent>
               </DropdownContainer>
               
-              <NavLink to="/pricing" active={location.pathname === '/pricing'} onMouseEnter={handlePricingHover}>
+              <NavLink to="/pricing/" active={location.pathname === '/pricing/'} onMouseEnter={handlePricingHover}>
                 Pricing
               </NavLink>
               
@@ -508,16 +508,16 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={toolsDropdownOpen}>
-                  <DropdownLink to="/tools/domain-generator" onMouseEnter={handleDomainGeneratorHover}>
+                  <DropdownLink to="/tools/domain-generator/" onMouseEnter={handleDomainGeneratorHover}>
                     Domain Name Generator
                   </DropdownLink>
-                  <DropdownLink to="/tools/domain-cover-letter" onMouseEnter={handleDomainCoverLetterHover}>
+                  <DropdownLink to="/tools/domain-cover-letter/" onMouseEnter={handleDomainCoverLetterHover}>
                     Domain Cover Letter Generator
                   </DropdownLink>
                 </DropdownContent>
               </DropdownContainer>
               
-              <NavLink to="/contact" active={location.pathname === '/contact'} onMouseEnter={handleContactHover}>
+              <NavLink to="/contact/" active={location.pathname === '/contact/'} onMouseEnter={handleContactHover}>
                 Contact
               </NavLink>
               

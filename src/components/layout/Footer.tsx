@@ -7,10 +7,10 @@ import * as FaIcons from 'react-icons/fa';
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : theme.colors.text};
   color: ${({ theme }) => theme.isDark ? theme.colors.text : theme.colors.background};
-  padding: ${({ theme }) => theme.space[12]} 0 ${({ theme }) => theme.space[6]};
+  padding: ${({ theme }) => theme.space[8]} 0 ${({ theme }) => theme.space[4]};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: ${({ theme }) => theme.space[8]} 0 ${({ theme }) => theme.space[4]};
+    padding: ${({ theme }) => theme.space[6]} 0 ${({ theme }) => theme.space[3]};
   }
 `;
 
@@ -20,7 +20,7 @@ const FooterContent = styled.div`
   padding: 0 ${({ theme }) => theme.space[4]};
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: ${({ theme }) => theme.space[8]};
+  gap: ${({ theme }) => theme.space[6]};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     grid-template-columns: repeat(2, 1fr);
@@ -37,14 +37,14 @@ const FooterColumn = styled.div`
 `;
 
 const FooterTitle = styled.h3`
-  font-size: ${({ theme }) => theme.fontSizes.xl};
-  margin-bottom: ${({ theme }) => theme.space[5]};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  margin-bottom: ${({ theme }) => theme.space[3]};
   color: ${({ theme }) => theme.isDark ? theme.colors.text : theme.colors.background};
 `;
 
 const FooterLink = styled(Link)`
   color: ${({ theme }) => theme.isDark ? theme.colors.textSecondary : theme.colors.mediumGray};
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  margin-bottom: ${({ theme }) => theme.space[2]};
   transition: color ${({ theme }) => theme.transitions.standard};
   
   &:hover {
@@ -54,18 +54,18 @@ const FooterLink = styled(Link)`
 
 const FooterText = styled.p`
   color: ${({ theme }) => theme.isDark ? theme.colors.textSecondary : theme.colors.mediumGray};
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  margin-bottom: ${({ theme }) => theme.space[2]};
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.space[3]};
-  margin-top: ${({ theme }) => theme.space[3]};
+  margin-top: ${({ theme }) => theme.space[2]};
 `;
 
 const SocialLink = styled.a`
   color: ${({ theme }) => theme.isDark ? theme.colors.text : theme.colors.background};
-  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   transition: color ${({ theme }) => theme.transitions.standard};
   
   &:hover {
@@ -76,7 +76,7 @@ const SocialLink = styled.a`
 const ContactItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  margin-bottom: ${({ theme }) => theme.space[2]};
 `;
 
 const ContactIcon = styled.span`
@@ -86,8 +86,8 @@ const ContactIcon = styled.span`
 
 const Copyright = styled.div`
   text-align: center;
-  margin-top: ${({ theme }) => theme.space[8]};
-  padding-top: ${({ theme }) => theme.space[4]};
+  margin-top: ${({ theme }) => theme.space[6]};
+  padding-top: ${({ theme }) => theme.space[3]};
   border-top: 1px solid ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : theme.colors.darkGray};
   color: ${({ theme }) => theme.isDark ? theme.colors.textSecondary : theme.colors.mediumGray};
   font-size: ${({ theme }) => theme.fontSizes.sm};
@@ -95,10 +95,10 @@ const Copyright = styled.div`
 
 const Logo = styled.div`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: ${({ theme }) => theme.fontSizes['2xl']};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.primary};
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  margin-bottom: ${({ theme }) => theme.space[2]};
 `;
 
 const Footer: React.FC = () => {
@@ -131,26 +131,26 @@ const Footer: React.FC = () => {
         <FooterColumn>
           <FooterTitle>Quick Links</FooterTitle>
           <FooterLink to="/">Home</FooterLink>
-          <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/services">Services</FooterLink>
-          <FooterLink to="/contact">Contact Us</FooterLink>
+          <FooterLink to="/about-us/">About Us</FooterLink>
+          <FooterLink to="/services/">Services</FooterLink>
+          <FooterLink to="/contact/">Contact Us</FooterLink>
         </FooterColumn>
 {/*         
         <FooterColumn>
           <FooterTitle>Services</FooterTitle>
-          <FooterLink to="/services#web-design">Web Design</FooterLink>
-          <FooterLink to="/services#graphic-design">Graphic Design</FooterLink>
-          <FooterLink to="/services#branding">Branding</FooterLink>
-          <FooterLink to="/services#ui-ux">UI/UX Design</FooterLink>
-          <FooterLink to="/services#digital-marketing">Digital Marketing</FooterLink>
+          <FooterLink to="/services/#web-design">Web Design</FooterLink>
+          <FooterLink to="/services/#graphic-design">Graphic Design</FooterLink>
+          <FooterLink to="/services/#branding">Branding</FooterLink>
+          <FooterLink to="/services/#ui-ux">UI/UX Design</FooterLink>
+          <FooterLink to="/services/#digital-marketing">Digital Marketing</FooterLink>
         </FooterColumn> */}
         
         <FooterColumn>
           <FooterTitle>Policies</FooterTitle>
-          <FooterLink to="/disclaimer">Disclaimer</FooterLink>
-          <FooterLink to="/terms">Terms And Conditions</FooterLink>
-          <FooterLink to="/privacy">Privacy Policy</FooterLink>
-          <FooterLink to="/careers">Careers</FooterLink>
+          <FooterLink to="/disclaimer/">Disclaimer</FooterLink>
+          <FooterLink to="/terms/">Terms And Conditions</FooterLink>
+          <FooterLink to="/privacy/">Privacy Policy</FooterLink>
+          <FooterLink to="/careers/">Careers</FooterLink>
         </FooterColumn>
         
         <FooterColumn>
@@ -159,25 +159,19 @@ const Footer: React.FC = () => {
             <ContactIcon>
               {React.createElement(FaIcons.FaMapMarkerAlt as React.ComponentType<IconBaseProps>)}
             </ContactIcon>
-            <FooterText>123 Design Street, Creative City</FooterText>
+            <FooterText>Kritipur, Kathmandu 44600</FooterText>
           </ContactItem>
           <ContactItem>
             <ContactIcon>
               {React.createElement(FaIcons.FaPhone as React.ComponentType<IconBaseProps>)}
             </ContactIcon>
-            <FooterText>+1 (555) 123-4567</FooterText>
+            <FooterText>+9779867979330/+9779860421145</FooterText>
           </ContactItem>
           <ContactItem>
             <ContactIcon>
               {React.createElement(FaIcons.FaEnvelope as React.ComponentType<IconBaseProps>)}
             </ContactIcon>
-            <FooterText>info@lyayodesigns.com</FooterText>
-          </ContactItem>
-          <ContactItem>
-            <ContactIcon>
-              {React.createElement(FaIcons.FaClock as React.ComponentType<IconBaseProps>)}
-            </ContactIcon>
-            <FooterText>Mon-Fri: 9am - 5pm</FooterText>
+            <FooterText>lyayodesigns@gmail.com</FooterText>
           </ContactItem>
         </FooterColumn>
       </FooterContent>
