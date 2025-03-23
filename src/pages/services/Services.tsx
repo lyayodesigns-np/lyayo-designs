@@ -1,10 +1,15 @@
 import React from 'react';
+import styled, { useTheme } from 'styled-components';
 import Layout from '../../components/layout/Layout';
+import Section from '../../components/common/Section';
 import Button from '../../components/common/Button';
 import LazyImage from '../../components/common/LazyImage';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import AnimatedCard from '../../components/animations/AnimatedCard';
+import FadeIn from '../../components/animations/FadeIn';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
-import { FadeIn, ScrollReveal, AnimatedCard } from '../../components/animations';
+import { Theme } from '../../styles/theme';
 import {
   HeroSection,
   HeroContent,
@@ -30,7 +35,6 @@ import {
   PlanPrice,
   PlanFeatures,
   PlanFeature,
-  PlanFeatureIcon,
   CTASection,
   CTAContent,
   CTATitle,
@@ -38,7 +42,15 @@ import {
   CTAButtons
 } from './services.styles';
 
+// Create styled anchor that uses Button styling
+const ButtonLink = styled.a`
+  display: inline-block;
+  text-decoration: none;
+`;
+
 const ServicesPage: React.FC = () => {
+  const theme = useTheme() as Theme;
+
   return (
     <Layout
       title="Services - Lyayo Designs"
@@ -366,101 +378,92 @@ const ServicesPage: React.FC = () => {
           <ScrollReveal animation="slideUp" triggerOnce={true} delay={0.1}>
             <AnimatedCard>
               <PricingPlan>
-                <PlanName>Basic</PlanName>
-                <PlanPrice>$999</PlanPrice>
+                <div>
+                  <PlanName>Basic</PlanName>
+                  <PlanPrice>
+                    $999
+                    <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/project</span>
+                  </PlanPrice>
+                  <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                    Perfect for small businesses just getting started
+                  </p>
+                </div>
                 <PlanFeatures>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    5-Page Website
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Responsive Design
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Contact Form
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Basic SEO Setup
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    1 Month Support
-                  </PlanFeature>
+                  <PlanFeature>5-Page Website</PlanFeature>
+                  <PlanFeature>Responsive Design</PlanFeature>
+                  <PlanFeature>Contact Form</PlanFeature>
+                  <PlanFeature>Basic SEO Setup</PlanFeature>
+                  <PlanFeature>1 Month Support</PlanFeature>
                 </PlanFeatures>
-                <Button variant="primary">Get Started</Button>
+                <div>
+                  <ButtonLink href="/contact">
+                    <Button variant="primary" size="medium">
+                      Get Started
+                    </Button>
+                  </ButtonLink>
+                </div>
               </PricingPlan>
             </AnimatedCard>
           </ScrollReveal>
           <ScrollReveal animation="slideUp" triggerOnce={true} delay={0.2}>
             <AnimatedCard>
               <PricingPlan featured>
-                <PlanName featured>Professional</PlanName>
-                <PlanPrice>$1,999</PlanPrice>
+                <div>
+                  <PlanName featured>Professional</PlanName>
+                  <PlanPrice>
+                    $1,999
+                    <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/project</span>
+                  </PlanPrice>
+                  <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                    Ideal for growing businesses with specific needs
+                  </p>
+                </div>
                 <PlanFeatures>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    10-Page Website
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Responsive Design
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Contact Form & CRM Integration
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Advanced SEO Setup
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Social Media Integration
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    3 Months Support
-                  </PlanFeature>
+                  <PlanFeature>10-Page Website</PlanFeature>
+                  <PlanFeature>Responsive Design</PlanFeature>
+                  <PlanFeature>Contact Form & CRM Integration</PlanFeature>
+                  <PlanFeature>Advanced SEO Setup</PlanFeature>
+                  <PlanFeature>Social Media Integration</PlanFeature>
+                  <PlanFeature>3 Months Support</PlanFeature>
                 </PlanFeatures>
-                <Button variant="primary">Get Started</Button>
+                <div>
+                  <ButtonLink href="/contact">
+                    <Button variant="primary" size="medium">
+                      Get Started
+                    </Button>
+                  </ButtonLink>
+                </div>
               </PricingPlan>
             </AnimatedCard>
           </ScrollReveal>
           <ScrollReveal animation="slideUp" triggerOnce={true} delay={0.3}>
             <AnimatedCard>
               <PricingPlan>
-                <PlanName>Enterprise</PlanName>
-                <PlanPrice>$3,999+</PlanPrice>
+                <div>
+                  <PlanName>Enterprise</PlanName>
+                  <PlanPrice>
+                    $3,999+
+                    <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/project</span>
+                  </PlanPrice>
+                  <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                    For established businesses requiring comprehensive solutions
+                  </p>
+                </div>
                 <PlanFeatures>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Custom Website
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Responsive Design
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Advanced Functionality
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    E-commerce Integration
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    Comprehensive SEO
-                  </PlanFeature>
-                  <PlanFeature>
-                    <PlanFeatureIcon>{React.createElement(FaIcons.FaCheck as React.ComponentType<IconBaseProps>)}</PlanFeatureIcon>
-                    6 Months Support
-                  </PlanFeature>
+                  <PlanFeature>Custom Website</PlanFeature>
+                  <PlanFeature>Responsive Design</PlanFeature>
+                  <PlanFeature>Advanced Functionality</PlanFeature>
+                  <PlanFeature>E-commerce Integration</PlanFeature>
+                  <PlanFeature>Comprehensive SEO</PlanFeature>
+                  <PlanFeature>6 Months Support</PlanFeature>
                 </PlanFeatures>
-                <Button variant="primary">Get Started</Button>
+                <div>
+                  <ButtonLink href="/contact">
+                    <Button variant="primary" size="medium">
+                      Get Started
+                    </Button>
+                  </ButtonLink>
+                </div>
               </PricingPlan>
             </AnimatedCard>
           </ScrollReveal>

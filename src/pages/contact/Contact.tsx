@@ -202,7 +202,7 @@ const ContactPage: React.FC = () => {
                 </ContactIcon>
                 <ContactText>
                   <ContactTitle>Our Location</ContactTitle>
-                  <ContactDescription>123 Design Street, Creative City</ContactDescription>
+                  <ContactDescription>Kirtipur, Kathmandu, Nepal</ContactDescription>
                 </ContactText>
               </ContactItem>
               
@@ -212,7 +212,7 @@ const ContactPage: React.FC = () => {
                 </ContactIcon>
                 <ContactText>
                   <ContactTitle>Phone Number</ContactTitle>
-                  <ContactDescription>+1 (555) 123-4567</ContactDescription>
+                  <ContactDescription>+977 9818412760</ContactDescription>
                 </ContactText>
               </ContactItem>
               
@@ -222,7 +222,7 @@ const ContactPage: React.FC = () => {
                 </ContactIcon>
                 <ContactText>
                   <ContactTitle>Email Address</ContactTitle>
-                  <ContactDescription>info@lyayodesigns.com</ContactDescription>
+                  <ContactDescription>lyayodesigns@gmail.com</ContactDescription>
                 </ContactText>
               </ContactItem>
               
@@ -238,13 +238,13 @@ const ContactPage: React.FC = () => {
               
               <h3>Follow Us</h3>
               <SocialLinks>
-                <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <SocialLink href="https://www.facebook.com/lyayodesigns" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                   {React.createElement(FaIcons.FaFacebook as React.ComponentType<IconBaseProps>)}
                 </SocialLink>
-                <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <SocialLink href="https://x.com/lyayodesigns" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   {React.createElement(FaIcons.FaTwitter as React.ComponentType<IconBaseProps>)}
                 </SocialLink>
-                <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <SocialLink href="https://www.linkedin.com/company/lyayo-designs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                   {React.createElement(FaIcons.FaInstagram as React.ComponentType<IconBaseProps>)}
                 </SocialLink>
                 <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">

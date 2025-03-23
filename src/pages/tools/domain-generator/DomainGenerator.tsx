@@ -4,6 +4,7 @@ import Section from '../../../components/common/Section';
 import { FadeIn, ScaleIn } from '../../../components/animations';
 import * as FaIcons from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
+import axios from 'axios';
 import {
   HeroSection,
   HeroContent,
@@ -22,14 +23,18 @@ import {
   SelectOption,
   GenerateButton,
   ResultsContainer,
-  ResultsTable,
-  ResultsHeader,
   ResultsBody,
-  ResultRow,
+  ResultCard,
+  DomainInfo,
+  DomainIcon,
+  DomainDetails,
   DomainName,
+  DomainTags,
+  AvailabilityTag,
+  ExtensionTag,
   DomainActions,
-  IconButton,
-  NoResults,
+  ActionButton,
+  ActionText,
   LoadingContainer,
   LoadingSpinner
 } from './domainGenerator.styles';
@@ -37,16 +42,31 @@ import {
 interface DomainSuggestion {
   name: string;
   available: boolean;
+  domain: string;
+  zone: string;
+}
+
+interface DomainrResponse {
+  results: Array<{
+    domain: string;
+    host: string;
+    subdomain: string;
+    zone: string;
+    path: string;
+    registerURL: string;
+    availability?: string;
+  }>;
 }
 
 const DomainGenerator: React.FC = () => {
   const [keywords, setKeywords] = useState('');
   const [extension, setExtension] = useState('.com');
   const [extensionDropdownOpen, setExtensionDropdownOpen] = useState(false);
-  const [maxLength, setMaxLength] = useState('');
+  const [maxLength, setMaxLength] = useState('15');
   const [suggestions, setSuggestions] = useState<DomainSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const extensions = ['.com', '.net', '.org', '.io', '.co', '.ai', '.app', '.dev'];
   
@@ -59,104 +79,71 @@ const DomainGenerator: React.FC = () => {
     setExtensionDropdownOpen(false);
   };
   
-  const generateDomainNames = () => {
-    if (!keywords.trim()) return;
+  const generateDomainNames = async () => {
+    if (!keywords.trim()) {
+      setError('Please enter at least one keyword');
+      return;
+    }
     
     setIsLoading(true);
     setHasSearched(true);
+    setError(null);
     
-    // Simulate API call with setTimeout
-    setTimeout(() => {
-      const keywordArray = keywords.toLowerCase().split(/\s+/);
-      const generatedDomains: DomainSuggestion[] = [];
-      const maxLengthNum = maxLength ? parseInt(maxLength) : 20;
+    try {
+      // Prepare query string with keywords and selected extension
+      const query = keywords.toLowerCase().trim();
+      const maxLengthNum = maxLength ? parseInt(maxLength) : 15;
       
-      // Generate domain names based on keywords
-      const prefixes = ['get', 'my', 'the', 'best', 'top', 'pro', 'smart', 'go'];
-      const suffixes = ['hub', 'spot', 'zone', 'space', 'app', 'site', 'hq', 'now', 'ly'];
+      // Prepare a comma-separated list of extensions to try
+      const extensionsToTry = extensions.map(ext => ext.replace('.', '')).join(',');
       
-      // Direct combinations
-      keywordArray.forEach(keyword => {
-        // Simple keyword + extension
-        if ((keyword + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${keyword}${extension}`,
-            available: Math.random() > 0.3 // Randomly determine availability
-          });
+      // Call the Domainr API
+      const options = {
+        method: 'GET',
+        url: 'https://domainr.p.rapidapi.com/v2/search',
+        params: {
+          'mashape-key': '3464f0254emsh589879eea0ef875p1a728ejsn6c7b256f9f58',
+          defaults: extensionsToTry, // Use multiple extensions
+          query: query,
+          registrar: 'dnsimple.com',
+          location: 'de'
+        },
+        headers: {
+          'x-rapidapi-key': '3464f0254emsh589879eea0ef875p1a728ejsn6c7b256f9f58',
+          'x-rapidapi-host': 'domainr.p.rapidapi.com'
         }
-        
-        // With random prefix
-        const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-        if ((randomPrefix + keyword + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${randomPrefix}${keyword}${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
-        
-        // With random suffix
-        const randomSuffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-        if ((keyword + randomSuffix + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${keyword}${randomSuffix}${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
-      });
+      };
       
-      // Combine keywords if there are multiple
-      if (keywordArray.length > 1) {
-        // Combine all keywords
-        const combined = keywordArray.join('');
-        if ((combined + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${combined}${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
+      const response = await axios.request<DomainrResponse>(options);
+      
+      if (response.data && response.data.results) {
+        // Filter domains based on max length if specified
+        const filteredResults = response.data.results.filter((result: DomainrResponse['results'][0]) => {
+          return result.domain.length <= maxLengthNum;
+        });
         
-        // Combine with camelCase
-        const camelCase = keywordArray.map((word, index) => 
-          index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
-        ).join('');
-        if ((camelCase + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${camelCase}${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
+        // Map API response to our domain suggestion format
+        const domainSuggestions: DomainSuggestion[] = filteredResults.map((result: DomainrResponse['results'][0]) => ({
+          name: result.domain,
+          domain: result.domain,
+          zone: result.zone,
+          // The API doesn't directly provide availability in the search endpoint
+          // We'll mark them as potentially available and would need to check with another API call
+          available: true
+        }));
         
-        // Combine with hyphens
-        const hyphenated = keywordArray.join('-');
-        if ((hyphenated + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${hyphenated}${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
+        // Limit to 15 suggestions
+        setSuggestions(domainSuggestions.slice(0, 15));
+      } else {
+        setSuggestions([]);
       }
-      
-      // Add some creative variations
-      if (keywordArray.length === 1) {
-        const keyword = keywordArray[0];
-        
-        // Add "ify" suffix
-        if ((keyword + 'ify' + extension).length <= maxLengthNum) {
-          generatedDomains.push({
-            name: `${keyword}ify${extension}`,
-            available: Math.random() > 0.3
-          });
-        }
-      }
-      
-      // Remove duplicates and limit to 15 suggestions
-      const uniqueDomains = Array.from(new Set(generatedDomains.map(d => d.name)))
-        .map(name => generatedDomains.find(d => d.name === name)!)
-        .slice(0, 15);
-      
-      setSuggestions(uniqueDomains);
+    } catch (error) {
+      console.error('Error fetching domain suggestions:', error);
+      setError('Failed to fetch domain suggestions. Please try again later.');
+      setSuggestions([]);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
   
   const copyToClipboard = (domainName: string) => {
@@ -224,15 +211,21 @@ const DomainGenerator: React.FC = () => {
                   <FormLabel>Maximum Length</FormLabel>
                   <FormInput 
                     type="number" 
-                    placeholder="8" 
+                    placeholder="15" 
                     value={maxLength}
                     onChange={(e) => setMaxLength(e.target.value)}
                   />
                   <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-                    Between 3-15 characters
+                    Between 3-63 characters
                   </div>
                 </FormGroup>
               </FormRow>
+              
+              {error && (
+                <div style={{ color: 'red', marginTop: '10px', fontSize: '14px' }}>
+                  {error}
+                </div>
+              )}
               
               <ScaleIn delay={0.2}>
                 <GenerateButton 
@@ -252,41 +245,59 @@ const DomainGenerator: React.FC = () => {
               </LoadingContainer>
             ) : hasSearched && suggestions.length > 0 ? (
               <ResultsContainer>
-                <ResultsTable>
-                  <ResultsHeader>
-                    <div>Domain Name</div>
-                    <div>Actions</div>
-                  </ResultsHeader>
-                  <ResultsBody>
-                    {suggestions.map((domain, index) => (
-                      <ScaleIn key={index} delay={index * 0.05}>
-                        <ResultRow>
-                          <DomainName>{domain.name}</DomainName>
-                          <DomainActions>
-                            <IconButton 
-                              onClick={() => copyToClipboard(domain.name)}
-                              title="Copy to clipboard"
-                            >
-                              {React.createElement(FaIcons.FaCopy as React.ComponentType<IconBaseProps>)}
-                            </IconButton>
-                            <IconButton 
-                              onClick={() => checkAvailability(domain.name)}
-                              title="Check availability"
-                            >
-                              {React.createElement(FaIcons.FaExternalLinkAlt as React.ComponentType<IconBaseProps>)}
-                            </IconButton>
-                          </DomainActions>
-                        </ResultRow>
-                      </ScaleIn>
-                    ))}
-                  </ResultsBody>
-                </ResultsTable>
+                <ResultsBody>
+                  {suggestions.map((domain, index) => (
+                    <ScaleIn key={index} delay={index * 0.05}>
+                      <ResultCard>
+                        <DomainInfo>
+                          <DomainIcon>
+                            {domain.name.includes('.com') ? '🌐' : 
+                             domain.name.includes('.io') ? '💻' : 
+                             domain.name.includes('.ai') ? '🤖' : 
+                             domain.name.includes('.app') ? '📱' : 
+                             domain.name.includes('.dev') ? '👨‍💻' : '🔗'}
+                          </DomainIcon>
+                          <DomainDetails>
+                            <DomainName>{domain.name}</DomainName>
+                            <DomainTags>
+                              {domain.available && (
+                                <AvailabilityTag available={true}>
+                                  Available
+                                </AvailabilityTag>
+                              )}
+                              <ExtensionTag>
+                                {domain.name.split('.').pop()}
+                              </ExtensionTag>
+                            </DomainTags>
+                          </DomainDetails>
+                        </DomainInfo>
+                        <DomainActions>
+                          <ActionButton 
+                            onClick={() => copyToClipboard(domain.name)}
+                            title="Copy to clipboard"
+                          >
+                            {React.createElement(FaIcons.FaCopy as React.ComponentType<IconBaseProps>)}
+                            <ActionText>Copy</ActionText>
+                          </ActionButton>
+                          <ActionButton 
+                            onClick={() => checkAvailability(domain.name)}
+                            title="Check availability"
+                            primary
+                          >
+                            {React.createElement(FaIcons.FaExternalLinkAlt as React.ComponentType<IconBaseProps>)}
+                            <ActionText>Check</ActionText>
+                          </ActionButton>
+                        </DomainActions>
+                      </ResultCard>
+                    </ScaleIn>
+                  ))}
+                </ResultsBody>
               </ResultsContainer>
             ) : hasSearched ? (
-              <NoResults>
+              <div>
                 <h3>No domain suggestions found</h3>
                 <p>Try different keywords or select more domain extensions.</p>
-              </NoResults>
+              </div>
             ) : null}
           </FadeIn>
         </GeneratorContainer>

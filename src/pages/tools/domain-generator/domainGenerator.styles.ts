@@ -183,83 +183,141 @@ export const GenerateButton = styled(Button)`
 `;
 
 export const ResultsContainer = styled.div`
-  margin-top: ${({ theme }) => theme.space[6]};
-`;
-
-export const ResultsTable = styled.div`
-  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.mediumGray};
-  border-radius: ${({ theme }) => theme.radii.md};
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 8px;
   overflow: hidden;
-`;
-
-export const ResultsHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : 'white'};
 `;
 
 export const ResultsBody = styled.div`
-  max-height: 400px;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
 `;
 
-export const ResultRow = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
-  border-bottom: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
-  
-  &:last-child {
-    border-bottom: none;
-  }
+export const ResultCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : 'white'};
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
   
   &:hover {
-    background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'};
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   }
 `;
 
-export const DomainName = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  color: ${({ theme }) => theme.colors.text};
+export const DomainInfo = styled.div`
+  display: flex;
+  padding: 20px;
+  flex: 1;
+  align-items: center;
+`;
+
+export const DomainIcon = styled.div`
+  font-size: 24px;
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : '#f5f7fa'};
+  border-radius: 50%;
+`;
+
+export const DomainDetails = styled.div`
+  flex: 1;
+`;
+
+export const DomainName = styled.h3`
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.isDark ? theme.colors.text : '#333'};
+  word-break: break-word;
+`;
+
+export const DomainTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+`;
+
+export const AvailabilityTag = styled.span<{ available: boolean }>`
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: ${props => props.available ? 'rgba(0, 200, 83, 0.1)' : 'rgba(255, 87, 87, 0.1)'};
+  color: ${props => props.available ? '#00c853' : '#ff5757'};
+`;
+
+export const ExtensionTag = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
 `;
 
 export const DomainActions = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.space[2]};
+  padding: 12px;
+  background-color: ${({ theme }) => theme.isDark ? 'rgba(0, 0, 0, 0.2)' : '#f9fafc'};
+  border-top: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : '#eaeef2'};
 `;
 
-export const IconButton = styled.button`
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.colors.primary};
-  cursor: pointer;
-  transition: all ${({ theme }) => theme.transitions.standard};
-  padding: ${({ theme }) => theme.space[1]};
-  border-radius: 50%;
+export const ActionButton = styled.button<{ primary?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 8px;
+  background-color: ${props => props.primary 
+    ? props.theme.colors.primary 
+    : props.theme.isDark ? 'rgba(255, 255, 255, 0.08)' : '#f1f3f5'};
+  color: ${props => props.primary 
+    ? 'white' 
+    : props.theme.isDark ? props.theme.colors.text : '#4a5568'};
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
-    background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+    background-color: ${props => props.primary 
+      ? props.theme.colors.primaryDark 
+      : props.theme.isDark ? 'rgba(255, 255, 255, 0.12)' : '#e2e8f0'};
+  }
+  
+  &:last-child {
+    margin-right: 0;
   }
 `;
 
-export const NoResults = styled.div`
-  text-align: center;
-  padding: ${({ theme }) => theme.space[8]};
-  color: ${({ theme }) => theme.colors.textSecondary};
+export const ActionText = styled.span`
+  margin-left: 6px;
 `;
 
 export const LoadingContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: ${({ theme }) => theme.space[8]};
+  justify-content: center;
+  padding: 3rem 0;
 `;
 
 export const LoadingSpinner = styled.div`

@@ -27,12 +27,12 @@ const routeComponents = {
   '/about-us/': About,
   '/services/': Services,
   '/contact/': Contact,
-  '/services/seo/': SEOService,
+  '/search-engine-optimization/': SEOService,
   '/services/web-design/': WebDesignService,
-  '/services/hosting/': HostingService,
+  '/hosting-with-us/': HostingService,
   '/pricing/': Pricing,
-  '/tools/domain-generator/': DomainGenerator,
-  '/tools/domain-cover-letter/': DomainCoverLetterGenerator,
+  '/domain-name-generator/': DomainGenerator,
+  '/services/how-to-register-a-com-np-domain-in-nepal/': DomainCoverLetterGenerator,
   '/disclaimer/': Disclaimer,
   '/terms/': Terms,
   '/privacy/': Privacy,
@@ -73,13 +73,13 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about-us/" element={<About />} />
         <Route path="/services/" element={<Services />} />
-        <Route path="/services/seo/" element={<SEOService />} />
+        <Route path="/search-engine-optimization/" element={<SEOService />} />
         <Route path="/services/web-design/" element={<WebDesignService />} />
-        <Route path="/services/hosting/" element={<HostingService />} />
+        <Route path="/hosting-with-us/" element={<HostingService />} />
         <Route path="/pricing/" element={<Pricing />} />
         <Route path="/contact/" element={<Contact />} />
-        <Route path="/tools/domain-generator/" element={<DomainGenerator />} />
-        <Route path="/tools/domain-cover-letter/" element={<DomainCoverLetterGenerator />} />
+        <Route path="/domain-name-generator/" element={<DomainGenerator />} />
+        <Route path="/services/how-to-register-a-com-np-domain-in-nepal/" element={<DomainCoverLetterGenerator />} />
         <Route path="/disclaimer/" element={<Disclaimer />} />
         <Route path="/terms/" element={<Terms />} />
         <Route path="/privacy/" element={<Privacy />} />

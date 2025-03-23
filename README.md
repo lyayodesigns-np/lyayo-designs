@@ -32,3 +32,33 @@ This command will start a local server that serves the production build from the
 To learn more about Vite, check out the [Vite documentation](https://vitejs.dev/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Environment Variables
+
+This project uses environment variables for API keys and other sensitive information. Create a `.env` file in the root directory with the following variables:
+
+```
+# API Keys
+VITE_RAPIDAPI_KEY=your-rapidapi-key-here
+VITE_RAPIDAPI_HOST=domainr.p.rapidapi.com
+```
+
+### Domain Generator API
+
+The Domain Name Generator tool uses the [Domainr API from RapidAPI](https://rapidapi.com/domainr/api/domainr). To use this feature:
+
+1. Sign up for a RapidAPI account at [rapidapi.com](https://rapidapi.com)
+2. Subscribe to the Domainr API
+3. Get your API key from the RapidAPI dashboard
+4. Add your API key to the `.env` file as `VITE_RAPIDAPI_KEY`
+
+## URL Structure
+
+The website uses the following URL structure:
+
+- `/search-engine-optimization/` - SEO services (previously `/services/seo/`)
+- `/hosting-with-us/` - Hosting services (previously `/services/hosting/`)
+- `/domain-name-generator/` - Domain name generator tool (previously `/tools/domain-generator/`)
+- `/services/how-to-register-a-com-np-domain-in-nepal/` - Domain registration guide (previously `/tools/domain-cover-letter/`)
+
+301 redirects are in place in the `_redirects` file to maintain backward compatibility and SEO value.

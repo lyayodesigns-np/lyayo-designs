@@ -451,23 +451,23 @@ const Header: React.FC = () => {
   }, [isMenuOpen]);
   
   const isServicesActive = location.pathname === '/services/' || 
-                          location.pathname === '/services/seo/' || 
+                          location.pathname === '/search-engine-optimization/' || 
                           location.pathname === '/services/web-design/' || 
-                          location.pathname === '/services/hosting/';
+                          location.pathname === '/hosting-with-us/';
   
-  const isToolsActive = location.pathname.startsWith('/tools/');
+  const isToolsActive = location.pathname.startsWith('/tools/') || location.pathname === '/domain-name-generator/';
 
   // Preload handlers for navigation links
   const handleHomeHover = () => preloadRoute('/');
   const handleAboutHover = () => preloadRoute('/about-us/');
   const handleServicesHover = () => preloadRoute('/services/');
-  const handleSEOHover = () => preloadRoute('/services/seo/');
+  const handleSEOHover = () => preloadRoute('/search-engine-optimization/');
   const handleWebDesignHover = () => preloadRoute('/services/web-design/');
-  const handleHostingHover = () => preloadRoute('/services/hosting/');
+  const handleHostingHover = () => preloadRoute('/hosting-with-us/');
   const handlePricingHover = () => preloadRoute('/pricing/');
   const handleContactHover = () => preloadRoute('/contact/');
-  const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator/');
-  const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter/');
+  const handleDomainGeneratorHover = () => preloadRoute('/domain-name-generator/');
+  const handleDomainCoverLetterHover = () => preloadRoute('/services/how-to-register-a-com-np-domain-in-nepal/');
   
   // Clean up timeouts on unmount
   useEffect(() => {
@@ -490,7 +490,7 @@ const Header: React.FC = () => {
       }}>
         <NavContainer>
           <Logo to="/" onMouseEnter={handleHomeHover}>
-            <LogoImage src="/logo.png" alt="Lyayo Designs Logo" />
+            <LogoImage src={theme.isDark ? "/logo.png" : "/logo-dark.png"} alt="Lyayo Designs Logo" />
           </Logo>
        
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -524,13 +524,13 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={servicesDropdownOpen}>
-                  <DropdownLink to="/services/seo/" onMouseEnter={handleSEOHover}>
+                  <DropdownLink to="/search-engine-optimization/" onMouseEnter={handleSEOHover}>
                     Search Engine Optimization
                   </DropdownLink>
                   <DropdownLink to="/services/web-design/" onMouseEnter={handleWebDesignHover}>
                     Web Design
                   </DropdownLink>
-                  <DropdownLink to="/services/hosting/" onMouseEnter={handleHostingHover}>
+                  <DropdownLink to="/hosting-with-us/" onMouseEnter={handleHostingHover}>
                     Hosting With Us
                   </DropdownLink>
                 </DropdownContent>
@@ -554,10 +554,10 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={toolsDropdownOpen}>
-                  <DropdownLink to="/tools/domain-generator/" onMouseEnter={handleDomainGeneratorHover}>
+                  <DropdownLink to="/domain-name-generator/" onMouseEnter={handleDomainGeneratorHover}>
                     Domain Name Generator
                   </DropdownLink>
-                  <DropdownLink to="/tools/domain-cover-letter/" onMouseEnter={handleDomainCoverLetterHover}>
+                  <DropdownLink to="/services/how-to-register-a-com-np-domain-in-nepal/" onMouseEnter={handleDomainCoverLetterHover}>
                     Domain Cover Letter Generator
                   </DropdownLink>
                 </DropdownContent>

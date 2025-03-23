@@ -84,55 +84,75 @@ export const GeneratorForm = styled.div`
   margin-bottom: ${({ theme }) => theme.space[8]};
 `;
 
-export const FormTitle = styled.h2`
-  margin-bottom: ${({ theme }) => theme.space[4]};
+export const FormContainer = styled.div`
+  border: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: ${({ theme }) => theme.isDark ? '0 4px 12px rgba(0, 0, 0, 0.2)' : '0 4px 12px rgba(0, 0, 0, 0.05)'};
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : '#ffffff'};
+`;
+
+export const FormTitle = styled.h3`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes['xl']};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-bottom: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  padding-bottom: 15px;
+`;
+
+export const FormGroup = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const FormLabel = styled.label`
   display: block;
-  margin-bottom: ${({ theme }) => theme.space[2]};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  margin-bottom: 8px;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const FormInput = styled.input`
   width: 100%;
-  padding: ${({ theme }) => theme.space[3]};
-  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.mediumGray};
-  border-radius: ${({ theme }) => theme.radii.md};
-  font-size: ${({ theme }) => theme.fontSizes.md};
-  transition: all ${({ theme }) => theme.transitions.standard};
-  background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'white'};
+  padding: 10px 15px;
+  border: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : 'white'};
   color: ${({ theme }) => theme.colors.text};
-  margin-bottom: ${({ theme }) => theme.space[4]};
   
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 0 0 2px ${({ theme }) => `${theme.colors.primary}33`};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(74, 108, 247, 0.2)'};
+  }
+  
+  &::placeholder {
+    color: ${({ theme }) => theme.isDark ? theme.colors.darkGray : '#aaa'};
   }
 `;
 
 export const FormTextarea = styled.textarea`
   width: 100%;
-  padding: ${({ theme }) => theme.space[3]};
-  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.mediumGray};
-  border-radius: ${({ theme }) => theme.radii.md};
-  font-size: ${({ theme }) => theme.fontSizes.md};
-  transition: all ${({ theme }) => theme.transitions.standard};
-  background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'white'};
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  min-height: 100px;
+  padding: 10px 15px;
+  border: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  border-radius: 6px;
+  font-size: 16px;
+  min-height: 120px;
   resize: vertical;
+  transition: all 0.3s ease;
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : 'white'};
+  color: ${({ theme }) => theme.colors.text};
   
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 0 0 2px ${({ theme }) => `${theme.colors.primary}33`};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(74, 108, 247, 0.2)'};
+  }
+  
+  &::placeholder {
+    color: ${({ theme }) => theme.isDark ? theme.colors.darkGray : '#aaa'};
   }
 `;
 
@@ -147,52 +167,76 @@ export const FormRow = styled.div`
   }
 `;
 
-export const FormGroup = styled.div`
-  margin-bottom: ${({ theme }) => theme.space[4]};
+export const FormNote = styled.p`
+  margin-top: 6px;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.4;
 `;
 
 export const RadioGroup = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.space[4]};
-  margin-bottom: ${({ theme }) => theme.space[4]};
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 `;
 
 export const RadioLabel = styled.label`
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  cursor: pointer;
-  font-size: ${({ theme }) => theme.fontSizes.md};
+  gap: 8px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
 export const RadioInput = styled.input`
-  margin-right: ${({ theme }) => theme.space[2]};
+  margin-right: 8px;
+  accent-color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 `;
 
 export const GenerateButton = styled(Button)`
+  margin-top: 20px;
   width: 100%;
-  padding: ${({ theme }) => theme.space[3]} ${({ theme }) => theme.space[4]};
-  margin-top: ${({ theme }) => theme.space[4]};
+  padding: 12px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(74, 108, 247, 0.2)'};
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 export const PreviewContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  border-radius: ${({ theme }) => theme.radii.md};
-  padding: ${({ theme }) => theme.space[6]};
-  box-shadow: ${({ theme }) => theme.shadows.md};
-  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
-  margin-bottom: ${({ theme }) => theme.space[4]};
+  border: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  border-radius: 8px;
+  box-shadow: ${({ theme }) => theme.isDark ? '0 4px 12px rgba(0, 0, 0, 0.2)' : '0 4px 12px rgba(0, 0, 0, 0.05)'};
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : 'white'};
 `;
 
-export const PreviewTitle = styled.h2`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes['xl']};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
+export const PreviewTitle = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.isDark ? theme.colors.mediumGray : '#e0e0e0'};
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(74, 108, 247, 0.03)'};
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const PreviewActions = styled.div`
@@ -201,93 +245,73 @@ export const PreviewActions = styled.div`
 `;
 
 export const IconButton = styled.button`
-  background: none;
-  border: none;
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.primary};
+  margin: 0 5px;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: all ${({ theme }) => theme.transitions.standard};
-  padding: ${({ theme }) => theme.space[1]};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
-    background-color: ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+    background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgba(74, 108, 247, 0.1)'};
+    border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.4)' : 'rgba(74, 108, 247, 0.3)'};
   }
 `;
 
 export const CoverLetterPreview = styled.div`
-  font-family: 'Times New Roman', Times, serif;
+  padding: 20px 25px;
+  background-color: ${({ theme }) => theme.isDark ? theme.colors.background : 'white'};
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  color: #000000; /* Always use black text for better visibility on white background */
-  background-color: white;
-  padding: ${({ theme }) => theme.space[6]};
-  border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.1)' : theme.colors.mediumGray};
-  border-radius: ${({ theme }) => theme.radii.md};
-  box-shadow: ${({ theme }) => theme.isDark ? '0 4px 12px rgba(255, 255, 255, 0.1)' : '0 4px 12px rgba(0, 0, 0, 0.1)'};
-  max-width: 800px;
-  margin: 0 auto;
-  
-  @media print {
-    padding: 20px;
-    border: none;
-    background-color: white;
-    color: black;
-    box-shadow: none;
-  }
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const HighlightedText = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: 500;
 `;
 
 export const LetterHeader = styled.div`
-  margin-bottom: ${({ theme }) => theme.space[6]};
-  color: #000000; /* Always use black text */
+  margin-bottom: 30px;
 `;
 
 export const LetterDate = styled.p`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  color: #000000; /* Always use black text */
+  text-align: right;
+  margin-bottom: 20px;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const LetterAddress = styled.div`
-  margin-bottom: ${({ theme }) => theme.space[4]};
-  color: #000000; /* Always use black text */
+  margin-bottom: 20px;
   
   p {
-    color: #000000; /* Always use black text */
+    margin: 5px 0;
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
 export const LetterSubject = styled.p`
   font-weight: bold;
   margin-bottom: ${({ theme }) => theme.space[4]};
-  color: #000000; /* Always use black text */
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const LetterBody = styled.div`
-  margin-bottom: ${({ theme }) => theme.space[6]};
+  margin-bottom: 30px;
   
   p {
-    margin-bottom: ${({ theme }) => theme.space[4]};
-    color: #000000; /* Always use black text */
-  }
-  
-  strong {
-    color: #000000; /* Always use black text */
+    margin-bottom: 15px;
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
 export const LetterSignature = styled.div`
-  margin-top: ${({ theme }) => theme.space[6]};
-  color: #000000; /* Always use black text */
-`;
-
-export const HighlightedText = styled.span`
-  background-color: #3b82f6; /* Primary blue color */
-  color: white;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-weight: 500;
+  p {
+    margin-bottom: 10px;
+    color: ${({ theme }) => theme.colors.text};
+  }
 `;
 
 export const InfoSection = styled.div`

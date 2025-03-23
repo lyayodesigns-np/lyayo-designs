@@ -113,16 +113,16 @@ const Footer: React.FC = () => {
             Creating beautiful, functional designs that help businesses succeed in the digital world.
           </FooterText>
           <SocialLinks>
-            <SocialLink href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <SocialLink href="https://www.facebook.com/lyayodesigns" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               {React.createElement(FaIcons.FaFacebook as React.ComponentType<IconBaseProps>)}
             </SocialLink>
-            <SocialLink href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <SocialLink href="https://x.com/lyayodesigns" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               {React.createElement(FaIcons.FaTwitter as React.ComponentType<IconBaseProps>)}
             </SocialLink>
-            <SocialLink href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <SocialLink href="https://www.instagram.com/lyayodesigns" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               {React.createElement(FaIcons.FaInstagram as React.ComponentType<IconBaseProps>)}
             </SocialLink>
-            <SocialLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <SocialLink href="https://www.linkedin.com/company/lyayo-designs/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               {React.createElement(FaIcons.FaLinkedin as React.ComponentType<IconBaseProps>)}
             </SocialLink>
           </SocialLinks>
