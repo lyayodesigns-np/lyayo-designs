@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { Helmet } from 'react-helmet';
 import ScrollToTopButton from '../common/ScrollToTopButton';
+import MouseCursor from '../animations/MouseCursor';
 
 interface LayoutProps {
   children: ReactNode;
@@ -55,6 +56,13 @@ const Layout: React.FC<LayoutProps> = ({
         <link rel="canonical" href={ogUrl} />
       </Helmet>
       
+      <MouseCursor 
+        darkModeColor="rgba(80, 80, 180, 0.4)" 
+        lightModeColor="rgba(50, 50, 120, 0.4)"
+        size={40} 
+        opacity={0.5} 
+        hoverElements={['a', 'button', '.service-card', '.feature-card', '.choose-us-card', '.testimonial-card']} 
+      />
       <Header />
       <Main>{children}</Main>
       <Footer />

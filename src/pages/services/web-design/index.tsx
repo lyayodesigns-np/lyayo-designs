@@ -228,16 +228,14 @@ const PricingPlan = styled.div<PricingPlanProps>`
   position: relative;
   transition: all ${({ theme }) => theme.transitions.standard};
   border: ${({ featured, theme }) => featured ? `2px solid ${theme.colors.primary}` : `1px solid ${theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`};
-  transform: ${({ featured }) => featured ? 'scale(1.05)' : 'scale(1)'};
-  z-index: ${({ featured }) => featured ? 2 : 1};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
   &:hover {
     transform: translateY(-10px);
     box-shadow: ${({ theme }) => theme.shadows.lg};
-  }
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    transform: scale(1);
   }
 `;
 
@@ -263,6 +261,7 @@ const PlanFeatures = styled.ul`
   padding: 0;
   margin: ${({ theme }) => theme.space[6]} 0;
   text-align: left;
+  flex-grow: 1;
 `;
 
 const PlanFeature = styled.li`
@@ -279,6 +278,7 @@ const PlanFeature = styled.li`
   }
 `;
 
+// CTA Section
 const CTASection = styled(Section)`
   position: relative;
   overflow: hidden;
@@ -496,14 +496,25 @@ const WebDesignPage: React.FC = () => {
         <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: '2rem' }}>
           <FadeIn>
             <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Check Our Pricing Plan</h2>
-            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>Digitize Your Business Today</p>
+            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6', marginBottom: theme.space[6] }}>
+              Digitize Your Business Today with Our Affordable Web Design Packages
+            </p>
           </FadeIn>
         </div>
+        
         <PricingGrid>
           <FadeIn delay={0.1}>
             <PricingPlan>
-              <PlanName>Landing Page</PlanName>
-              <PlanPrice>$200<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
+              <div>
+                <PlanName>Landing Page</PlanName>
+                <PlanPrice>
+                  $200
+                  <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span>
+                </PlanPrice>
+                <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                  Perfect for small businesses just getting started
+                </p>
+              </div>
               <PlanFeatures>
                 <PlanFeature>Multiple Pages</PlanFeature>
                 <PlanFeature>Free Hosting/SSL</PlanFeature>
@@ -512,17 +523,28 @@ const WebDesignPage: React.FC = () => {
                 <PlanFeature>Social Media Integration</PlanFeature>
                 <PlanFeature>Basic SEO Optimization</PlanFeature>
               </PlanFeatures>
-              <ButtonLink href="/contact">
-                <Button variant="primary" size="medium">
-                  Buy Now
-                </Button>
-              </ButtonLink>
+              <div>
+                <ButtonLink href="/contact">
+                  <Button variant="primary" size="medium">
+                    Get Started
+                  </Button>
+                </ButtonLink>
+              </div>
             </PricingPlan>
           </FadeIn>
+          
           <FadeIn delay={0.2}>
             <PricingPlan featured>
-              <PlanName featured>eCommerce Store</PlanName>
-              <PlanPrice>$300<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
+              <div>
+                <PlanName featured>eCommerce Store</PlanName>
+                <PlanPrice>
+                  $300
+                  <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span>
+                </PlanPrice>
+                <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                  Ideal for businesses selling products online
+                </p>
+              </div>
               <PlanFeatures>
                 <PlanFeature>All Features From Basic Plan</PlanFeature>
                 <PlanFeature>Payment Integration</PlanFeature>
@@ -531,17 +553,28 @@ const WebDesignPage: React.FC = () => {
                 <PlanFeature>Logistics Integration</PlanFeature>
                 <PlanFeature>Order Tracking</PlanFeature>
               </PlanFeatures>
-              <ButtonLink href="/contact">
-                <Button variant="primary" size="medium">
-                  Buy Now
-                </Button>
-              </ButtonLink>
+              <div>
+                <ButtonLink href="/contact">
+                  <Button variant="primary" size="medium">
+                    Get Started
+                  </Button>
+                </ButtonLink>
+              </div>
             </PricingPlan>
           </FadeIn>
+          
           <FadeIn delay={0.3}>
             <PricingPlan>
-              <PlanName>Full-Fledged Web App</PlanName>
-              <PlanPrice>$350<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span></PlanPrice>
+              <div>
+                <PlanName>Full-Fledged Web App</PlanName>
+                <PlanPrice>
+                  $350
+                  <span style={{ fontSize: '16px', fontWeight: 'normal' }}>/once</span>
+                </PlanPrice>
+                <p style={{ color: theme.colors.textSecondary, fontSize: theme.fontSizes.sm }}>
+                  For established businesses requiring comprehensive solutions
+                </p>
+              </div>
               <PlanFeatures>
                 <PlanFeature>Unlimited Revisions</PlanFeature>
                 <PlanFeature>Additional Blog Posts</PlanFeature>
@@ -550,11 +583,13 @@ const WebDesignPage: React.FC = () => {
                 <PlanFeature>Google My Business</PlanFeature>
                 <PlanFeature>SEO Audit Report</PlanFeature>
               </PlanFeatures>
-              <ButtonLink href="/contact">
-                <Button variant="primary" size="medium">
-                  Buy Now
-                </Button>
-              </ButtonLink>
+              <div>
+                <ButtonLink href="/contact">
+                  <Button variant="primary" size="medium">
+                    Get Started
+                  </Button>
+                </ButtonLink>
+              </div>
             </PricingPlan>
           </FadeIn>
         </PricingGrid>

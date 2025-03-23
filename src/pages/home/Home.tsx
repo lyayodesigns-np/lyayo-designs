@@ -5,6 +5,7 @@ import Layout from '../../components/layout/Layout';
 import Section from '../../components/common/Section';
 import LazyImage from '../../components/common/LazyImage';
 import { FadeIn, ScaleIn, ScrollReveal, AnimatedButton, AnimatedCard } from '../../components/animations';
+
 import {
   HeroSection,
   HeroContent,
@@ -141,7 +142,7 @@ const HomePage: React.FC = () => {
           </SectionHeader>
           <ServicesGrid>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaLaptopCode as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -155,7 +156,7 @@ const HomePage: React.FC = () => {
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaSearch as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -169,7 +170,7 @@ const HomePage: React.FC = () => {
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaMobileAlt as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -183,7 +184,7 @@ const HomePage: React.FC = () => {
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaWordpress as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -197,7 +198,7 @@ const HomePage: React.FC = () => {
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaShoppingCart as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -211,7 +212,7 @@ const HomePage: React.FC = () => {
               </ServiceCard>
             </AnimatedCard>
             <AnimatedCard>
-              <ServiceCard>
+              <ServiceCard className="service-card">
                 <ServiceIcon>
                   {React.createElement(FaIcons.FaServer as React.ComponentType<IconBaseProps>)}
                 </ServiceIcon>
@@ -236,7 +237,7 @@ const HomePage: React.FC = () => {
           </SectionHeader>
           <FeaturesGrid>
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaServer as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -248,7 +249,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaMobileAlt as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -260,7 +261,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaChartLine as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -272,7 +273,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaPencilAlt as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -284,7 +285,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaPaintBrush as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -296,7 +297,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <FeatureCard>
+              <FeatureCard className="feature-card">
                 <FeatureIcon>
                   {React.createElement(FaIcons.FaHeadset as React.ComponentType<IconBaseProps>)}
                 </FeatureIcon>
@@ -320,7 +321,7 @@ const HomePage: React.FC = () => {
             </SectionHeader>
             <ChooseUsGrid>
               <AnimatedCard>
-                <ChooseUsCard>
+                <ChooseUsCard className="choose-us-card">
                   <ChooseUsIcon>
                     {React.createElement(FaIcons.FaSearchDollar as React.ComponentType<IconBaseProps>)}
                   </ChooseUsIcon>
@@ -332,7 +333,7 @@ const HomePage: React.FC = () => {
               </AnimatedCard>
               
               <AnimatedCard>
-                <ChooseUsCard>
+                <ChooseUsCard className="choose-us-card">
                   <ChooseUsIcon>
                     {React.createElement(FaIcons.FaUsers as React.ComponentType<IconBaseProps>)}
                   </ChooseUsIcon>
@@ -344,7 +345,7 @@ const HomePage: React.FC = () => {
               </AnimatedCard>
               
               <AnimatedCard>
-                <ChooseUsCard>
+                <ChooseUsCard className="choose-us-card">
                   <ChooseUsIcon>
                     {React.createElement(FaIcons.FaHashtag as React.ComponentType<IconBaseProps>)}
                   </ChooseUsIcon>
@@ -367,7 +368,7 @@ const HomePage: React.FC = () => {
           </SectionHeader>
           <TestimonialsGrid>
             <AnimatedCard>
-              <TestimonialCard>
+              <TestimonialCard className="testimonial-card">
                 <TestimonialText>
                   They offer a wide range of services and are always willing to listen to what your needs are. I would recommend them to anyone looking for affordable web design services that will help create a beautiful ecommerce website, as well as other marketing materials.
                 </TestimonialText>
@@ -379,7 +380,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <TestimonialCard>
+              <TestimonialCard className="testimonial-card">
                 <TestimonialText>
                   I was really impressed with how they were able to help me create a landing page so quickly. They also offered me a few free design templates that were nice bonuses. The quality of the work is also top notch and I have been pleased with their work every time.
                 </TestimonialText>
@@ -391,7 +392,7 @@ const HomePage: React.FC = () => {
             </AnimatedCard>
             
             <AnimatedCard>
-              <TestimonialCard>
+              <TestimonialCard className="testimonial-card">
                 <TestimonialText>
                   I loved working with Lyayo Designs on my web design project. I had a tight budget and they were able to work with me to create an elegant site that I am really proud of. The project was done on time and they also offered me a few free design templates.
                 </TestimonialText>

@@ -299,6 +299,8 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const [servicesCloseTimeoutId, setServicesCloseTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [toolsCloseTimeoutId, setToolsCloseTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const { isDarkTheme, toggleTheme, theme } = useTheme();
   const { preloadRoute } = useRoutePreload();
@@ -327,13 +329,39 @@ const Header: React.FC = () => {
   };
   
   const openServicesDropdown = () => {
+    // Clear any existing timeout to prevent the dropdown from closing
+    if (servicesCloseTimeoutId) {
+      clearTimeout(servicesCloseTimeoutId);
+      setServicesCloseTimeoutId(null);
+    }
     setServicesDropdownOpen(true);
     if (toolsDropdownOpen) setToolsDropdownOpen(false);
   };
   
   const openToolsDropdown = () => {
+    // Clear any existing timeout to prevent the dropdown from closing
+    if (toolsCloseTimeoutId) {
+      clearTimeout(toolsCloseTimeoutId);
+      setToolsCloseTimeoutId(null);
+    }
     setToolsDropdownOpen(true);
     if (servicesDropdownOpen) setServicesDropdownOpen(false);
+  };
+
+  const closeServicesDropdownWithDelay = () => {
+    // Set a timeout to close the dropdown after a delay
+    const timeoutId = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 300); // 300ms delay gives enough time to move to submenu
+    setServicesCloseTimeoutId(timeoutId);
+  };
+
+  const closeToolsDropdownWithDelay = () => {
+    // Set a timeout to close the dropdown after a delay
+    const timeoutId = setTimeout(() => {
+      setToolsDropdownOpen(false);
+    }, 300); // 300ms delay gives enough time to move to submenu
+    setToolsCloseTimeoutId(timeoutId);
   };
   
   // Navigate to services page and open dropdown
@@ -397,6 +425,16 @@ const Header: React.FC = () => {
     closeMenu();
     setServicesDropdownOpen(false);
     setToolsDropdownOpen(false);
+    
+    // Clear any existing timeouts
+    if (servicesCloseTimeoutId) {
+      clearTimeout(servicesCloseTimeoutId);
+      setServicesCloseTimeoutId(null);
+    }
+    if (toolsCloseTimeoutId) {
+      clearTimeout(toolsCloseTimeoutId);
+      setToolsCloseTimeoutId(null);
+    }
   }, [location]);
   
   // Prevent body scroll when menu is open
@@ -430,6 +468,14 @@ const Header: React.FC = () => {
   const handleContactHover = () => preloadRoute('/contact/');
   const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator/');
   const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter/');
+  
+  // Clean up timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (servicesCloseTimeoutId) clearTimeout(servicesCloseTimeoutId);
+      if (toolsCloseTimeoutId) clearTimeout(toolsCloseTimeoutId);
+    };
+  }, [servicesCloseTimeoutId, toolsCloseTimeoutId]);
   
   return (
     <>
@@ -466,7 +512,7 @@ const Header: React.FC = () => {
               <DropdownContainer 
                 ref={servicesDropdownRef} 
                 onMouseEnter={openServicesDropdown}
-                onMouseLeave={() => setServicesDropdownOpen(false)}
+                onMouseLeave={closeServicesDropdownWithDelay}
               >
                 <DropdownButton 
                   active={isServicesActive}
@@ -497,7 +543,7 @@ const Header: React.FC = () => {
               <DropdownContainer 
                 ref={toolsDropdownRef}
                 onMouseEnter={openToolsDropdown}
-                onMouseLeave={() => setToolsDropdownOpen(false)}
+                onMouseLeave={closeToolsDropdownWithDelay}
               >
                 <DropdownButton 
                   active={isToolsActive}
