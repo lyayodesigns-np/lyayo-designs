@@ -6,7 +6,6 @@ interface ScaleInProps {
   delay?: number;
   duration?: number;
   className?: string;
-  once?: boolean;
   viewport?: { once?: boolean; amount?: number };
   initialScale?: number;
 }
@@ -16,7 +15,6 @@ const ScaleIn: React.FC<ScaleInProps> = ({
   delay = 0,
   duration = 0.5,
   className = '',
-  once = true,
   viewport = { once: true, amount: 0.3 },
   initialScale = 0.9,
 }) => {
