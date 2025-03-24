@@ -23,9 +23,7 @@ const Privacy = React.lazy(() => import('./pages/privacy/Privacy'));
 const Careers = React.lazy(() => import('./pages/careers/Careers'));
 const Portfolio = React.lazy(() => import('./pages/portfolio/Portfolio'));
 const WriteForUs = React.lazy(() => import('./pages/write-for-us/WriteForUs'));
-const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));
-const Blog = React.lazy(() => import('./pages/blog/Blog'));
-const BlogPost = React.lazy(() => import('./pages/blog/BlogPost'));
+const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));}
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
@@ -46,8 +44,6 @@ const routeComponents = {
   '/portfolio/': Portfolio,
   '/write-for-us/': WriteForUs,
   '/404/': NotFound,
-  '/blog/': Blog,
-  '/blog/:slug/': BlogPost,
 };
 
 // Create a context for route preloading
@@ -97,8 +93,6 @@ const AnimatedRoutes = () => {
         <Route path="/careers/" element={<Careers />} />
         <Route path="/portfolio/" element={<Portfolio />} />
         <Route path="/write-for-us/" element={<WriteForUs />} />
-        <Route path="/blog/" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
         {/* Add a catch-all route that shows the 404 page */}
         <Route path="*" element={<NotFound />} />
       </Routes>

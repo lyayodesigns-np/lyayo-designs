@@ -134,7 +134,6 @@ const Footer: React.FC = () => {
           <FooterLink to="/about-us/">About Us</FooterLink>
           <FooterLink to="/services/">Services</FooterLink>
           <FooterLink to="/portfolio/">Portfolio</FooterLink>
-          <FooterLink to="/blog/">Blog</FooterLink>
           <FooterLink to="/contact/">Contact Us</FooterLink>
         </FooterColumn>
 {/*         
