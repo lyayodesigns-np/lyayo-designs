@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background elements -->
+  <circle cx="300" cy="200" r="150" fill="#f5f5f5" opacity="0.5"/>
+  <circle cx="300" cy="200" r="100" fill="#e0e0e0" opacity="0.3"/>
+  
+  <!-- Decorative elements -->
+  <path d="M150 100C150 100 200 50 300 50C400 50 450 100 450 100" stroke="#6366F1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M150 300C150 300 200 350 300 350C400 350 450 300 450 300" stroke="#6366F1" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Compass/map elements -->
+  <circle cx="300" cy="200" r="80" fill="white" stroke="#6366F1" stroke-width="3"/>
+  <circle cx="300" cy="200" r="5" fill="#6366F1"/>
+  
+  <!-- Compass directions -->
+  <line x1="300" y1="130" x2="300" y2="150" stroke="#6366F1" stroke-width="3"/>
+  <line x1="300" y1="250" x2="300" y2="270" stroke="#6366F1" stroke-width="3"/>
+  <line x1="230" y1="200" x2="250" y2="200" stroke="#6366F1" stroke-width="3"/>
+  <line x1="350" y1="200" x2="370" y2="200" stroke="#6366F1" stroke-width="3"/>
+  
+  <!-- Compass text -->
+  <text x="300" y="125" text-anchor="middle" fill="#6366F1" font-family="Arial" font-weight="bold">N</text>
+  <text x="300" y="285" text-anchor="middle" fill="#6366F1" font-family="Arial" font-weight="bold">S</text>
+  <text x="225" y="205" text-anchor="middle" fill="#6366F1" font-family="Arial" font-weight="bold">W</text>
+  <text x="375" y="205" text-anchor="middle" fill="#6366F1" font-family="Arial" font-weight="bold">E</text>
+  
+  <!-- Question mark in the center -->
+  <text x="300" y="215" text-anchor="middle" fill="#6366F1" font-family="Arial" font-size="60" font-weight="bold">?</text>
+  
+  <!-- Dotted path line -->
+  <path d="M220 120C240 140 260 130 280 150C300 170 320 160 340 180C360 200 380 190 400 210" stroke="#6366F1" stroke-width="3" stroke-dasharray="5,5"/>
+  
+  <!-- X marks the spot -->
+  <path d="M390 210L410 230M410 210L390 230" stroke="#FF5252" stroke-width="4" stroke-linecap="round"/>
+</svg>

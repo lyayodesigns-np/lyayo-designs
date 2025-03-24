@@ -39,6 +39,7 @@ import {
   CTATitle,
   CTADescription
 } from './about.styles';
+import { ButtonLink } from '../services/seo/seo.styles';
 
 const AboutPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -67,7 +68,7 @@ const AboutPage: React.FC = () => {
       id: 1,
       name: 'Rajesh Sharma',
       role: 'CEO & Founder',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot1.jpg',
       bio: 'With over 10 years of experience in web design and digital marketing, Rajesh founded Lyayo Designs to help Nepali businesses establish a strong online presence.',
       categories: ['leadership'],
       socialLinks: [
@@ -80,7 +81,7 @@ const AboutPage: React.FC = () => {
       id: 2,
       name: 'Priya Patel',
       role: 'Lead Designer',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot2g.jpg',
       bio: 'Priya brings creativity and innovation to every project. With a background in graphic design and UX/UI, she ensures all Lyayo websites are visually stunning and user-friendly.',
       categories: ['design', 'leadership'],
       socialLinks: [
@@ -93,7 +94,7 @@ const AboutPage: React.FC = () => {
       id: 3,
       name: 'Arun Kumar',
       role: 'Senior Developer',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot3.jpg',
       bio: 'Arun specializes in front-end development and has mastered the art of bringing designs to life with clean, efficient code and seamless functionality.',
       categories: ['development'],
       socialLinks: [
@@ -106,7 +107,7 @@ const AboutPage: React.FC = () => {
       id: 4,
       name: 'Maya Gurung',
       role: 'Marketing Specialist',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot9.JPG',
       bio: 'Maya helps clients maximize their online presence through strategic digital marketing campaigns, SEO optimization, and social media management.',
       categories: ['marketing'],
       socialLinks: [
@@ -119,7 +120,7 @@ const AboutPage: React.FC = () => {
       id: 5,
       name: 'Sanjay Thapa',
       role: 'Backend Developer',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot5.jpg',
       bio: 'Sanjay is our database and server-side expert, ensuring all Lyayo websites are secure, fast, and built on a solid technical foundation.',
       categories: ['development'],
       socialLinks: [
@@ -132,7 +133,7 @@ const AboutPage: React.FC = () => {
       id: 6,
       name: 'Anita Rai',
       role: 'UI/UX Designer',
-      image: 'https://via.placeholder.com/300x300',
+      image: '/images/headshot/headshot8.jpeg',
       bio: 'Anita focuses on creating intuitive user experiences and interfaces that delight users while meeting business objectives.',
       categories: ['design'],
       socialLinks: [
@@ -368,9 +369,11 @@ const AboutPage: React.FC = () => {
               We're always looking for talented individuals to join our team. Check out our current openings or send us your resume.
             </CTADescription>
             <ScaleIn delay={0.3}>
-              <Button size="large" variant="primary">
+            <ButtonLink href="/careers/">
+                <Button size="large" variant="primary">
                 View Openings
-              </Button>
+                </Button>
+              </ButtonLink>
             </ScaleIn>
           </FadeIn>
         </CTAContainer>

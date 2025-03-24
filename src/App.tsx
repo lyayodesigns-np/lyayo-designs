@@ -20,6 +20,11 @@ const Disclaimer = React.lazy(() => import('./pages/disclaimer/Disclaimer'));
 const Terms = React.lazy(() => import('./pages/terms/Terms'));
 const Privacy = React.lazy(() => import('./pages/privacy/Privacy'));
 const Careers = React.lazy(() => import('./pages/careers/Careers'));
+const Portfolio = React.lazy(() => import('./pages/portfolio/Portfolio'));
+const WriteForUs = React.lazy(() => import('./pages/write-for-us/WriteForUs'));
+const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));
+const Blog = React.lazy(() => import('./pages/blog/Blog'));
+const BlogPost = React.lazy(() => import('./pages/blog/BlogPost'));
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
@@ -27,16 +32,21 @@ const routeComponents = {
   '/about-us/': About,
   '/services/': Services,
   '/contact/': Contact,
-  '/services/seo/': SEOService,
+  '/search-engine-optimization/': SEOService,
   '/services/web-design/': WebDesignService,
-  '/services/hosting/': HostingService,
+  '/hosting-with-us/': HostingService,
   '/pricing/': Pricing,
-  '/tools/domain-generator/': DomainGenerator,
-  '/tools/domain-cover-letter/': DomainCoverLetterGenerator,
+  '/domain-name-generator/': DomainGenerator,
+  '/services/how-to-register-a-com-np-domain-in-nepal/': DomainCoverLetterGenerator,
   '/disclaimer/': Disclaimer,
   '/terms/': Terms,
   '/privacy/': Privacy,
   '/careers/': Careers,
+  '/portfolio/': Portfolio,
+  '/write-for-us/': WriteForUs,
+  '/404/': NotFound,
+  '/blog/': Blog,
+  '/blog/:slug/': BlogPost,
 };
 
 // Create a context for route preloading
@@ -73,19 +83,23 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about-us/" element={<About />} />
         <Route path="/services/" element={<Services />} />
-        <Route path="/services/seo/" element={<SEOService />} />
+        <Route path="/search-engine-optimization/" element={<SEOService />} />
         <Route path="/services/web-design/" element={<WebDesignService />} />
-        <Route path="/services/hosting/" element={<HostingService />} />
+        <Route path="/hosting-with-us/" element={<HostingService />} />
         <Route path="/pricing/" element={<Pricing />} />
         <Route path="/contact/" element={<Contact />} />
-        <Route path="/tools/domain-generator/" element={<DomainGenerator />} />
-        <Route path="/tools/domain-cover-letter/" element={<DomainCoverLetterGenerator />} />
+        <Route path="/domain-name-generator/" element={<DomainGenerator />} />
+        <Route path="/services/how-to-register-a-com-np-domain-in-nepal/" element={<DomainCoverLetterGenerator />} />
         <Route path="/disclaimer/" element={<Disclaimer />} />
         <Route path="/terms/" element={<Terms />} />
         <Route path="/privacy/" element={<Privacy />} />
         <Route path="/careers/" element={<Careers />} />
-        {/* Add a catch-all route that redirects to home */}
-        <Route path="*" element={<Home />} />
+        <Route path="/portfolio/" element={<Portfolio />} />
+        <Route path="/write-for-us/" element={<WriteForUs />} />
+        <Route path="/blog/" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        {/* Add a catch-all route that shows the 404 page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </PageTransition>
   );

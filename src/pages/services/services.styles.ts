@@ -201,11 +201,15 @@ export const ProcessStep = styled.div`
   border-radius: ${({ theme }) => theme.radii.lg};
   box-shadow: ${({ theme }) => theme.shadows.md};
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all ${({ theme }) => theme.transitions.standard};
   border: 1px solid ${({ theme }) => theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
     box-shadow: ${({ theme }) => theme.shadows.lg};
   }
   
@@ -236,16 +240,19 @@ export const StepNumber = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   margin: 0 auto ${({ theme }) => theme.space[4]};
+  flex-shrink: 0;
 `;
 
 export const StepTitle = styled.h3`
   margin-bottom: ${({ theme }) => theme.space[3]};
   color: ${({ theme }) => theme.colors.text};
+  flex-shrink: 0;
 `;
 
 export const StepDescription = styled.p`
   color: ${({ theme }) => theme.colors.textSecondary};
   line-height: 1.6;
+  flex-grow: 1;
 `;
 
 // Pricing Section
@@ -275,6 +282,7 @@ export const PricingPlans = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: ${({ theme }) => theme.space[6]};
+  margin-top: ${({ theme }) => theme.space[8]};
   
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     grid-template-columns: repeat(2, 1fr);
@@ -290,16 +298,22 @@ interface PricingPlanProps {
 }
 
 export const PricingPlan = styled.div<PricingPlanProps>`
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  color: ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.radii.lg};
   padding: ${({ theme }) => theme.space[6]};
   box-shadow: ${({ theme }) => theme.shadows.md};
   text-align: center;
-  transition: transform ${({ theme }) => theme.transitions.standard}, box-shadow ${({ theme }) => theme.transitions.standard};
-  border: 2px solid ${({ featured, theme }) => (featured ? theme.colors.primary : theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)')};
+  position: relative;
+  transition: all ${({ theme }) => theme.transitions.standard};
+  border: ${({ featured, theme }) => featured ? `2px solid ${theme.colors.primary}` : `1px solid ${theme.isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
     box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 `;
@@ -321,22 +335,25 @@ export const PlanPrice = styled.div`
 `;
 
 export const PlanFeatures = styled.ul`
-  text-align: left;
-  margin-bottom: ${({ theme }) => theme.space[6]};
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: ${({ theme }) => theme.space[6]} 0;
+  text-align: left;
+  flex-grow: 1;
 `;
 
 export const PlanFeature = styled.li`
-  margin-bottom: ${({ theme }) => theme.space[3]};
+  padding: ${({ theme }) => theme.space[2]} 0;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.textSecondary};
-`;
-
-export const PlanFeatureIcon = styled.span`
-  color: ${({ theme }) => theme.colors.success};
-  margin-right: ${({ theme }) => theme.space[2]};
+  
+  &:before {
+    content: '✓';
+    color: ${({ theme }) => theme.colors.primary};
+    margin-right: ${({ theme }) => theme.space[2]};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+  }
 `;
 
 // CTA Section

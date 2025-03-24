@@ -171,6 +171,84 @@ export const FAQAnswer = styled.p`
   line-height: 1.6;
 `;
 
+export const FAQTitle = styled.h2`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.space[6]};
+  font-size: ${({ theme }) => theme.fontSizes['3xl']};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.text};
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    margin: 15px auto 0;
+  }
+`;
+
+export const FAQDescription = styled.p`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.space[8]};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+`;
+
+export interface FAQQuestionProps {
+  isOpen: boolean;
+}
+
+export const FAQQuestionToggle = styled.button<FAQQuestionProps>`
+  width: 100%;
+  text-align: left;
+  padding: ${({ theme }) => theme.space[4]};
+  background-color: ${({ theme, isOpen }) => 
+    isOpen ? (theme.isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)') : 'transparent'};
+  border: none;
+  border-radius: ${({ theme }) => theme.radii.md};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  color: ${({ theme, isOpen }) => isOpen ? theme.colors.primary : theme.colors.text};
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all ${({ theme }) => theme.transitions.standard};
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)'};
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &::after {
+    content: '${({ isOpen }) => (isOpen ? '−' : '+')}';
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+`;
+
+export interface FAQAnswerProps {
+  isOpen: boolean;
+}
+
+export const FAQAnswerToggle = styled.div<FAQAnswerProps>`
+  padding: ${({ isOpen, theme }) => (isOpen ? theme.space[4] : '0 ' + theme.space[4])};
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0')};
+  overflow: hidden;
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  transition: all 0.3s ease-in-out;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
+`;
+
 // CTA Section
 export const CTASection = styled(Section)`
   position: relative;

@@ -421,8 +421,12 @@ const Header: React.FC = () => {
   }, []);
   
   useEffect(() => {
-    // Close menu when route changes
-    closeMenu();
+    // Only close menu when route changes AND it's not a dropdown item click
+    if (!servicesDropdownOpen && !toolsDropdownOpen) {
+      closeMenu();
+    }
+    
+    // Always close dropdowns on route change
     setServicesDropdownOpen(false);
     setToolsDropdownOpen(false);
     
@@ -451,23 +455,35 @@ const Header: React.FC = () => {
   }, [isMenuOpen]);
   
   const isServicesActive = location.pathname === '/services/' || 
-                          location.pathname === '/services/seo/' || 
+                          location.pathname === '/search-engine-optimization/' || 
                           location.pathname === '/services/web-design/' || 
-                          location.pathname === '/services/hosting/';
+                          location.pathname === '/hosting-with-us/';
   
-  const isToolsActive = location.pathname.startsWith('/tools/');
+  const isToolsActive = location.pathname.startsWith('/tools/') || location.pathname === '/domain-name-generator/';
+
+  const handleNavLinkClick = (e: React.MouseEvent) => {
+    // Don't close menu on dropdown button clicks
+    if ((e.target as HTMLElement).closest('.dropdown-button')) {
+      return;
+    }
+    // Keep menu open on mobile
+    if (window.innerWidth <= parseInt(theme.breakpoints.md)) {
+      return;
+    }
+    closeMenu();
+  };
 
   // Preload handlers for navigation links
   const handleHomeHover = () => preloadRoute('/');
   const handleAboutHover = () => preloadRoute('/about-us/');
   const handleServicesHover = () => preloadRoute('/services/');
-  const handleSEOHover = () => preloadRoute('/services/seo/');
+  const handleSEOHover = () => preloadRoute('/search-engine-optimization/');
   const handleWebDesignHover = () => preloadRoute('/services/web-design/');
-  const handleHostingHover = () => preloadRoute('/services/hosting/');
+  const handleHostingHover = () => preloadRoute('/hosting-with-us/');
   const handlePricingHover = () => preloadRoute('/pricing/');
   const handleContactHover = () => preloadRoute('/contact/');
-  const handleDomainGeneratorHover = () => preloadRoute('/tools/domain-generator/');
-  const handleDomainCoverLetterHover = () => preloadRoute('/tools/domain-cover-letter/');
+  const handleDomainGeneratorHover = () => preloadRoute('/domain-name-generator/');
+  const handleDomainCoverLetterHover = () => preloadRoute('/services/how-to-register-a-com-np-domain-in-nepal/');
   
   // Clean up timeouts on unmount
   useEffect(() => {
@@ -490,7 +506,7 @@ const Header: React.FC = () => {
       }}>
         <NavContainer>
           <Logo to="/" onMouseEnter={handleHomeHover}>
-            <LogoImage src="/logo.png" alt="Lyayo Designs Logo" />
+            <LogoImage src={theme.isDark ? "/logo.png" : "/logo-dark.png"} alt="Lyayo Designs Logo" />
           </Logo>
        
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -502,10 +518,20 @@ const Header: React.FC = () => {
               <CloseButton onClick={closeMenu} aria-label="Close menu">
                 {React.createElement(FaIcons.FaTimes as React.ComponentType<IconBaseProps>)}
               </CloseButton>
-              <NavLink to="/" active={location.pathname === '/'} onMouseEnter={handleHomeHover}>
+              <NavLink 
+                to="/" 
+                active={location.pathname === '/'} 
+                onMouseEnter={handleHomeHover}
+                onClick={handleNavLinkClick}
+              >
                 Home
               </NavLink>
-              <NavLink to="/about-us/" active={location.pathname === '/about-us/'} onMouseEnter={handleAboutHover}>
+              <NavLink 
+                to="/about-us/" 
+                active={location.pathname === '/about-us/'} 
+                onMouseEnter={handleAboutHover}
+                onClick={handleNavLinkClick}
+              >
                 About Us
               </NavLink>
               
@@ -515,6 +541,7 @@ const Header: React.FC = () => {
                 onMouseLeave={closeServicesDropdownWithDelay}
               >
                 <DropdownButton 
+                  className="dropdown-button"
                   active={isServicesActive}
                   onClick={handleServicesClick}
                   onMouseEnter={handleServicesHover}
@@ -524,19 +551,36 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={servicesDropdownOpen}>
-                  <DropdownLink to="/services/seo/" onMouseEnter={handleSEOHover}>
+                  <DropdownLink 
+                    to="/search-engine-optimization/" 
+                    onMouseEnter={handleSEOHover}
+                    onClick={handleNavLinkClick}
+                  >
                     Search Engine Optimization
                   </DropdownLink>
-                  <DropdownLink to="/services/web-design/" onMouseEnter={handleWebDesignHover}>
+                  <DropdownLink 
+                    to="/services/web-design/" 
+                    onMouseEnter={handleWebDesignHover}
+                    onClick={handleNavLinkClick}
+                  >
                     Web Design
                   </DropdownLink>
-                  <DropdownLink to="/services/hosting/" onMouseEnter={handleHostingHover}>
+                  <DropdownLink 
+                    to="/hosting-with-us/" 
+                    onMouseEnter={handleHostingHover}
+                    onClick={handleNavLinkClick}
+                  >
                     Hosting With Us
                   </DropdownLink>
                 </DropdownContent>
               </DropdownContainer>
               
-              <NavLink to="/pricing/" active={location.pathname === '/pricing/'} onMouseEnter={handlePricingHover}>
+              <NavLink 
+                to="/pricing/" 
+                active={location.pathname === '/pricing/'} 
+                onMouseEnter={handlePricingHover}
+                onClick={handleNavLinkClick}
+              >
                 Pricing
               </NavLink>
               
@@ -546,6 +590,7 @@ const Header: React.FC = () => {
                 onMouseLeave={closeToolsDropdownWithDelay}
               >
                 <DropdownButton 
+                  className="dropdown-button"
                   active={isToolsActive}
                   onClick={toggleToolsDropdown}
                 >
@@ -554,16 +599,29 @@ const Header: React.FC = () => {
                     FaIcons.FaChevronDown as React.ComponentType<IconBaseProps>)}
                 </DropdownButton>
                 <DropdownContent isOpen={toolsDropdownOpen}>
-                  <DropdownLink to="/tools/domain-generator/" onMouseEnter={handleDomainGeneratorHover}>
+                  <DropdownLink 
+                    to="/domain-name-generator/" 
+                    onMouseEnter={handleDomainGeneratorHover}
+                    onClick={handleNavLinkClick}
+                  >
                     Domain Name Generator
                   </DropdownLink>
-                  <DropdownLink to="/tools/domain-cover-letter/" onMouseEnter={handleDomainCoverLetterHover}>
+                  <DropdownLink 
+                    to="/services/how-to-register-a-com-np-domain-in-nepal/" 
+                    onMouseEnter={handleDomainCoverLetterHover}
+                    onClick={handleNavLinkClick}
+                  >
                     Domain Cover Letter Generator
                   </DropdownLink>
                 </DropdownContent>
               </DropdownContainer>
               
-              <NavLink to="/contact/" active={location.pathname === '/contact/'} onMouseEnter={handleContactHover}>
+              <NavLink 
+                to="/contact/" 
+                active={location.pathname === '/contact/'} 
+                onMouseEnter={handleContactHover}
+                onClick={handleNavLinkClick}
+              >
                 Contact
               </NavLink>
               

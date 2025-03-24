@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import Layout from '../../components/layout/Layout';
 import Section from '../../components/common/Section';
@@ -19,9 +19,10 @@ import {
   PlanFeature,
   FAQSection,
   FAQContainer,
-  FAQItem,
-  FAQQuestion,
-  FAQAnswer,
+  FAQTitle,
+  FAQDescription,
+  FAQQuestionToggle as FAQQuestion,
+  FAQAnswerToggle as FAQAnswer,
   CTASection,
   CTAContainer,
   CTATitle,
@@ -36,10 +37,42 @@ import {
 const PricingPage: React.FC = () => {
   const theme = useTheme() as Theme;
   const [billingCycle, setBillingCycle] = React.useState<'monthly' | 'yearly'>('monthly');
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   
   const toggleBillingCycle = () => {
     setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly');
   };
+  
+  const toggleFAQ = (index: number) => {
+    if (openFAQ === index) {
+      setOpenFAQ(null);
+    } else {
+      setOpenFAQ(index);
+    }
+  };
+  
+  const faqs = [
+    {
+      question: "What's included in the website design packages?",
+      answer: "Our website design packages include responsive design, SEO optimization, contact forms, mobile compatibility, and various features depending on the plan you choose. All packages include initial consultation, design mockups, development, testing, and launch."
+    },
+    {
+      question: "Do you offer custom pricing for specific projects?",
+      answer: "Yes, we understand that every business has unique needs. If our standard packages don't fit your requirements, we offer custom pricing tailored to your specific project. Contact us to discuss your needs and get a personalized quote."
+    },
+    {
+      question: "How long does it take to complete a website?",
+      answer: "The timeline varies depending on the complexity of your project. Basic websites typically take 2-3 weeks, while more complex projects may take 4-8 weeks. We'll provide you with a specific timeline during our initial consultation."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept various payment methods including credit/debit cards, bank transfers, and digital payment platforms. For larger projects, we typically require a 50% deposit upfront with the remaining balance due upon completion."
+    },
+    {
+      question: "Do you offer ongoing maintenance and support?",
+      answer: "Yes, we offer ongoing maintenance and support packages to keep your website secure, updated, and performing optimally. These can be purchased separately or added to your existing package."
+    }
+  ];
   
   return (
     <Layout
@@ -188,61 +221,30 @@ const PricingPage: React.FC = () => {
 
       {/* FAQ Section */}
       <FAQSection>
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', marginBottom: theme.space[8] }}>
-          <FadeIn>
-            <h2 style={{ fontSize: theme.fontSizes['3xl'], fontWeight: theme.fontWeights.bold, marginBottom: theme.space[2], color: theme.colors.text }}>Frequently Asked Questions</h2>
-            <p style={{ color: theme.colors.textSecondary, lineHeight: '1.6' }}>
-              Find answers to common questions about our pricing and services
-            </p>
-          </FadeIn>
-        </div>
-        
-        <FAQContainer>
-          <FadeIn delay={0.1}>
-            <FAQItem>
-              <FAQQuestion>What's included in the website design packages?</FAQQuestion>
-              <FAQAnswer>
-                Our website design packages include responsive design, SEO optimization, contact forms, mobile compatibility, and various features depending on the plan you choose. All packages include initial consultation, design mockups, development, testing, and launch.
-              </FAQAnswer>
-            </FAQItem>
-          </FadeIn>
+        <FadeIn>
+          <FAQTitle>Frequently Asked Questions</FAQTitle>
+          <FAQDescription>
+            Find answers to common questions about our pricing and services
+          </FAQDescription>
           
-          <FadeIn delay={0.2}>
-            <FAQItem>
-              <FAQQuestion>Do you offer custom pricing for specific projects?</FAQQuestion>
-              <FAQAnswer>
-                Yes, we understand that every business has unique needs. If our standard packages don't fit your requirements, we offer custom pricing tailored to your specific project. Contact us to discuss your needs and get a personalized quote.
-              </FAQAnswer>
-            </FAQItem>
-          </FadeIn>
-          
-          <FadeIn delay={0.3}>
-            <FAQItem>
-              <FAQQuestion>How long does it take to complete a website?</FAQQuestion>
-              <FAQAnswer>
-                The timeline varies depending on the complexity of your project. Basic websites typically take 2-3 weeks, while more complex projects may take 4-8 weeks. We'll provide you with a specific timeline during our initial consultation.
-              </FAQAnswer>
-            </FAQItem>
-          </FadeIn>
-          
-          <FadeIn delay={0.4}>
-            <FAQItem>
-              <FAQQuestion>What payment methods do you accept?</FAQQuestion>
-              <FAQAnswer>
-                We accept various payment methods including credit/debit cards, bank transfers, and digital payment platforms. For larger projects, we typically require a 50% deposit upfront with the remaining balance due upon completion.
-              </FAQAnswer>
-            </FAQItem>
-          </FadeIn>
-          
-          <FadeIn delay={0.5}>
-            <FAQItem>
-              <FAQQuestion>Do you offer ongoing maintenance and support?</FAQQuestion>
-              <FAQAnswer>
-                Yes, we offer ongoing maintenance and support packages to keep your website secure, updated, and performing optimally. These can be purchased separately or added to your existing package.
-              </FAQAnswer>
-            </FAQItem>
-          </FadeIn>
-        </FAQContainer>
+          <FAQContainer>
+            {faqs.map((faq, index) => (
+              <FadeIn key={index} delay={index * 0.1}>
+                <div style={{ marginBottom: '16px' }}>
+                  <FAQQuestion 
+                    isOpen={openFAQ === index} 
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    {faq.question}
+                  </FAQQuestion>
+                  <FAQAnswer isOpen={openFAQ === index}>
+                    {faq.answer}
+                  </FAQAnswer>
+                </div>
+              </FadeIn>
+            ))}
+          </FAQContainer>
+        </FadeIn>
       </FAQSection>
 
       {/* CTA Section */}

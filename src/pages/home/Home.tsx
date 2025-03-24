@@ -445,7 +445,7 @@ const HomePage: React.FC = () => {
               Let's work together to create a stunning website that helps your business stand out in the Nepali market. Contact us today for affordable, high-quality web design services!
             </CTADescription>
             <ButtonWrapper>
-              <AnimatedButton size="large" variant="secondary">
+              <AnimatedButton size="large" variant="secondary" href="/contact">
                 Get in Touch
               </AnimatedButton>
             </ButtonWrapper>
