@@ -9,7 +9,7 @@ export const sanityClient = createClient({
 });
 
 // Helper function to build an image URL
-export const urlFor = (source: any) => {
+export const urlFor = (source: string) => {
   return `https://cdn.sanity.io/images/your-project-id/production/${source}`;
 };
 

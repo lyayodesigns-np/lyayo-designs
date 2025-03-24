@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import Layout from '../../components/layout/Layout';
-import Button from '../../components/common/Button';
-import LazyImage from '../../components/common/LazyImage';
-import * as FaIcons from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
-import Section from '../../components/common/Section';
-import { FadeIn, ScaleIn, ScrollReveal, AnimatedCard } from '../../components/animations';
+import * as FaIcons from 'react-icons/fa';
+
 import {
   HeroSection,
   HeroContent,
@@ -39,6 +35,11 @@ import {
   CTATitle,
   CTADescription
 } from './about.styles';
+import { FadeIn, ScaleIn, ScrollReveal, AnimatedCard } from '../../components/animations';
+import Button from '../../components/common/Button';
+import LazyImage from '../../components/common/LazyImage';
+import Section from '../../components/common/Section';
+import Layout from '../../components/layout/Layout';
 import { ButtonLink } from '../services/seo/seo.styles';
 
 const AboutPage: React.FC = () => {

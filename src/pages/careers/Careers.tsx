@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { FaGlobe, FaLaptop, FaChartLine, FaCheck } from 'react-icons/fa';
-import FadeIn from '../../components/animations/FadeIn';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import Button from '../../components/common/Button';
-import Layout from '../../components/layout/Layout';
+
 import {
   PageContainer,
   HeroSection,
@@ -34,6 +31,10 @@ import {
   FeatureTitle,
   FeatureDescription
 } from './careers.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Button from '../../components/common/Button';
+import Layout from '../../components/layout/Layout';
 
 const CareersPage: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);

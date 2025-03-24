@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import FadeIn from '../../components/animations/FadeIn';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import Layout from '../../components/layout/Layout';
-import Button from '../../components/common/Button';
+
 import {
   PageContainer,
   HeroSection,
@@ -22,6 +19,9 @@ import {
   ProjectLink,
   LoadMoreButton
 } from './portfolio.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Layout from '../../components/layout/Layout';
 
 // Portfolio project data
 const projectsData = [

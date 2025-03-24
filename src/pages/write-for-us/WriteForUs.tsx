@@ -1,8 +1,5 @@
 import React from 'react';
-import FadeIn from '../../components/animations/FadeIn';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import Button from '../../components/common/Button';
-import Layout from '../../components/layout/Layout';
+
 import {
   PageContainer,
   HeroSection,
@@ -19,6 +16,10 @@ import {
   WriteForUsConclusion,
   AnimatedBackground
 } from './writeForUs.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Button from '../../components/common/Button';
+import Layout from '../../components/layout/Layout';
 
 const WriteForUsPage: React.FC = () => {
   return (

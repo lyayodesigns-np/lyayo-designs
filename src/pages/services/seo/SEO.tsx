@@ -1,15 +1,8 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
-import Layout from '../../../components/layout/Layout';
-import Section from '../../../components/common/Section';
-import LazyImage from '../../../components/common/LazyImage';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
-import { Theme } from '../../../styles/theme';
-import FadeIn from '../../../components/animations/FadeIn';
-import ScaleIn from '../../../components/animations/ScaleIn';
-import AnimatedCard from '../../../components/animations/AnimatedCard';
-import Button from '../../../components/common/Button';
+import { useTheme } from 'styled-components';
+
 import {
   HeroSection,
   HeroContent,
@@ -40,6 +33,14 @@ import {
   CTADescription,
   ButtonLink
 } from './seo.styles';
+import AnimatedCard from '../../../components/animations/AnimatedCard';
+import FadeIn from '../../../components/animations/FadeIn';
+import ScaleIn from '../../../components/animations/ScaleIn';
+import Button from '../../../components/common/Button';
+import LazyImage from '../../../components/common/LazyImage';
+import Section from '../../../components/common/Section';
+import Layout from '../../../components/layout/Layout';
+import { Theme } from '../../../styles/theme';
 
 const SEOPage: React.FC = () => {
   const theme = useTheme() as Theme;

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState, useEffect, useCallback } from 'react';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
-import { useTheme } from '../../context/ThemeProvider';
+import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { useRoutePreload } from '../../App';
+import { useTheme } from '../../context/ThemeProvider';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -309,14 +310,14 @@ const Header: React.FC = () => {
   const servicesDropdownRef = React.useRef<HTMLDivElement>(null);
   const toolsDropdownRef = React.useRef<HTMLDivElement>(null);
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-  };
+  }, []);
   
   const toggleServicesDropdown = () => {
     setServicesDropdownOpen(!servicesDropdownOpen);
@@ -439,7 +440,7 @@ const Header: React.FC = () => {
       clearTimeout(toolsCloseTimeoutId);
       setToolsCloseTimeoutId(null);
     }
-  }, [location]);
+  }, [location, servicesCloseTimeoutId, toolsCloseTimeoutId, servicesDropdownOpen, toolsDropdownOpen, closeMenu]);
   
   // Prevent body scroll when menu is open
   useEffect(() => {

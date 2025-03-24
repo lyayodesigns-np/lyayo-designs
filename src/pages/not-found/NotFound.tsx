@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FadeIn from '../../components/animations/FadeIn';
-import Layout from '../../components/layout/Layout';
-import Button from '../../components/common/Button';
+
 import {
   NotFoundContainer,
   NotFoundContent,
@@ -12,6 +10,9 @@ import {
   ButtonContainer,
   NotFoundImage
 } from './notFound.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import Button from '../../components/common/Button';
+import Layout from '../../components/layout/Layout';
 
 const NotFoundPage: React.FC = () => {
   return (

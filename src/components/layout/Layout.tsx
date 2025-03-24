@@ -1,10 +1,11 @@
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
-import Header from './Header';
-import Footer from './Footer';
 import { Helmet } from 'react-helmet';
-import ScrollToTopButton from '../common/ScrollToTopButton';
+import styled from 'styled-components';
+
+import Footer from './Footer';
+import Header from './Header';
 import MouseCursor from '../animations/MouseCursor';
+import ScrollToTopButton from '../common/ScrollToTopButton';
 
 interface LayoutProps {
   children: ReactNode;

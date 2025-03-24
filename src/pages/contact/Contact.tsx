@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Layout from '../../components/layout/Layout';
-import Section from '../../components/common/Section';
-import Button from '../../components/common/Button';
-import * as FaIcons from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
-import { FadeIn, ScaleIn } from '../../components/animations';
+import * as FaIcons from 'react-icons/fa';
+
 import {
   HeroSection,
   HeroContent,
@@ -38,6 +35,10 @@ import {
   FAQQuestion,
   FAQAnswer
 } from './contact.styles';
+import { FadeIn, ScaleIn } from '../../components/animations';
+import Button from '../../components/common/Button';
+import Section from '../../components/common/Section';
+import Layout from '../../components/layout/Layout';
 
 interface FAQItemType {
   question: string;

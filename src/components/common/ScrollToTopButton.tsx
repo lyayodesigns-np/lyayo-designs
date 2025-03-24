@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { FaArrowUp } from 'react-icons/fa';
-import { IconBaseProps } from 'react-icons';
 import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { IconBaseProps } from 'react-icons';
+import { FaArrowUp } from 'react-icons/fa';
+import styled from 'styled-components';
 
 const ButtonContainer = styled(motion.button)`
   position: fixed;

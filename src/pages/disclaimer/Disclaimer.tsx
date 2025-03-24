@@ -1,7 +1,5 @@
 import React from 'react';
-import FadeIn from '../../components/animations/FadeIn';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import Layout from '../../components/layout/Layout';
+
 import {
   PageContainer,
   PageTitle,
@@ -9,6 +7,9 @@ import {
   SectionTitle,
   Paragraph
 } from './disclaimer.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Layout from '../../components/layout/Layout';
 
 const DisclaimerPage: React.FC = () => {
   return (

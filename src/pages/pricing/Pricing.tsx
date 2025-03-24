@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
-import Layout from '../../components/layout/Layout';
-import Section from '../../components/common/Section';
-import Button from '../../components/common/Button';
-import { Theme } from '../../styles/theme';
-import FadeIn from '../../components/animations/FadeIn';
-import ScaleIn from '../../components/animations/ScaleIn';
+
 import {
   HeroSection,
   HeroContent,
@@ -33,6 +28,12 @@ import {
   ToggleSwitch,
   SaveBadge
 } from './pricing.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScaleIn from '../../components/animations/ScaleIn';
+import Button from '../../components/common/Button';
+import Section from '../../components/common/Section';
+import Layout from '../../components/layout/Layout';
+import { Theme } from '../../styles/theme';
 
 const PricingPage: React.FC = () => {
   const theme = useTheme() as Theme;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.isDark ? theme.colors.backgroundAlt : theme.colors.text};

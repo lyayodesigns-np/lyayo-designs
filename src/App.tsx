@@ -1,9 +1,10 @@
 import React, { Suspense, createContext, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import ThemeProvider from './context/ThemeProvider';
+
 import { PageTransition } from './components/animations';
-import ScrollToTop from './components/common/ScrollToTop';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import ScrollToTop from './components/common/ScrollToTop';
+import ThemeProvider from './context/ThemeProvider';
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import('./pages/home/Home'));
@@ -121,9 +122,9 @@ const RoutePreloadProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       // Trigger the dynamic import by accessing the component
       // This will cause webpack to load the chunk
       try {
-        // @ts-ignore - Force the preload by accessing the component's displayName
-        component._init && component._init();
-      } catch (e) {
+        // @ts-expect-error - Force the preload by accessing the component's displayName
+        if (component._init) component._init();
+      } catch {
         // Silently fail if component doesn't support this method
       }
       

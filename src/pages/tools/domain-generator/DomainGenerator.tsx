@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import Layout from '../../../components/layout/Layout';
-import Section from '../../../components/common/Section';
-import { FadeIn, ScaleIn } from '../../../components/animations';
-import * as FaIcons from 'react-icons/fa';
-import { IconBaseProps } from 'react-icons';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { IconBaseProps } from 'react-icons';
+import * as FaIcons from 'react-icons/fa';
+
 import {
   HeroSection,
   HeroContent,
@@ -38,6 +36,9 @@ import {
   LoadingContainer,
   LoadingSpinner
 } from './domainGenerator.styles';
+import { FadeIn, ScaleIn } from '../../../components/animations';
+import Section from '../../../components/common/Section';
+import Layout from '../../../components/layout/Layout';
 
 interface DomainSuggestion {
   name: string;

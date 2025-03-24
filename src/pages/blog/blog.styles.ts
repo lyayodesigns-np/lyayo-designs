@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import Section from '../../components/common/Section';
 
 export const PageContainer = styled.div`

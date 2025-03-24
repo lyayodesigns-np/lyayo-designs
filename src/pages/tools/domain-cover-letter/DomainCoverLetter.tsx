@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
-import Layout from '../../../components/layout/Layout';
-import { FadeIn, ScaleIn } from '../../../components/animations';
-import * as FaIcons from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
-import { useTheme } from '../../../context/ThemeProvider';
+import * as FaIcons from 'react-icons/fa';
+
 import {
   HeroSection,
   HeroContent,
@@ -40,6 +38,9 @@ import {
   GuideParagraph,
   BulletList
 } from './domainCoverLetter.styles';
+import { FadeIn, ScaleIn } from '../../../components/animations';
+import Layout from '../../../components/layout/Layout';
+import { useTheme } from '../../../context/ThemeProvider';
 
 const DomainCoverLetterGenerator: React.FC = () => {
   const { theme } = useTheme();

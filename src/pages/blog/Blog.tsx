@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import Layout from '../../components/layout/Layout';
-import FadeIn from '../../components/animations/FadeIn';
-// Comment out unused imports but keep them for future implementation
-// import { getAllPosts, getAllCategories, getFeaturedPosts } from '../../lib/sanity';
-import { formatDate } from '../../utils/dateUtils';
+
 import {
   PageContainer,
   HeroSection,
@@ -23,6 +19,10 @@ import {
   ReadMoreLink,
   LoadMoreButton
 } from './blog.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import Layout from '../../components/layout/Layout';
+import { getAllPosts, getAllCategories } from '../../lib/sanity';
+import { formatDate } from '../../utils/dateUtils';
 
 // Types
 interface Post {
@@ -52,13 +52,9 @@ const Blog: React.FC = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // In a real implementation, these would be actual API calls
-        // For now, we'll simulate with placeholder data
-        // const allPosts = await getAllPosts();
-        
-        // Simulate data for development
-        const mockPosts = generateMockPosts(12);
-        setPosts(mockPosts);
+        // Fetch posts from Sanity CMS
+        const allPosts = await getAllPosts();
+        setPosts(allPosts);
       } catch (error) {
         console.error('Error fetching blog data:', error);
       } finally {
@@ -133,57 +129,6 @@ const Blog: React.FC = () => {
   );
 };
 
-// Helper function to generate mock posts for development
-const generateMockPosts = (count: number): Post[] => {
-  const categories = [
-    { _id: '1', title: 'Web Design' },
-    { _id: '2', title: 'SEO' },
-    { _id: '3', title: 'Hosting' },
-    { _id: '4', title: 'Development' },
-    { _id: '5', title: 'Marketing' }
-  ];
-  
-  const posts: Post[] = [];
-  
-  for (let i = 1; i <= count; i++) {
-    const categoryIndex = Math.floor(Math.random() * categories.length);
-    const date = new Date();
-    date.setDate(date.getDate() - i * 2); // Each post is 2 days apart
-    
-    posts.push({
-      _id: `post-${i}`,
-      title: `${i % 2 === 0 ? 'How to ' : ''}${getRandomTitle(i)}`,
-      slug: { current: `post-${i}` },
-      excerpt: `This is a sample excerpt for post ${i}. It provides a brief overview of what the article is about and entices readers to click and read more.`,
-      mainImage: `https://source.unsplash.com/random/600x400?web,design&sig=${i}`,
-      publishedAt: date.toISOString(),
-      categories: [categories[categoryIndex]],
-      authorName: 'John Doe',
-      authorImage: 'https://source.unsplash.com/random/100x100?portrait&sig=1'
-    });
-  }
-  
-  return posts;
-};
 
-// Helper function to generate random post titles
-const getRandomTitle = (index: number): string => {
-  const titles = [
-    "Improve Your Website's SEO in 5 Simple Steps",
-    "The Ultimate Guide to Responsive Web Design",
-    "Why Your Business Needs a Professional Website",
-    "Top Web Design Trends for 2025",
-    "How to Choose the Right Hosting Provider",
-    "Boost Your Conversion Rate with These Design Tips",
-    "The Importance of Mobile-First Design",
-    "Common SEO Mistakes to Avoid",
-    "How to Optimize Your Website for Speed",
-    "Creating an Effective Content Strategy",
-    "Web Accessibility: Why It Matters and How to Implement It",
-    "The Psychology of Colors in Web Design"
-  ];
-  
-  return titles[index % titles.length];
-};
 
 export default Blog;

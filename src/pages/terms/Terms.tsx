@@ -1,7 +1,5 @@
 import React from 'react';
-import FadeIn from '../../components/animations/FadeIn';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import Layout from '../../components/layout/Layout';
+
 import {
   PageContainer,
   PageTitle,
@@ -11,6 +9,9 @@ import {
   List,
   ListItem
 } from './terms.styles';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Layout from '../../components/layout/Layout';
 
 const TermsPage: React.FC = () => {
   return (

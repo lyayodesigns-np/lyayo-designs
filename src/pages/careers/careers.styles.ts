@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import SectionComponent from '../../components/common/Section';
 
 export const PageContainer = styled.div`

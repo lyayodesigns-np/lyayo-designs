@@ -1,10 +1,6 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
 import { IconBaseProps } from 'react-icons';
-import Layout from '../../components/layout/Layout';
-import Section from '../../components/common/Section';
-import LazyImage from '../../components/common/LazyImage';
-import { FadeIn, ScaleIn, ScrollReveal, AnimatedButton, AnimatedCard } from '../../components/animations';
+import * as FaIcons from 'react-icons/fa';
 
 import {
   HeroSection,
@@ -58,6 +54,10 @@ import {
   ClientName,
   ClientCompany
 } from './home.styles';
+import { FadeIn, ScaleIn, ScrollReveal, AnimatedButton, AnimatedCard } from '../../components/animations';
+import LazyImage from '../../components/common/LazyImage';
+import Section from '../../components/common/Section';
+import Layout from '../../components/layout/Layout';
 
 const HomePage: React.FC = () => {
   return (

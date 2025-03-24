@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, memo } from 'react';
 import styled, { createGlobalStyle, useTheme } from 'styled-components';
+
 import { Theme } from '../../styles/theme';
 
 // Global style to hide the default cursor
@@ -135,7 +136,7 @@ const MouseCursor: React.FC<MouseCursorProps> = ({
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [hoverElements]); // Only re-run if hoverElements changes
+  }, [hoverElements, position.x, position.y]); // Re-run if hoverElements or position changes
   
   if (!isVisible) return <GlobalStyle />;
   

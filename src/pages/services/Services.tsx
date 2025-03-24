@@ -1,15 +1,8 @@
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
-import Layout from '../../components/layout/Layout';
-import Section from '../../components/common/Section';
-import Button from '../../components/common/Button';
-import LazyImage from '../../components/common/LazyImage';
-import ScrollReveal from '../../components/animations/ScrollReveal';
-import AnimatedCard from '../../components/animations/AnimatedCard';
-import FadeIn from '../../components/animations/FadeIn';
 import { IconBaseProps } from 'react-icons';
 import * as FaIcons from 'react-icons/fa';
-import { Theme } from '../../styles/theme';
+import styled, { useTheme } from 'styled-components';
+
 import {
   HeroSection,
   HeroContent,
@@ -41,6 +34,13 @@ import {
   CTAText,
   CTAButtons
 } from './services.styles';
+import AnimatedCard from '../../components/animations/AnimatedCard';
+import FadeIn from '../../components/animations/FadeIn';
+import ScrollReveal from '../../components/animations/ScrollReveal';
+import Button from '../../components/common/Button';
+import LazyImage from '../../components/common/LazyImage';
+import Layout from '../../components/layout/Layout';
+import { Theme } from '../../styles/theme';
 
 // Create styled anchor that uses Button styling
 const ButtonLink = styled.a`

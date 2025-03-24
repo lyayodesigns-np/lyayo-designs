@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import Section from '../../../components/common/Section';
+
 import Button from '../../../components/common/Button';
+import Section from '../../../components/common/Section';
 
 // Hero Section
 export const HeroSection = styled(Section)`
