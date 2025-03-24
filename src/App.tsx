@@ -20,6 +20,11 @@ const Disclaimer = React.lazy(() => import('./pages/disclaimer/Disclaimer'));
 const Terms = React.lazy(() => import('./pages/terms/Terms'));
 const Privacy = React.lazy(() => import('./pages/privacy/Privacy'));
 const Careers = React.lazy(() => import('./pages/careers/Careers'));
+const Portfolio = React.lazy(() => import('./pages/portfolio/Portfolio'));
+const WriteForUs = React.lazy(() => import('./pages/write-for-us/WriteForUs'));
+const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));
+const Blog = React.lazy(() => import('./pages/blog/Blog'));
+const BlogPost = React.lazy(() => import('./pages/blog/BlogPost'));
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
@@ -37,6 +42,11 @@ const routeComponents = {
   '/terms/': Terms,
   '/privacy/': Privacy,
   '/careers/': Careers,
+  '/portfolio/': Portfolio,
+  '/write-for-us/': WriteForUs,
+  '/404/': NotFound,
+  '/blog/': Blog,
+  '/blog/:slug/': BlogPost,
 };
 
 // Create a context for route preloading
@@ -84,8 +94,12 @@ const AnimatedRoutes = () => {
         <Route path="/terms/" element={<Terms />} />
         <Route path="/privacy/" element={<Privacy />} />
         <Route path="/careers/" element={<Careers />} />
-        {/* Add a catch-all route that redirects to home */}
-        <Route path="*" element={<Home />} />
+        <Route path="/portfolio/" element={<Portfolio />} />
+        <Route path="/write-for-us/" element={<WriteForUs />} />
+        <Route path="/blog/" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        {/* Add a catch-all route that shows the 404 page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </PageTransition>
   );

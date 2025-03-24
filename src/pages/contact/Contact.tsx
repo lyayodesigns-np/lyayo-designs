@@ -191,7 +191,7 @@ const ContactPage: React.FC = () => {
           
           <ContactInfo>
             <FadeIn delay={0.2}>
-              <h2>Get in Touch</h2>
+              <h2 >Get in Touch</h2>
               <p>
                 Have a question or want to discuss a project? Reach out to us using the contact information below or fill out the form.
               </p>

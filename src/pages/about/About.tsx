@@ -39,6 +39,7 @@ import {
   CTATitle,
   CTADescription
 } from './about.styles';
+import { ButtonLink } from '../services/seo/seo.styles';
 
 const AboutPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -368,9 +369,11 @@ const AboutPage: React.FC = () => {
               We're always looking for talented individuals to join our team. Check out our current openings or send us your resume.
             </CTADescription>
             <ScaleIn delay={0.3}>
-              <Button size="large" variant="primary">
+            <ButtonLink href="/careers/">
+                <Button size="large" variant="primary">
                 View Openings
-              </Button>
+                </Button>
+              </ButtonLink>
             </ScaleIn>
           </FadeIn>
         </CTAContainer>

@@ -479,9 +479,11 @@ const ServicesPage: React.FC = () => {
               Let's work together to create a stunning website that helps your business stand out in the Nepali market. Contact us today for affordable, high-quality web design services!
             </CTAText>
             <CTAButtons>
-              <Button size="large" variant="primary">
-                Get in Touch
-              </Button>
+            <ButtonLink href="/contact">
+                <Button size="large" variant="primary">
+                  Get in Touch
+                </Button>
+              </ButtonLink>
             </CTAButtons>
           </FadeIn>
         </CTAContent>

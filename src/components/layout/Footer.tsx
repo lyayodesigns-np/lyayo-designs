@@ -133,6 +133,8 @@ const Footer: React.FC = () => {
           <FooterLink to="/">Home</FooterLink>
           <FooterLink to="/about-us/">About Us</FooterLink>
           <FooterLink to="/services/">Services</FooterLink>
+          <FooterLink to="/portfolio/">Portfolio</FooterLink>
+          <FooterLink to="/blog/">Blog</FooterLink>
           <FooterLink to="/contact/">Contact Us</FooterLink>
         </FooterColumn>
 {/*         
@@ -151,6 +153,7 @@ const Footer: React.FC = () => {
           <FooterLink to="/terms/">Terms And Conditions</FooterLink>
           <FooterLink to="/privacy/">Privacy Policy</FooterLink>
           <FooterLink to="/careers/">Careers</FooterLink>
+          <FooterLink to="/write-for-us/">Write for Us</FooterLink>
         </FooterColumn>
         
         <FooterColumn>
