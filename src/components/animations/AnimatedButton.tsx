@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface AnimatedButtonProps {
@@ -13,6 +14,7 @@ interface AnimatedButtonProps {
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   className?: string;
+  href?: string;
 }
 
 const StyledButton = styled(motion.button)<{
@@ -305,6 +307,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   icon,
   iconPosition = 'left',
   className = '',
+  href,
 }) => {
   const [ripples, setRipples] = React.useState<{ id: number; x: number; y: number; size: number }[]>([]);
   const nextId = React.useRef(0);
@@ -339,22 +342,22 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     }
   };
 
-  return (
-    <StyledButton
-      type={type}
-      onClick={handleClick}
-      disabled={disabled}
-      variant={variant}
-      size={size}
-      fullWidth={fullWidth}
-      hasIcon={!!icon}
-      iconPosition={iconPosition}
-      className={className}
-      whileHover={!disabled ? 'hover' : 'disabled'}
-      whileTap={!disabled ? 'tap' : 'disabled'}
-      variants={buttonVariants}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-    >
+  const buttonProps = {
+    disabled,
+    variant,
+    size,
+    fullWidth,
+    hasIcon: !!icon,
+    iconPosition,
+    className,
+    whileHover: !disabled ? 'hover' : 'disabled',
+    whileTap: !disabled ? 'tap' : 'disabled',
+    variants: buttonVariants,
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
+  };
+
+  const content = (
+    <>
       {variant !== 'text' && ripples.map(ripple => (
         <Ripple
           key={ripple.id}
@@ -372,6 +375,30 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       {icon && iconPosition === 'left' && icon}
       {children}
       {icon && iconPosition === 'right' && icon}
+    </>
+  );
+
+  // If href is provided, render a Link component
+  if (href) {
+    return (
+      <StyledButton
+        as={Link}
+        to={href}
+        {...buttonProps}
+      >
+        {content}
+      </StyledButton>
+    );
+  }
+
+  // Otherwise, render a regular button
+  return (
+    <StyledButton
+      type={type}
+      onClick={handleClick}
+      {...buttonProps}
+    >
+      {content}
     </StyledButton>
   );
 };
