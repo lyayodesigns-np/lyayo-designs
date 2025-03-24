@@ -23,7 +23,7 @@ const Privacy = React.lazy(() => import('./pages/privacy/Privacy'));
 const Careers = React.lazy(() => import('./pages/careers/Careers'));
 const Portfolio = React.lazy(() => import('./pages/portfolio/Portfolio'));
 const WriteForUs = React.lazy(() => import('./pages/write-for-us/WriteForUs'));
-const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));}
+const NotFound = React.lazy(() => import('./pages/not-found/NotFound'));
 
 // Create a mapping of route paths to their lazy components for preloading
 const routeComponents = {
